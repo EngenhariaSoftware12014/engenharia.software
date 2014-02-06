@@ -1,7 +1,5 @@
-Projeto de engenharia de software 3 (FATEC-SP)
+Engenharia de software 3 (FATEC-SP)
 ===================
-
-Oi 
 
 Criei esse github para que pudéssemos concentrar a documentação em um só lugar, e todos poderem contribuir de uma forma mais fácil.
 
