@@ -1,0 +1,63 @@
+body {
+	background: #fff url(wood.png) 0 0 repeat;
+	margin: 0;
+	padding: 0;
+	font-family: 'Indie Flower', cursive;
+}
+
+.container {
+	width: 1000px;
+	height: 600px;
+	background: #fff;
+	margin: 30px auto;	
+}
+
+.column {
+	display: inline;
+	float: left;
+}
+
+.left-column {
+	width: 250px;
+	height: 100%;	
+}
+
+.right-column {
+	width: 750px;
+	height: 100%;
+}
+
+#anotacoes {
+	width: 235px;
+	height: 335px; 
+	background: #D95C31;
+	margin: 10px 5px 10px 10px;
+}
+
+#jogador {
+	width: 235px;
+	height: 235px;
+	background: #B71023;
+	margin: 5px 10px 10px 10px;
+}
+
+#jogadores {
+	width: 735px;
+	height: 75px;
+	background: #A1071D;
+	margin: 10px 10px 10px 5px;
+}
+
+#tabuleiro {
+	width: 735px;
+	height: 345px;
+	background: #FF9735;
+	margin: 10px 10px 10px 5px;	
+}
+
+#cartas {
+	width: 735px;
+	height: 140px;
+	background: #E9AB5C;
+	margin: 10px 10px 10px 5px;
+}
