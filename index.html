@@ -3,14 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Detetive</title>
-	<style>
+	<style>		
 		#board {
-			margin: 0 auto;
-			padding: 0;
-			width: 550px;
-			padding: 1px;
-			background: #000;
 			position: relative;
+			margin: 0 auto;
+			width: 550px;
+			border: 1px solid #000;			
 		}
 		.row {
 			display: table;
@@ -24,48 +22,37 @@
 			background: #fff;
 		}
 		.graveyard {
-			background: #999966;
-			border-color: transparent;
+			background: #999966;			
 		}
 		.floriculture {
 			background: #006600;
-			border-color: transparent;
 		}
 		.hospital {
 			background: #CCFFFF;
-			border-color: transparent;
 		}
 		.restaurant {
 			background: #CC3300;
-			border-color: transparent;
 		}
 		.station {
 			background: #33CCCC;
-			border-color: transparent;
 		}
 		.square {
 			background: #CCFF66;
-			border-color: transparent;
 		}
 		.prefecture {
 			background: #990000;
-			border-color: transparent;	
 		}
 		.bank {
 			background: #CCCCFF;
-			border-color: transparent;
 		}
 		.office {
 			background: #FF6600;
-			border-color: transparent;
 		}
 		.mansion {
 			background: #CC0000;
-			border-color: transparent;
 		}
 		.nightclub {
 			background: #FF5050;
-			border-color: transparent;
 		}		
 		.caret {
 			position: relative;
@@ -108,696 +95,734 @@
 			left: 7px;	
 		}
 		.character {
-			width: 8px;
-			height: 8px;
-			border-radius: 4px;
+			width: 22px;
+			height: 22px;			
 			position: absolute;
+			z-index: 100;
 		}
-		#chaves {
-			background: #006600;
-			top: 8px;
-			left: 162px;
+		#chaves {			
+			
 		}
 	</style>
 </head>
 <body>
-	<div id="board">
-		<div id="chaves" class="character"></div>
-		<div class="row">
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture caret caret-up"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-		</div>
-		<div class="row">
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-		</div>
-		<div class="row">
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col caret caret-left"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-		</div>
-		<div class="row">
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-		</div>
-		<div class="row">
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col restaurant"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-		</div>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col prefecture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-			<div class="col bank"></div>
-		</div>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-up"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-		</div>
-		<div class="row">
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-down"></div>
-			<div class="col"></div>
-		</div>
-		<div class="row">
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col caret caret-left"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-		</div>
-		<div class="row">
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-right"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-		</div>
-		<div class="row">
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col hospital"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-		</div>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-up"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-			<div class="col office"></div>
-		</div>
-		<div class="row">
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-right"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col caret caret-left"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-down"></div>
-		</div>
-		<div class="row">
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-		</div>
-		<div class="row">
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-		</div>
-		<div class="row">
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col caret caret-left"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-right"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-		</div>
-		<div class="row">
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col square"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-		</div>
-		<div class="row">
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col floriculture"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-			<div class="col mansion"></div>
-		</div>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-up"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-		</div>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-down"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-down"></div>
-			<div class="col"></div>
-		</div>
-		<div class="row">
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-		</div>
-		<div class="row">
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col caret caret-left"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col caret caret-left"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-		</div>
-		<div class="row">
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-right"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-		</div>
-		<div class="row">
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col caret caret-right"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-		</div>
-		<div class="row">
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col graveyard"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station caret caret-down"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col station"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
-			<div class="col nightclub"></div>
+	<div id="middle">
+		<div id="board">
+			<img src="chaves.svg" id="chaves" class="character">
+			<div class="row">
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture caret caret-up"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+			</div>
+			<div class="row">
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+			</div>
+			<div class="row">
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col caret caret-left"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+			</div>
+			<div class="row">
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+			</div>
+			<div class="row">
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col restaurant"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+			</div>
+			<div class="row">
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col prefecture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+				<div class="col bank"></div>
+			</div>
+			<div class="row">
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-up"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-up"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+			</div>
+			<div class="row">
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-down"></div>
+				<div class="col field"></div>
+			</div>
+			<div class="row">
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col caret caret-left"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+			</div>
+			<div class="row">
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-right"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+			</div>
+			<div class="row">
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col hospital"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+			</div>
+			<div class="row">
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-up"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+				<div class="col office"></div>
+			</div>
+			<div class="row">
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-right"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col caret caret-left"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-down"></div>
+			</div>
+			<div class="row">
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+			</div>
+			<div class="row">
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+			</div>
+			<div class="row">
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col caret caret-left"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-right"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+			</div>
+			<div class="row">
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col square"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+			</div>
+			<div class="row">
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col floriculture"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+				<div class="col mansion"></div>
+			</div>
+			<div class="row">
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-up"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+			</div>
+			<div class="row">
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-down"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-down"></div>
+				<div class="col field"></div>
+			</div>
+			<div class="row">
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+			</div>
+			<div class="row">
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col caret caret-left"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col caret caret-left"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+			</div>
+			<div class="row">
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-right"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+			</div>
+			<div class="row">
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col caret caret-right"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+			</div>
+			<div class="row">
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col graveyard"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station caret caret-down"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col station"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col field"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+				<div class="col nightclub"></div>
+			</div>
 		</div>
 	</div>
+
+	<script src="detetive/jquery.js"></script>
+	<script>
+		$(document).ready(function() {
+			var left = 0, top = 0;
+
+			$(document).keydown(function(e) {
+				e.preventDefault();
+
+				// Direcional				
+				var key = e.keyCode; 
+				
+				if (key > 36 && key < 41) {
+
+					switch(e.keyCode) {
+						case 37: // left
+							left -= 22;
+							break;
+						case 38: // up
+							top -= 22;
+							break;
+						case 39: // right
+							left += 22;
+							break;
+						case 40: // down
+							top += 22;
+							break;
+					}
+
+					$('#chaves').animate({'left': left, 'top': top}, 200, function() {
+
+					});
+				}
+				
+				
+			});
+		});
+	</script>
 </body>
 </html>
