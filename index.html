@@ -18,8 +18,11 @@
 			float: left;
 			width: 20px;
 			height: 20px;
-			border: 1px solid #000;
+			border: 1px solid transparent;
 			background: #fff;
+		}
+		.field {
+			border-color: #000;
 		}
 		.graveyard {
 			background: #999966;			
@@ -62,6 +65,15 @@
 			width: 0;
 			height: 0;
 			position: absolute;
+		}
+		.active {
+			background-color: #FFFF00; 
+		}
+		.active:hover {
+			background-color: #FF9900;
+		}
+		.selected {
+			background-color: #FF6600; 
 		}
 		.caret-up:after {
 			border-left: 5px solid transparent;
@@ -110,679 +122,679 @@
 		<div id="board">
 			<img src="chaves.svg" id="chaves" class="character">
 			<div class="row">
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture caret caret-up"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
+				<div id="c01r01" class="col restaurant"></div>
+				<div id="c01r02" class="col restaurant"></div>
+				<div id="c01r03" class="col restaurant"></div>
+				<div id="c01r04" class="col restaurant"></div>
+				<div id="c01r05" class="col restaurant"></div>
+				<div id="c01r06" class="col restaurant"></div>
+				<div id="c01r07" class="col restaurant"></div>
+				<div id="c01r08" class="col field"></div>
+				<div id="c01r09" class="col field"></div>
+				<div id="c01r10" class="col field"></div>
+				<div id="c01r11" class="col prefecture"></div>
+				<div id="c01r12" class="col prefecture"></div>
+				<div id="c01r13" class="col prefecture-exit prefecture caret caret-up"></div>
+				<div id="c01r14" class="col prefecture"></div>
+				<div id="c01r15" class="col prefecture"></div>
+				<div id="c01r16" class="col prefecture"></div>
+				<div id="c01r17" class="col field"></div>
+				<div id="c01r18" class="col field"></div>
+				<div id="c01r19" class="col field"></div>
+				<div id="c01r20" class="col bank"></div>
+				<div id="c01r21" class="col bank"></div>
+				<div id="c01r22" class="col bank"></div>
+				<div id="c01r23" class="col bank"></div>
+				<div id="c01r24" class="col bank"></div>
+				<div id="c01r25" class="col bank"></div>
 			</div>
 			<div class="row">
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
+				<div id="c02r01" class="col restaurant"></div>
+				<div id="c02r02" class="col restaurant"></div>
+				<div id="c02r03" class="col restaurant"></div>
+				<div id="c02r04" class="col restaurant"></div>
+				<div id="c02r05" class="col restaurant"></div>
+				<div id="c02r06" class="col restaurant"></div>
+				<div id="c02r07" class="col restaurant"></div>
+				<div id="c02r08" class="col field"></div>
+				<div id="c02r09" class="col field"></div>
+				<div id="c02r10" class="col field"></div>
+				<div id="c02r11" class="col prefecture"></div>
+				<div id="c02r12" class="col prefecture"></div>
+				<div id="c02r13" class="col prefecture"></div>
+				<div id="c02r14" class="col prefecture"></div>
+				<div id="c02r15" class="col prefecture"></div>
+				<div id="c02r16" class="col prefecture"></div>
+				<div id="c02r17" class="col field"></div>
+				<div id="c02r18" class="col field"></div>
+				<div id="c02r19" class="col field"></div>
+				<div id="c02r20" class="col bank"></div>
+				<div id="c02r21" class="col bank"></div>
+				<div id="c02r22" class="col bank"></div>
+				<div id="c02r23" class="col bank"></div>
+				<div id="c02r24" class="col bank"></div>
+				<div id="c02r25" class="col bank"></div>
 			</div>
 			<div class="row">
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col caret caret-left"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
+				<div id="c03r01" class="col restaurant"></div>
+				<div id="c03r02" class="col restaurant"></div>
+				<div id="c03r03" class="col restaurant"></div>
+				<div id="c03r04" class="col restaurant"></div>
+				<div id="c03r05" class="col restaurant"></div>
+				<div id="c03r06" class="col restaurant"></div>
+				<div id="c03r07" class="col restaurant"></div>
+				<div id="c03r08" class="col restaurant-exit field caret caret-left"></div>
+				<div id="c03r09" class="col field"></div>
+				<div id="c03r10" class="col field"></div>
+				<div id="c03r11" class="col prefecture"></div>
+				<div id="c03r12" class="col prefecture"></div>
+				<div id="c03r13" class="col prefecture"></div>
+				<div id="c03r14" class="col prefecture"></div>
+				<div id="c03r15" class="col prefecture"></div>
+				<div id="c03r16" class="col prefecture"></div>
+				<div id="c03r17" class="col field"></div>
+				<div id="c03r18" class="col field"></div>
+				<div id="c03r19" class="col field"></div>
+				<div id="c03r20" class="col bank"></div>
+				<div id="c03r21" class="col bank"></div>
+				<div id="c03r22" class="col bank"></div>
+				<div id="c03r23" class="col bank"></div>
+				<div id="c03r24" class="col bank"></div>
+				<div id="c03r25" class="col bank"></div>
 			</div>
 			<div class="row">
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
+				<div id="c04r01" class="col restaurant"></div>
+				<div id="c04r02" class="col restaurant"></div>
+				<div id="c04r03" class="col restaurant"></div>
+				<div id="c04r04" class="col restaurant"></div>
+				<div id="c04r05" class="col restaurant"></div>
+				<div id="c04r06" class="col restaurant"></div>
+				<div id="c04r07" class="col restaurant"></div>
+				<div id="c04r08" class="col field"></div>
+				<div id="c04r09" class="col field"></div>
+				<div id="c04r10" class="col field"></div>
+				<div id="c04r11" class="col prefecture"></div>
+				<div id="c04r12" class="col prefecture"></div>
+				<div id="c04r13" class="col prefecture"></div>
+				<div id="c04r14" class="col prefecture"></div>
+				<div id="c04r15" class="col prefecture"></div>
+				<div id="c04r16" class="col prefecture"></div>
+				<div id="c04r17" class="col field"></div>
+				<div id="c04r18" class="col field"></div>
+				<div id="c04r19" class="col field"></div>
+				<div id="c04r20" class="col bank"></div>
+				<div id="c04r21" class="col bank"></div>
+				<div id="c04r22" class="col bank"></div>
+				<div id="c04r23" class="col bank"></div>
+				<div id="c04r24" class="col bank"></div>
+				<div id="c04r25" class="col bank"></div>
 			</div>
 			<div class="row">
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col restaurant"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
+				<div id="c05r01" class="col restaurant"></div>
+				<div id="c05r02" class="col restaurant"></div>
+				<div id="c05r03" class="col restaurant"></div>
+				<div id="c05r04" class="col restaurant"></div>
+				<div id="c05r05" class="col restaurant"></div>
+				<div id="c05r06" class="col restaurant"></div>
+				<div id="c05r07" class="col restaurant"></div>
+				<div id="c05r08" class="col field"></div>
+				<div id="c05r09" class="col field"></div>
+				<div id="c05r10" class="col field"></div>
+				<div id="c05r11" class="col prefecture"></div>
+				<div id="c05r12" class="col prefecture"></div>
+				<div id="c05r13" class="col prefecture"></div>
+				<div id="c05r14" class="col prefecture"></div>
+				<div id="c05r15" class="col prefecture"></div>
+				<div id="c05r16" class="col prefecture"></div>
+				<div id="c05r17" class="col field"></div>
+				<div id="c05r18" class="col field"></div>
+				<div id="c05r19" class="col field"></div>
+				<div id="c05r20" class="col bank"></div>
+				<div id="c05r21" class="col bank"></div>
+				<div id="c05r22" class="col bank"></div>
+				<div id="c05r23" class="col bank"></div>
+				<div id="c05r24" class="col bank"></div>
+				<div id="c05r25" class="col bank"></div>
 			</div>
 			<div class="row">
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col prefecture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
-				<div class="col bank"></div>
+				<div id="c06r01" class="col field"></div>
+				<div id="c06r02" class="col field"></div>
+				<div id="c06r03" class="col field"></div>
+				<div id="c06r04" class="col field"></div>
+				<div id="c06r05" class="col field"></div>
+				<div id="c06r06" class="col field"></div>
+				<div id="c06r07" class="col field"></div>
+				<div id="c06r08" class="col field"></div>
+				<div id="c06r09" class="col field"></div>
+				<div id="c06r10" class="col field"></div>
+				<div id="c06r11" class="col prefecture"></div>
+				<div id="c06r12" class="col prefecture"></div>
+				<div id="c06r13" class="col prefecture"></div>
+				<div id="c06r14" class="col prefecture"></div>
+				<div id="c06r15" class="col prefecture"></div>
+				<div id="c06r16" class="col prefecture"></div>
+				<div id="c06r17" class="col field"></div>
+				<div id="c06r18" class="col field"></div>
+				<div id="c06r19" class="col field"></div>
+				<div id="c06r20" class="col bank"></div>
+				<div id="c06r21" class="col bank"></div>
+				<div id="c06r22" class="col bank"></div>
+				<div id="c06r23" class="col bank"></div>
+				<div id="c06r24" class="col bank"></div>
+				<div id="c06r25" class="col bank"></div>
 			</div>
 			<div class="row">
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-up"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-up"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
+				<div id="c07r01" class="col field"></div>
+				<div id="c07r02" class="col field"></div>
+				<div id="c07r03" class="col field"></div>
+				<div id="c07r04" class="col field"></div>
+				<div id="c07r05" class="col field"></div>
+				<div id="c07r06" class="col field"></div>
+				<div id="c07r07" class="col field"></div>
+				<div id="c07r08" class="col field"></div>
+				<div id="c07r09" class="col field"></div>
+				<div id="c07r10" class="col field"></div>
+				<div id="c07r11" class="col field"></div>
+				<div id="c07r12" class="col prefecture-exit field caret caret-up"></div>
+				<div id="c07r13" class="col field"></div>
+				<div id="c07r14" class="col field"></div>
+				<div id="c07r15" class="col field"></div>
+				<div id="c07r16" class="col field"></div>
+				<div id="c07r17" class="col field"></div>
+				<div id="c07r18" class="col field"></div>
+				<div id="c07r19" class="col field"></div>
+				<div id="c07r20" class="col field"></div>
+				<div id="c07r21" class="col field"></div>
+				<div id="c07r22" class="col bank-exit field caret caret-up"></div>
+				<div id="c07r23" class="col field"></div>
+				<div id="c07r24" class="col field"></div>
+				<div id="c07r25" class="col field"></div>
 			</div>
 			<div class="row">
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-down"></div>
-				<div class="col field"></div>
+				<div id="c08r01" class="col hospital"></div>
+				<div id="c08r02" class="col hospital"></div>
+				<div id="c08r03" class="col hospital"></div>
+				<div id="c08r04" class="col hospital"></div>
+				<div id="c08r05" class="col hospital"></div>
+				<div id="c08r06" class="col hospital"></div>
+				<div id="c08r07" class="col field"></div>
+				<div id="c08r08" class="col field"></div>
+				<div id="c08r09" class="col field"></div>
+				<div id="c08r10" class="col field"></div>
+				<div id="c08r11" class="col field"></div>
+				<div id="c08r12" class="col field"></div>
+				<div id="c08r13" class="col field"></div>
+				<div id="c08r14" class="col field"></div>
+				<div id="c08r15" class="col field"></div>
+				<div id="c08r16" class="col field"></div>
+				<div id="c08r17" class="col field"></div>
+				<div id="c08r18" class="col field"></div>
+				<div id="c08r19" class="col field"></div>
+				<div id="c08r20" class="col field"></div>
+				<div id="c08r21" class="col field"></div>
+				<div id="c08r22" class="col field"></div>
+				<div id="c08r23" class="col field"></div>
+				<div id="c08r24" class="col office-exit field caret caret-down"></div>
+				<div id="c08r25" class="col field"></div>
 			</div>
 			<div class="row">
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col caret caret-left"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
+				<div id="c09r01" class="col hospital"></div>
+				<div id="c09r02" class="col hospital"></div>
+				<div id="c09r03" class="col hospital"></div>
+				<div id="c09r04" class="col hospital"></div>
+				<div id="c09r05" class="col hospital"></div>
+				<div id="c09r06" class="col hospital-exit field caret caret-left"></div>
+				<div id="c09r07" class="col field"></div>
+				<div id="c09r08" class="col field"></div>
+				<div id="c09r09" class="col field"></div>
+				<div id="c09r10" class="col square"></div>
+				<div id="c09r11" class="col square"></div>
+				<div id="c09r12" class="col square"></div>
+				<div id="c09r13" class="col square"></div>
+				<div id="c09r14" class="col square"></div>
+				<div id="c09r15" class="col square"></div>
+				<div id="c09r16" class="col square"></div>
+				<div id="c09r17" class="col field"></div>
+				<div id="c09r18" class="col field"></div>
+				<div id="c09r19" class="col field"></div>
+				<div id="c09r20" class="col office"></div>
+				<div id="c09r21" class="col office"></div>
+				<div id="c09r22" class="col office"></div>
+				<div id="c09r23" class="col office"></div>
+				<div id="c09r24" class="col office"></div>
+				<div id="c09r25" class="col office"></div>
 			</div>
 			<div class="row">
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-right"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
+				<div id="c10r01" class="col hospital"></div>
+				<div id="c10r02" class="col hospital"></div>
+				<div id="c10r03" class="col hospital"></div>
+				<div id="c10r04" class="col hospital"></div>
+				<div id="c10r05" class="col hospital"></div>
+				<div id="c10r06" class="col field"></div>
+				<div id="c10r07" class="col field"></div>
+				<div id="c10r08" class="col field"></div>
+				<div id="c10r09" class="col field"></div>
+				<div id="c10r10" class="col square"></div>
+				<div id="c10r11" class="col square"></div>
+				<div id="c10r12" class="col square"></div>
+				<div id="c10r13" class="col square"></div>
+				<div id="c10r14" class="col square"></div>
+				<div id="c10r15" class="col square"></div>
+				<div id="c10r16" class="col square"></div>
+				<div id="c10r17" class="col field"></div>
+				<div id="c10r18" class="col field"></div>
+				<div id="c10r19" class="col office-exit field caret caret-right"></div>
+				<div id="c10r20" class="col office"></div>
+				<div id="c10r21" class="col office"></div>
+				<div id="c10r22" class="col office"></div>
+				<div id="c10r23" class="col office"></div>
+				<div id="c10r24" class="col office"></div>
+				<div id="c10r25" class="col office"></div>
 			</div>
 			<div class="row">
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col hospital"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
+				<div id="c11r01" class="col hospital"></div>
+				<div id="c11r02" class="col hospital"></div>
+				<div id="c11r03" class="col hospital"></div>
+				<div id="c11r04" class="col hospital"></div>
+				<div id="c11r05" class="col hospital"></div>
+				<div id="c11r06" class="col hospital"></div>
+				<div id="c11r07" class="col field"></div>
+				<div id="c11r08" class="col field"></div>
+				<div id="c11r09" class="col field"></div>
+				<div id="c11r10" class="col square"></div>
+				<div id="c11r11" class="col square"></div>
+				<div id="c11r12" class="col square"></div>
+				<div id="c11r13" class="col square"></div>
+				<div id="c11r14" class="col square"></div>
+				<div id="c11r15" class="col square"></div>
+				<div id="c11r16" class="col square"></div>
+				<div id="c11r17" class="col field"></div>
+				<div id="c11r18" class="col field"></div>
+				<div id="c11r19" class="col field"></div>
+				<div id="c11r20" class="col office"></div>
+				<div id="c11r21" class="col office"></div>
+				<div id="c11r22" class="col office"></div>
+				<div id="c11r23" class="col office"></div>
+				<div id="c11r24" class="col office"></div>
+				<div id="c11r25" class="col office"></div>
 			</div>
 			<div class="row">
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-up"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
-				<div class="col office"></div>
+				<div id="c12r01" class="col field"></div>
+				<div id="c12r02" class="col field"></div>
+				<div id="c12r03" class="col hospital-exit field caret caret-up"></div>
+				<div id="c12r04" class="col field"></div>
+				<div id="c12r05" class="col field"></div>
+				<div id="c12r06" class="col field"></div>
+				<div id="c12r07" class="col field"></div>
+				<div id="c12r08" class="col field"></div>
+				<div id="c12r09" class="col field"></div>
+				<div id="c12r10" class="col square"></div>
+				<div id="c12r11" class="col square"></div>
+				<div id="c12r12" class="col square"></div>
+				<div id="c12r13" class="col square"></div>
+				<div id="c12r14" class="col square"></div>
+				<div id="c12r15" class="col square"></div>
+				<div id="c12r16" class="col square"></div>
+				<div id="c12r17" class="col field"></div>
+				<div id="c12r18" class="col field"></div>
+				<div id="c12r19" class="col field"></div>
+				<div id="c12r20" class="col office"></div>
+				<div id="c12r21" class="col office"></div>
+				<div id="c12r22" class="col office"></div>
+				<div id="c12r23" class="col office"></div>
+				<div id="c12r24" class="col office"></div>
+				<div id="c12r25" class="col office"></div>
 			</div>
 			<div class="row">
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-right"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col caret caret-left"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-down"></div>
+				<div id="c13r01" class="col floriculture"></div>
+				<div id="c13r02" class="col floriculture"></div>
+				<div id="c13r03" class="col floriculture"></div>
+				<div id="c13r04" class="col floriculture"></div>
+				<div id="c13r05" class="col floriculture"></div>
+				<div id="c13r06" class="col floriculture"></div>
+				<div id="c13r07" class="col field"></div>
+				<div id="c13r08" class="col field"></div>
+				<div id="c13r09" class="col square-exit field caret caret-right"></div>
+				<div id="c13r10" class="col square"></div>
+				<div id="c13r11" class="col square"></div>
+				<div id="c13r12" class="col square"></div>
+				<div id="c13r13" class="col square"></div>
+				<div id="c13r14" class="col square"></div>
+				<div id="c13r15" class="col square"></div>
+				<div id="c13r16" class="col square"></div>
+				<div id="c13r17" class="col square-exit field caret caret-left"></div>
+				<div id="c13r18" class="col field"></div>
+				<div id="c13r19" class="col field"></div>
+				<div id="c13r20" class="col field"></div>
+				<div id="c13r21" class="col field"></div>
+				<div id="c13r22" class="col field"></div>
+				<div id="c13r23" class="col field"></div>
+				<div id="c13r24" class="col field"></div>
+				<div id="c13r25" class="col mansion-exit field caret caret-down"></div>
 			</div>
 			<div class="row">
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
+				<div id="c14r01" class="col floriculture"></div>
+				<div id="c14r02" class="col floriculture"></div>
+				<div id="c14r03" class="col floriculture"></div>
+				<div id="c14r04" class="col floriculture"></div>
+				<div id="c14r05" class="col floriculture"></div>
+				<div id="c14r06" class="col floriculture"></div>
+				<div id="c14r07" class="col field"></div>
+				<div id="c14r08" class="col field"></div>
+				<div id="c14r09" class="col field"></div>
+				<div id="c14r10" class="col square"></div>
+				<div id="c14r11" class="col square"></div>
+				<div id="c14r12" class="col square"></div>
+				<div id="c14r13" class="col square"></div>
+				<div id="c14r14" class="col square"></div>
+				<div id="c14r15" class="col square"></div>
+				<div id="c14r16" class="col square"></div>
+				<div id="c14r17" class="col field"></div>
+				<div id="c14r18" class="col field"></div>
+				<div id="c14r19" class="col field"></div>
+				<div id="c14r20" class="col field"></div>
+				<div id="c14r21" class="col field"></div>
+				<div id="c14r22" class="col field"></div>
+				<div id="c14r23" class="col mansion"></div>
+				<div id="c14r24" class="col mansion"></div>
+				<div id="c14r25" class="col mansion"></div>
 			</div>
 			<div class="row">
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
+				<div id="c15r01" class="col floriculture"></div>
+				<div id="c15r02" class="col floriculture"></div>
+				<div id="c15r03" class="col floriculture"></div>
+				<div id="c15r04" class="col floriculture"></div>
+				<div id="c15r05" class="col floriculture"></div>
+				<div id="c15r06" class="col floriculture"></div>
+				<div id="c15r07" class="col field"></div>
+				<div id="c15r08" class="col field"></div>
+				<div id="c15r09" class="col field"></div>
+				<div id="c15r10" class="col square"></div>
+				<div id="c15r11" class="col square"></div>
+				<div id="c15r12" class="col square"></div>
+				<div id="c15r13" class="col square"></div>
+				<div id="c15r14" class="col square"></div>
+				<div id="c15r15" class="col square"></div>
+				<div id="c15r16" class="col square"></div>
+				<div id="c15r17" class="col field"></div>
+				<div id="c15r18" class="col field"></div>
+				<div id="c15r19" class="col field"></div>
+				<div id="c15r20" class="col mansion"></div>
+				<div id="c15r21" class="col mansion"></div>
+				<div id="c15r22" class="col mansion"></div>
+				<div id="c15r23" class="col mansion"></div>
+				<div id="c15r24" class="col mansion"></div>
+				<div id="c15r25" class="col mansion"></div>
 			</div>
 			<div class="row">
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col caret caret-left"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-right"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
+				<div id="c16r01" class="col floriculture"></div>
+				<div id="c16r02" class="col floriculture"></div>
+				<div id="c16r03" class="col floriculture"></div>
+				<div id="c16r04" class="col floriculture"></div>
+				<div id="c16r05" class="col floriculture"></div>
+				<div id="c16r06" class="col floriculture"></div>
+				<div id="c16r07" class="col floriculture-exit field caret caret-left"></div>
+				<div id="c16r08" class="col field"></div>
+				<div id="c16r09" class="col field"></div>
+				<div id="c16r10" class="col square"></div>
+				<div id="c16r11" class="col square"></div>
+				<div id="c16r12" class="col square"></div>
+				<div id="c16r13" class="col square"></div>
+				<div id="c16r14" class="col square"></div>
+				<div id="c16r15" class="col square"></div>
+				<div id="c16r16" class="col square"></div>
+				<div id="c16r17" class="col field"></div>
+				<div id="c16r18" class="col field"></div>
+				<div id="c16r19" class="col mansion-exit field caret caret-right"></div>
+				<div id="c16r20" class="col mansion"></div>
+				<div id="c16r21" class="col mansion"></div>
+				<div id="c16r22" class="col mansion"></div>
+				<div id="c16r23" class="col mansion"></div>
+				<div id="c16r24" class="col mansion"></div>
+				<div id="c16r25" class="col mansion"></div>
 			</div>
 			<div class="row">
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col square"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
+				<div id="c17r01" class="col floriculture"></div>
+				<div id="c17r02" class="col floriculture"></div>
+				<div id="c17r03" class="col floriculture"></div>
+				<div id="c17r04" class="col floriculture"></div>
+				<div id="c17r05" class="col floriculture"></div>
+				<div id="c17r06" class="col floriculture"></div>
+				<div id="c17r07" class="col field"></div>
+				<div id="c17r08" class="col field"></div>
+				<div id="c17r09" class="col field"></div>
+				<div id="c17r10" class="col square"></div>
+				<div id="c17r11" class="col square"></div>
+				<div id="c17r12" class="col square"></div>
+				<div id="c17r13" class="col square"></div>
+				<div id="c17r14" class="col square"></div>
+				<div id="c17r15" class="col square"></div>
+				<div id="c17r16" class="col square"></div>
+				<div id="c17r17" class="col field"></div>
+				<div id="c17r18" class="col field"></div>
+				<div id="c17r19" class="col field"></div>
+				<div id="c17r20" class="col mansion"></div>
+				<div id="c17r21" class="col mansion"></div>
+				<div id="c17r22" class="col mansion"></div>
+				<div id="c17r23" class="col mansion"></div>
+				<div id="c17r24" class="col mansion"></div>
+				<div id="c17r25" class="col mansion"></div>
 			</div>
 			<div class="row">
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col floriculture"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
-				<div class="col mansion"></div>
+				<div id="c18r01" class="col floriculture"></div>
+				<div id="c18r02" class="col floriculture"></div>
+				<div id="c18r03" class="col floriculture"></div>
+				<div id="c18r04" class="col floriculture"></div>
+				<div id="c18r05" class="col floriculture"></div>
+				<div id="c18r06" class="col floriculture"></div>
+				<div id="c18r07" class="col field"></div>
+				<div id="c18r08" class="col field"></div>
+				<div id="c18r09" class="col field"></div>
+				<div id="c18r10" class="col field"></div>
+				<div id="c18r11" class="col field"></div>
+				<div id="c18r12" class="col field"></div>
+				<div id="c18r13" class="col field"></div>
+				<div id="c18r14" class="col field"></div>
+				<div id="c18r15" class="col field"></div>
+				<div id="c18r16" class="col field"></div>
+				<div id="c18r17" class="col field"></div>
+				<div id="c18r18" class="col field"></div>
+				<div id="c18r19" class="col field"></div>
+				<div id="c18r20" class="col field"></div>
+				<div id="c18r21" class="col field"></div>
+				<div id="c18r22" class="col field"></div>
+				<div id="c18r23" class="col mansion"></div>
+				<div id="c18r24" class="col mansion"></div>
+				<div id="c18r25" class="col mansion"></div>
 			</div>
 			<div class="row">
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-up"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
+				<div id="c19r01" class="col field"></div>
+				<div id="c19r02" class="col field"></div>
+				<div id="c19r03" class="col floriculture-exit field caret caret-up"></div>
+				<div id="c19r04" class="col field"></div>
+				<div id="c19r05" class="col field"></div>
+				<div id="c19r06" class="col field"></div>
+				<div id="c19r07" class="col field"></div>
+				<div id="c19r08" class="col field"></div>
+				<div id="c19r09" class="col field"></div>
+				<div id="c19r10" class="col field"></div>
+				<div id="c19r11" class="col field"></div>
+				<div id="c19r12" class="col field"></div>
+				<div id="c19r13" class="col field"></div>
+				<div id="c19r14" class="col field"></div>
+				<div id="c19r15" class="col field"></div>
+				<div id="c19r16" class="col field"></div>
+				<div id="c19r17" class="col field"></div>
+				<div id="c19r18" class="col field"></div>
+				<div id="c19r19" class="col field"></div>
+				<div id="c19r20" class="col field"></div>
+				<div id="c19r21" class="col field"></div>
+				<div id="c19r22" class="col field"></div>
+				<div id="c19r23" class="col field"></div>
+				<div id="c19r24" class="col field"></div>
+				<div id="c19r25" class="col field"></div>
 			</div>
 			<div class="row">
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-down"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-down"></div>
-				<div class="col field"></div>
+				<div id="c20r01" class="col field"></div>
+				<div id="c20r02" class="col field"></div>
+				<div id="c20r03" class="col field"></div>
+				<div id="c20r04" class="col graveyard-exit field caret caret-down"></div>
+				<div id="c20r05" class="col field"></div>
+				<div id="c20r06" class="col field"></div>
+				<div id="c20r07" class="col field"></div>
+				<div id="c20r08" class="col field"></div>
+				<div id="c20r09" class="col field"></div>
+				<div id="c20r10" class="col station"></div>
+				<div id="c20r11" class="col station"></div>
+				<div id="c20r12" class="col station"></div>
+				<div id="c20r13" class="col station"></div>
+				<div id="c20r14" class="col station"></div>
+				<div id="c20r15" class="col station"></div>
+				<div id="c20r16" class="col station"></div>
+				<div id="c20r17" class="col field"></div>
+				<div id="c20r18" class="col field"></div>
+				<div id="c20r19" class="col field"></div>
+				<div id="c20r20" class="col field"></div>
+				<div id="c20r21" class="col field"></div>
+				<div id="c20r22" class="col field"></div>
+				<div id="c20r23" class="col field"></div>
+				<div id="c20r24" class="col nightclub-exit field caret caret-down"></div>
+				<div id="c20r25" class="col field"></div>
 			</div>
 			<div class="row">
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
+				<div id="c21r01" class="col graveyard"></div>
+				<div id="c21r02" class="col graveyard"></div>
+				<div id="c21r03" class="col graveyard"></div>
+				<div id="c21r04" class="col graveyard"></div>
+				<div id="c21r05" class="col graveyard"></div>
+				<div id="c21r06" class="col graveyard"></div>
+				<div id="c21r07" class="col field"></div>
+				<div id="c21r08" class="col field"></div>
+				<div id="c21r09" class="col field"></div>
+				<div id="c21r10" class="col station"></div>
+				<div id="c21r11" class="col station"></div>
+				<div id="c21r12" class="col station"></div>
+				<div id="c21r13" class="col station"></div>
+				<div id="c21r14" class="col station"></div>
+				<div id="c21r15" class="col station"></div>
+				<div id="c21r16" class="col station"></div>
+				<div id="c21r17" class="col field"></div>
+				<div id="c21r18" class="col field"></div>
+				<div id="c21r19" class="col field"></div>
+				<div id="c21r20" class="col nightclub"></div>
+				<div id="c21r21" class="col nightclub"></div>
+				<div id="c21r22" class="col nightclub"></div>
+				<div id="c21r23" class="col nightclub"></div>
+				<div id="c21r24" class="col nightclub"></div>
+				<div id="c21r25" class="col nightclub"></div>
 			</div>
 			<div class="row">
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col caret caret-left"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col caret caret-left"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
+				<div id="c22r01" class="col graveyard"></div>
+				<div id="c22r02" class="col graveyard"></div>
+				<div id="c22r03" class="col graveyard"></div>
+				<div id="c22r04" class="col graveyard"></div>
+				<div id="c22r05" class="col graveyard"></div>
+				<div id="c22r06" class="col graveyard"></div>
+				<div id="c22r07" class="col graveyard-exit field caret caret-left"></div>
+				<div id="c22r08" class="col field"></div>
+				<div id="c22r09" class="col field"></div>
+				<div id="c22r10" class="col station"></div>
+				<div id="c22r11" class="col station"></div>
+				<div id="c22r12" class="col station"></div>
+				<div id="c22r13" class="col station"></div>
+				<div id="c22r14" class="col station"></div>
+				<div id="c22r15" class="col station"></div>
+				<div id="c22r16" class="col station"></div>
+				<div id="c22r17" class="col station-exit field caret caret-left"></div>
+				<div id="c22r18" class="col field"></div>
+				<div id="c22r19" class="col field"></div>
+				<div id="c22r20" class="col nightclub"></div>
+				<div id="c22r21" class="col nightclub"></div>
+				<div id="c22r22" class="col nightclub"></div>
+				<div id="c22r23" class="col nightclub"></div>
+				<div id="c22r24" class="col nightclub"></div>
+				<div id="c22r25" class="col nightclub"></div>
 			</div>
 			<div class="row">
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-right"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
+				<div id="c23r01" class="col graveyard"></div>
+				<div id="c23r02" class="col graveyard"></div>
+				<div id="c23r03" class="col graveyard"></div>
+				<div id="c23r04" class="col graveyard"></div>
+				<div id="c23r05" class="col graveyard"></div>
+				<div id="c23r06" class="col graveyard"></div>
+				<div id="c23r07" class="col field"></div>
+				<div id="c23r08" class="col field"></div>
+				<div id="c23r09" class="col field"></div>
+				<div id="c23r10" class="col station"></div>
+				<div id="c23r11" class="col station"></div>
+				<div id="c23r12" class="col station"></div>
+				<div id="c23r13" class="col station"></div>
+				<div id="c23r14" class="col station"></div>
+				<div id="c23r15" class="col station"></div>
+				<div id="c23r16" class="col station"></div>
+				<div id="c23r17" class="col field"></div>
+				<div id="c23r18" class="col field"></div>
+				<div id="c23r19" class="col nightclub-exit field caret caret-right"></div>
+				<div id="c23r20" class="col nightclub"></div>
+				<div id="c23r21" class="col nightclub"></div>
+				<div id="c23r22" class="col nightclub"></div>
+				<div id="c23r23" class="col nightclub"></div>
+				<div id="c23r24" class="col nightclub"></div>
+				<div id="c23r25" class="col nightclub"></div>
 			</div>
 			<div class="row">
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col caret caret-right"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
+				<div id="c24r01" class="col graveyard"></div>
+				<div id="c24r02" class="col graveyard"></div>
+				<div id="c24r03" class="col graveyard"></div>
+				<div id="c24r04" class="col graveyard"></div>
+				<div id="c24r05" class="col graveyard"></div>
+				<div id="c24r06" class="col graveyard"></div>
+				<div id="c24r07" class="col field"></div>
+				<div id="c24r08" class="col field"></div>
+				<div id="c24r09" class="col station-exit field caret caret-right"></div>
+				<div id="c24r10" class="col station"></div>
+				<div id="c24r11" class="col station"></div>
+				<div id="c24r12" class="col station"></div>
+				<div id="c24r13" class="col station"></div>
+				<div id="c24r14" class="col station"></div>
+				<div id="c24r15" class="col station"></div>
+				<div id="c24r16" class="col station"></div>
+				<div id="c24r17" class="col field"></div>
+				<div id="c24r18" class="col field"></div>
+				<div id="c24r19" class="col field"></div>
+				<div id="c24r20" class="col nightclub"></div>
+				<div id="c24r21" class="col nightclub"></div>
+				<div id="c24r22" class="col nightclub"></div>
+				<div id="c24r23" class="col nightclub"></div>
+				<div id="c24r24" class="col nightclub"></div>
+				<div id="c24r25" class="col nightclub"></div>
 			</div>
 			<div class="row">
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col graveyard"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station caret caret-down"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col station"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col field"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
-				<div class="col nightclub"></div>
+				<div id="c25r01" class="col graveyard"></div>
+				<div id="c25r02" class="col graveyard"></div>
+				<div id="c25r03" class="col graveyard"></div>
+				<div id="c25r04" class="col graveyard"></div>
+				<div id="c25r05" class="col graveyard"></div>
+				<div id="c25r06" class="col graveyard"></div>
+				<div id="c25r07" class="col field"></div>
+				<div id="c25r08" class="col field"></div>
+				<div id="c25r09" class="col field"></div>
+				<div id="c25r10" class="col station"></div>
+				<div id="c25r11" class="col station"></div>
+				<div id="c25r12" class="col station"></div>
+				<div id="c25r13" class="col station-exit station caret caret-down"></div>
+				<div id="c25r14" class="col station"></div>
+				<div id="c25r15" class="col station"></div>
+				<div id="c25r16" class="col station"></div>
+				<div id="c25r17" class="col field"></div>
+				<div id="c25r18" class="col field"></div>
+				<div id="c25r19" class="col field"></div>
+				<div id="c25r20" class="col nightclub"></div>
+				<div id="c25r21" class="col nightclub"></div>
+				<div id="c25r22" class="col nightclub"></div>
+				<div id="c25r23" class="col nightclub"></div>
+				<div id="c25r24" class="col nightclub"></div>
+				<div id="c25r25" class="col nightclub"></div>
 			</div>
 		</div>
 	</div>
@@ -790,38 +802,25 @@
 	<script src="detetive/jquery.js"></script>
 	<script>
 		$(document).ready(function() {
-			var left = 0, top = 0;
 
-			$(document).keydown(function(e) {
-				e.preventDefault();
+			var place = 'restaurant';
+			$('.' +  place + '-exit').addClass('active');
 
-				// Direcional				
-				var key = e.keyCode; 
-				
-				if (key > 36 && key < 41) {
-
-					switch(e.keyCode) {
-						case 37: // left
-							left -= 22;
-							break;
-						case 38: // up
-							top -= 22;
-							break;
-						case 39: // right
-							left += 22;
-							break;
-						case 40: // down
-							top += 22;
-							break;
-					}
-
-					$('#chaves').animate({'left': left, 'top': top}, 200, function() {
-
-					});
-				}
-				
-				
+			$('.active').click(function(e) {
+				e.preventDefault();				
+				// Location
+				var location = $(this).attr('id');
+				// Row and Col
+				var r = location.substr(1,2), c = location.substr(4,6);
+				// Add active class to next and preview of col and row 				
+				$('#r' + r + 'c' + c).addClass('active');
+				console.log('#r' + r + 'c' + c);
+				// Add selected class
+				$(this).addClass('selected');
+				// Remove active class
+				$('.active').removeClass('active');
 			});
+			
 		});
 	</script>
 </body>
