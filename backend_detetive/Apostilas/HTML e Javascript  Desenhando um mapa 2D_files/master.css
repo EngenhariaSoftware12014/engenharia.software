@@ -1,0 +1,443 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+table, caption, tbody, tfoot, thead, tr, th, td{
+	margin: 0;font-size: 100%;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+/*table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+/*BASE CSS*/
+.limit { width: 980px; margin: 0 auto; }
+.clear { clear:both; }
+.fl { float:left; }
+.fr { float:right; }
+.mg-t, .margin { margin-top: 10px; }
+.mg-r, .margin { margin-right: 10px; }
+.mg-b, .margin { margin-bottom: 10px; }
+.mg-l, .margin { margin-left: 10px; }
+.pd-t, .padding { padding-top: 10px; }
+.pd-r, .padding { padding-right: 10px; }
+.pd-b, .padding { padding-bottom: 10px; }
+.pd-l, .padding { padding-left: 10px; }
+
+a { font-size: 12px; color: #052d63; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+a.btn {
+	font-weight: bold;
+	font-size: 10px;
+	text-transform:uppercase;
+	color: #80807e;
+	padding: 6px 17px 6px 8px;
+	background: #eee url(http://www.linhadecodigo.com.br/img/arrow.gif) right center no-repeat;
+	border: 1px solid #ddd;
+	border-radius: 3px;		
+}
+a.btn:hover {
+	color: #052d63;
+	text-decoration:none;
+	background: #f3f3f3 url(http://www.linhadecodigo.com.br/img/arrow.gif) right center no-repeat;
+}
+
+a.btn2, input[type="submit"].btn2 {
+	font-weight: bold;
+	font-size: 10px;
+	text-transform:uppercase;
+	color: #fff;
+	padding: 6px 17px 6px 8px;
+	background: #F4B032 url(http://www.linhadecodigo.com.br/img/arrow2.gif) right center no-repeat;
+	border: 1px solid #C77D09;
+	border-radius: 3px;
+	box-shadow: 0px 1px 2px #333;
+}
+input[type="submit"].btn2 {
+	padding: 5px 17px 5px 8px;
+}
+a.btn2:hover, input[type="submit"].btn2:hover {
+	color: #052d63;
+	text-decoration:none;
+	background: #F7C465 url(http://www.linhadecodigo.com.br/img/arrow2.gif) right center no-repeat;
+}
+
+
+body { font-family:Arial, Helvetica, sans-serif; font-size: 12px; }
+
+/*HEADER*/
+#top-bar { 
+	background: #152947;
+	padding: 7px 0;
+	border-bottom: 3px solid #12208a;
+	box-shadow: 0 0 10px #333;
+	text-align: right;
+}
+#header-content {
+	background: url(http://www.linhadecodigo.com.br/img/bg-header.jpg) repeat-x;
+	padding: 30px 0;	
+}
+#logo-top {
+	text-indent: -999px;
+	float: left;
+	width: 261px;
+	height: 46px;
+	background:url(http://www.linhadecodigo.com.br/img/logoLc.png);
+	cursor: pointer;
+}
+#login-search {
+	float: right;	
+}
+#search-form { 
+	position: relative;
+	border: 1px solid #999;
+	border-radius: 6px;
+	padding:0;
+	float: right;
+	background: #fff;
+	width: 240px;
+}
+#search-form label {
+	position: absolute;	
+	font-size: 18px;
+	color: #a6a6a6;
+	font-style:italic;
+	padding: 5px 10px;
+	top: 3px;  
+	left:0;
+}
+#search-form input[type="text"] {
+	border: none;
+	float: left;
+	font-size: 18px;
+	color: #a6a6a6;
+	font-style:italic;
+	padding: 5px 20px 5px 10px;
+	margin: 0;
+	background: none;
+}
+#search-form input[type="text"]:focus { border: none; }
+#search-form input[type="submit"] {
+	width: 13px;
+	height: 17px;
+	background:url(http://www.linhadecodigo.com.br/img/search-icon.gif) #fff;
+	border: none;
+	text-indent: -999px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;	
+}
+#login-link {
+	float: right;
+	margin-right: 20px;
+	background: #1b3b72;
+	padding: 10px;
+	color: #fff;
+	border: 1px solid #072662;
+	box-shadow: inset 0 0 10px #333;
+}
+#login-link a {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: 1px 1px #333;
+	font-size: 12px;
+}
+
+/*NAVIGATION*/
+#nav-top {
+	background: url(http://www.linhadecodigo.com.br/img/bg-nav-top.jpg) repeat-x #757575;
+	position:relative;
+	text-transform:uppercase;		
+}
+.nav-container { background: url(http://www.linhadecodigo.com.br/img/div-nav.gif) no-repeat left; position:relative; }
+.nav-container li.top-lvl { position:relative !important; }
+.nav-container li.top-lvl {		
+	display: block; 
+	position: relative; 
+	float: left;
+	padding: 10px;
+	background: url(http://www.linhadecodigo.com.br/img/div-nav.gif) no-repeat right;		
+}
+.nav-container li.top-lvl .link-top-lvl {
+	color: #fff;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: 1px 1px #333;
+	text-decoration: none;
+}
+.nav-container li.top-lvl:hover {
+	border: 1px solid #aaa;
+	padding: 9px;
+	background: #efefef;	
+}
+.nav-container li.top-lvl:hover .link-top-lvl {	
+	color: #333;
+	text-shadow: 1px 1px #fff;  
+}
+.nav-container li.top-lvl:hover .sub-nav { display:block; } 
+
+#secondary-nav { float: right; width: 300px; position:absolute; left:69%; border-right: 1px solid #bbb; border-left: none; background: none; }
+#secondary-nav li.top-lvl { 
+	/*background: url(http://www.linhadecodigo.com.br/img/div-nav-light2.gif) repeat-x; */
+	background: #dbdbdb url(http://www.linhadecodigo.com.br/img/logodevmedia2.png) no-repeat 110px ; 
+	background-size: 90px;
+	border-left: 1px solid #bbb; 
+	border-right: 1px solid #777; 
+	float:right;  
+}
+#secondary-nav li.top-lvl a { color: #333; text-shadow: 1px 1px #dbdbdb !important; }
+/*#secondary-nav li.top-lvl:hover { background: #efefef; padding: 9px 10px; }
+#secondary-nav li.top-lvl a:hover { background: #efefef;}*/
+#secondary-nav li.top-lvl:hover 
+{ 
+	background: #efefef url(http://www.linhadecodigo.com.br/img/logodevmedia2.png) no-repeat 110px ; 
+	background-size: 90px; 
+	padding: 9px 10px; 
+}
+/*#secondary-nav li.top-lvl a:hover 
+{ 
+	background: #efefef ;
+}*/
+
+.curso-devmedia
+{
+	background: url(http://www.linhadecodigo.com.br/img/logo-devmedia-nova.png) no-repeat 205px ; 
+	background-size: 110px;
+}
+
+.sub-nav {
+	position: absolute; 
+	top: 30px; 
+	left: -1px; 
+	background: #efefef;
+	border: 1px solid #aaa; 
+	border-top: none;
+	z-index: 3;
+	padding: 20px 10px;
+	display:none;
+}
+.sub-nav ul {
+	float: left;
+	margin-right: 10px; 
+	padding-right: 10px;
+	border-right: 1px solid #ccc;
+	max-width: 130px;
+}
+.sub-nav ul:last-child { 
+	margin-right: none;
+	border:none;	
+}
+.single-collum { width: 150px; }
+.two-collum { width: 340px; }
+.three-collum { width: 490px; }
+
+.nav-container li.top-lvl .sub-nav ul li a { font-size:10px; color: #333; text-shadow: 1px 1px #fff; display:block; padding: 10px;  }
+.nav-container li.top-lvl .sub-nav ul li a:hover { color: #0d265a; border: 1px solid #ccc; padding: 9px; background: #fff; font-weight: bold; text-decoration:none; }
+
+
+
+/*FOOTER*/
+.footer { background: #eaeaea; border-top: 1px solid #d4d2d2; padding: 15px 0; font-size: 11px; color: #666; margin-top: 40px; }
+.footer .limit { position: relative; }
+.footer p { line-height: 16px; }
+.footer a { color: #777; text-decoration: none; }
+.footer a:hover { text-decoration:underline }
+#social-links-footer { position:absolute; top: -40px; right:0; }
+#social-links-footer  a {  }
+#links-footer {
+	float: left;	
+}
+#links-footer  b { font-weight: bold; color #333; }
+#info-footer { 
+	float: right;
+	text-align:right;
+}
+#logo-footer { margin-top: 15px; display: block; }
+#copyright {
+	clear: both;
+	text-align: center;
+	padding: 15px 0 0;	
+}
+#bglogin ,#bgplusone, #bgganhador{
+	position:fixed;
+	display:none;
+	cursor:pointer;
+	background:black;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	opacity:0.30;
+	-moz-opacity:0.30;
+	filter: alpha(opacity=30);
+	z-index:10001;
+}
+#boxloginall,#boxplusoneall, #boxganhadorall {
+	position:fixed;
+	display:none;
+	top: 50%;
+	left: 50%;
+	margin-top: -190px;
+	margin-left: -193px;
+	z-index: 10002;
+}
+#boxplusoneall, #boxplusoneall p{
+	text-align:center;
+	font-size: 14px;
+	line-height: 1.3;
+}
+#boxganhadorall, #boxganhadorall p{
+	text-align:center;
+	font-size: 14px;
+	line-height: 1.3;
+}
+#boxloginall form,#boxplusone2 div{
+	padding:30px;
+	color: #444;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#boxplusone2 div{padding-top:10px;}
+#boxloginall label input {
+	width: 100%;
+	height:21px;
+	padding: 3px;
+	font-size: 14px;
+	color: #333;
+	border: 1px solid #ccc;
+	box-shadow: 0px 0px 10px #ddd;
+}
+#boxloginall span {
+	font-size: 14px;
+	line-height:25px;
+}
+#boxloginall a.close{font-size:11px;}
+#boxloginall a.remember{color:#6081e0;}
+#boxlogin1,#boxplusone1 {
+	position:absolute;
+	display:block;
+	background:#FFFFFF;
+	top:0px;
+	left:0px;
+	width:380px;
+	height:385px;
+	font-size:12px;
+	opacity:0.30;
+	-moz-opacity:0.30;
+	filter: alpha(opacity=30);
+	border:3px solid #000;
+	border-radius:5px;
+	box-shadow:0px 0px 10px 2px #000;
+	-moz-border-radius:5px;
+	z-index:10002;
+}
+#boxganhador1
+{
+	position:absolute;
+	display:block;
+	background:#FFFFFF;
+	top:0px;
+	left:0px;
+	width:380px;
+	height:230px;
+	font-size:12px;
+	opacity:0.30;
+	-moz-opacity:0.30;
+	filter: alpha(opacity=30);
+	border:3px solid #000;
+	border-radius:5px;
+	box-shadow:0px 0px 10px 2px #000;
+	-moz-border-radius:5px;
+	z-index:10002;
+}
+#boxlogin2,#boxplusone2 {
+	position:absolute;
+	display:block;
+	background:#FFFFFF;
+	top:13px;
+	left:14px;
+	width:357px;
+	height:365px;
+	font-size:12px;
+	box-shadow:0px 0px 10px 2px #888;
+	z-index:10003;
+	/*border:7px solid #3C3C3C;*/
+	/*border-radius:7px;*/
+	/*-moz-border-radius:7px;*/
+}
+#boxganhador2 {
+	position:absolute;
+	display:block;
+	background:#FFFFFF;
+	top:13px;
+	left:14px;
+	width:357px;
+	height:210px;
+	font-size:12px;
+	box-shadow:0px 0px 10px 2px #888;
+	z-index:10003;
+	/*border:7px solid #3C3C3C;*/
+	/*border-radius:7px;*/
+	/*-moz-border-radius:7px;*/
+}
+.more_space:hover
+{
+	width:150px;
+}

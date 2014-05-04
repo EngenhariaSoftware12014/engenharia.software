@@ -1,0 +1,53 @@
+			html, body { 
+				margin: 0; padding: 0; color: #fff;  background: #333 url(/wp-content/themes/digwp/lib/img/bg-gry.jpg);
+				font: 300 14px/18px 'Merriweather Sans', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif; 
+				}
+			h1 { 
+				margin: 20px 0 10px 20px; font: 400 32px/32px 'Passion One', Impact, Helvetica, sans-serif; 
+				-webkit-font-smoothing: antialiased; 
+				}
+			p.info { margin: 10px 0 0 20px; }
+			p.info a { color: #ccc; text-decoration: none; }
+			p.info a:hover { text-decoration: underline; }
+
+			.custom-login { 
+				width: 370px; overflow: hidden; margin: 50px auto; padding: 10px;
+				color: #333; font-size: 12px; line-height: 16px; 
+				}
+			ul.tabs_login { float: left; margin: 0; padding: 0; list-style-type: none; }
+			ul.tabs_login li { float: left; overflow: hidden; margin: 0 5px 0 0; padding: 0; background-color: #fff; }
+			ul.tabs_login li a { 
+				height: 30px; display: block; padding: 0 15px; line-height: 30px; 
+				text-decoration: none; color: #777; background-color: #ccc;
+				}
+			ul.tabs_login li a:hover { color: #999; background-color: #efefef; }
+			ul.tabs_login li.active_login a { font-weight: bold; color: #333; background-color: #fff; }
+
+			.tab_container_login { width: 100%; float: left; margin: 0 0 20px 0; background-color: #fff; }
+			.tab_content_login { padding: 20px; box-shadow: 1px 2px 3px 0 rgba(0,0,0,0.7); }
+
+			.custom-login h3 { margin: 0 0 10px 0; border: 0 none; font-size: 14px; line-height: 14px; }
+			.custom-login p { margin: 20px 0; }
+
+			.username, .password, .login_fields { width: 100%; overflow: hidden; margin: 7px 0 0 0; padding: 3px 0; }
+			.username label, .password label { width: 80px; float: left; margin: 6px 0 0 0; color: #777; }
+			.username label { margin: 0; }
+			.username input, .password input { 
+				font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif; 
+				float: left; width: 200px; margin: 0; padding: 3px 7px; color: #777;
+				}
+			.rememberme { float: right; margin: 0 20px 0 0; color: #777; font-size: 11px; }
+			#rememberme { float: left; margin: 2px 7px 0 0; }
+			.user-submit { float: left; margin: 0; }
+
+			.user-logged-in { 
+				width: 330px; overflow: hidden; padding: 20px; color: #333; background-color: #fff; 
+				box-shadow: 1px 2px 3px 0 rgba(0,0,0,0.7); 
+				}
+			.user-info { float: left; width: 240px; }
+			.user-info p { margin: 10px 0; }
+			.user-info p:last-child { color: #777; }
+			.user-info a { color: #777; text-decoration: none; }
+			.user-info a:hover { color: #999; text-decoration: underline; }
+			.user-icon { float: left; width: 80px; }
+			.user-icon img { width: 60px; height: 60px; box-shadow: 1px 2px 3px 0 rgba(0,0,0,0.7); }

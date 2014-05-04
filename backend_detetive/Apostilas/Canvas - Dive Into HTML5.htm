@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://diveintohtml5.com.br/canvas.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<title>Canvas - Dive Into HTML5</title>
+<!--[if lt IE 9]><script src=j/excanvas.min.js></script><![endif]-->
+<link rel="alternate" type="application/atom+xml" href="https://github.com/diveintomark/diveintohtml5/commits/master.atom">
+<link rel="stylesheet" href="http://diveintohtml5.com.br/screen.css">
+<style>
+body{counter-reset:h1 4}
+</style>
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="http://diveintohtml5.com.br/mobile.css">
+<link rel="prefetch" href="http://diveintohtml5.com.br/index.html">
+
+<style type="text/css"></style></head><body><a href="https://github.com/zenorocha/diveintohtml5"><img style="position: absolute; top: 0; right: 0; border: 0;" src="./Canvas - Dive Into HTML5_files/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+<p>Você está aqui: <a href="http://diveintohtml5.com.br/index.html">Home</a> <span class="u">‣</span> <a href="http://diveintohtml5.com.br/table-of-contents.html#canvas">Dive Into <abbr>HTML5</abbr></a> <span class="u">‣</span>
+</p><h1><br>Vamos Chamá-lo (Superfície) De Desenho</h1>
+<p id="toc"><a href="javascript:showTOC()">exibir índice analítico</a></p><p class="a">❧
+
+</p><h2 id="divingin">Mergulhando</h2>
+
+<p class="f"><img src="./Canvas - Dive Into HTML5_files/aoc-h.png" alt="H" width="107" height="105">TML 5 define <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html">o elemento &lt;canvas&gt; </a> como “uma tela bitmap de resolução dependente que pode ser usada para renderizar gráficos, jogos, ou outras imagens em tempo real.” A tag <dfn>canvas</dfn> é um retângulo na sua página, onde você pode usar JavaScript para desenhar o que você quiser.</p>
+
+<table class="bc">
+<caption>Suporte Básico ao &lt;canvas&gt;</caption>
+<thead>
+<tr><th title="Internet Explorer">IE</th><th title="Mozilla Firefox">Firefox</th><th title="Apple Safari">Safari</th><th title="Google Chrome">Chrome</th><th>Opera</th><th>iPhone</th><th>Android
+</th></tr></thead><tbody>
+<tr><td>7.0+<sup>*</sup></td><td>3.0+</td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr></tbody><tfoot>
+<tr><td colspan="7" style="text-align:left">* Internet Explorer 7 e 8 necessitam da biblioteca <a href="http://code.google.com/p/explorercanvas/">explorercanvas</a>. Internet Explorer 9 suporta <code>&lt;canvas&gt;</code> nativamente.
+</td></tr></tfoot></table>
+
+<p class="clear">Então como o canvas se parece? Com nada, sério. O elemento <code>&lt;canvas&gt;</code> não tem conteúdo nem borda.</p>
+
+<canvas width="300" height="225" class="clear" style="float:left"></canvas>
+<p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;↜</span> Canvas Invisível
+
+</p><p class="clear">Sua sintaxe se assemelha a isso:
+
+</p><pre><code>&lt;canvas width="300" height="225"&gt;&lt;/canvas&gt;</code></pre>
+
+<p>Vamos adicionar uma borda pontilhada, então você pode ver com o que estamos lidando.</p>
+
+<canvas width="300" height="225" class="clear" style="border:1px dotted;float:left"></canvas>
+<p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;↜</span> Canvas com borda
+
+</p><p class="clear">Você pode ter mais de um elemento <code>&lt;canvas&gt;</code> na mesma página. Cada canvas será mostrado no <abbr>DOM</abbr>, e cada um mantém seu próprio estado. Se você der para cada canvas um atributo <code>id</code>, você pode acessá-lo como qualquer outro elemento.
+
+</p><p>Vamos expandir nosso exemplo de canvas para incluir o atributo <code>id</code>:
+
+</p><pre><code>&lt;canvas id="a" width="300" height="225"&gt;&lt;/canvas&gt;</code></pre>
+
+<p>Agora você pode encontrar facilmente este <code>&lt;canvas&gt;</code> dentro do <abbr>DOM</abbr>.
+
+</p><pre><code>var a_canvas = document.getElementById("a");</code></pre>
+
+<p class="a">❧
+
+</p><h2 id="shapes">Formas simples</h2>
+
+<table class="bc">
+<thead>
+<tr><th title="Internet Explorer">IE</th><th title="Mozilla Firefox">Firefox</th><th title="Apple Safari">Safari</th><th title="Google Chrome">Chrome</th><th>Opera</th><th>iPhone</th><th>Android
+</th></tr></thead><tbody>
+<tr><td>7.0+<sup>*</sup></td><td>3.0+</td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr></tbody><tfoot>
+<tr><td colspan="7" style="text-align:left">* Internet Explorer 7 e 8 necessitam da biblioteca <a href="http://code.google.com/p/explorercanvas/">explorercanvas</a>. Internet Explorer 9 suporta <code>&lt;canvas&gt;</code> nativamente.
+</td></tr></tfoot></table>
+
+<p>Todo canvas começa em branco. Que chato! Vamos desenhar alguma coisa.</p>
+
+<canvas id="b" width="300" height="225" style="border:1px dotted;float:left" onclick="draw_b();return false"></canvas>
+<p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;⇜</span> <a href="http://diveintohtml5.com.br/canvas.html#" onclick="draw_b();return false">Clique para desenhar nesse canvas</a></p>
+
+<p class="clear">O evento <code>onclick</code> dispara essa função:
+
+</p><pre><code>function draw_b() {
+  var b_canvas = document.getElementById("b");
+  var b_context = b_canvas.getContext("2d");
+  b_context.fillRect(50, 25, 150, 100);
+}</code></pre>
+
+<p>A 1<sup>ª</sup> linha dessa função não é nada de especial; apenas encontra o elemento <code>&lt;canvas&gt;</code> no <abbr>DOM</abbr>.
+
+</p><p class="legend left" style="margin-top:2em">E então temos isso <span class="arrow">⇝</span>&nbsp;</p>
+<pre><code>function draw_b() {
+  var b_canvas = document.getElementById("b");
+<mark>  var b_context = b_canvas.getContext("2d");</mark>
+  b_context.fillRect(50, 25, 150, 100);
+}</code></pre>
+
+<p class="ss"><img src="./Canvas - Dive Into HTML5_files/openclipart.org_media_files_johnny_automatic_4145.png" width="312" height="300" alt="man drawing in front of a mirror">
+
+</p><p>Todo canvas possui um <dfn>contexto</dfn> de desenho, que é onde toda diversão acontece. Uma vez tendo encontrado o elemento <code>&lt;canvas&gt;</code> no <abbr>DOM</abbr> (ao usar <code>document.getElementById()</code> ou qualquer método que você queira), você chama seu método <code>getContext()</code>. Você <strong>deve</strong> passar a string <code>"2d"</code> para o método <code>getContext()</code>.
+
+</p><blockquote class="note">
+<p><span>☞</span>P: Existe um canvas 3-D?<br>
+R: Ainda não. Fornecedores têm experimentado suas próprias <abbr>API</abbr>s para canvas tridimensionais, mas nenhuma se tornou padrão ainda. De acordo com a especificação da <abbr>HTML5</abbr>, “Uma futura versão dessa especificação irá provavelmente definir um contexto 3d.”
+</p></blockquote>
+
+<p>Então você tem o elemento <code>&lt;canvas&gt;</code> e seu contexto de desenho. O contexto de desenho é onde todos os métodos e propriedades do desenho são definidos. Há um bando de propriedades e métodos dedicados ao desenho de retângulos:
+
+</p><ul>
+<li>A propriedade <code>fillStyle</code> pode ser uma cor, padrão ou degradê do <abbr>CSS</abbr>. (Mais sobre degradês em breve.) O padrão para o <code>fillStyle</code> é preto sólido, mas você pode definir o que quiser. Cada contexto de desenho guarda suas próprias propriedades enquanto a página estiver aberta, a não ser que você faça alguma coisa para resetar isso.
+</li><li><code>fillRect(x, y, largura, altura)</code> desenha um retângulo preenchido com o fillStyle atual.
+</li><li>A propriedade <code>strokeStyle</code> é como <code>fillStyle</code> — pode ser uma cor, um padrão ou um degradê.
+</li><li><code>strokeRect(x, y, largura, altura)</code> desenha um retângulo com o strokeStyle atual. <code>strokeRect</code> não preenche o meio, apenas desenha as bordas.
+</li><li><code>clearRect(x, y, largura, altura)</code> limpa os pixels no retângulo especificado.
+</li></ul>
+
+<div class="pf clear" id="reset">
+<h4>Pergunte ao Professor Marcação</h4>
+<div class="inner">
+<blockquote class="note">
+<p><span>☞</span>P: Eu posso “resetar” um canvas?<br>
+R: Sim. Definindo a altura e a largura de um elemento <code>&lt;canvas&gt;</code> irá apagar seu conteúdo e resetar todas as propriedades do seu contexto de desenho para os valores padrão. Você sequer precisa <em>alterar</em> a largura; você pode simplesmente definir ele para seu valor atual, como em:
+</p><pre><code>var b_canvas = document.getElementById("b");
+<mark>b_canvas.width = b_canvas.width;</mark></code></pre>
+</blockquote>
+</div>
+</div>
+
+<p>Voltando para amostra de código vista no exemplo anterior…
+</p><p class="legend left" style="margin-top:2em">Desenhe um retângulo <span class="arrow">⇝&nbsp;</span></p>
+<pre><code>var b_canvas = document.getElementById("b");
+var b_context = b_canvas.getContext("2d");
+<mark>b_context.fillRect(50, 25, 150, 100);</mark></code></pre>
+
+<p class="clear">Chamando o método <code>fillRect()</code> desenha-se um retângulo e o preenche com o estilo de preenchimento atual, no qual é preto até você alterar isso. Um retângulo é limitado por seu canto superior esquerdo (50,&nbsp;25), sua largura (150), e sua altura (100). Para ter uma visão melhor de como isso funciona, vamos ver o sistema de coordenadas desse canvas.
+
+</p><p class="a">❧
+
+</p><h2 id="coordinates">Coordenadas do Canvas</h2>
+
+<p>O canvas é uma grade bidimensional. A coordenada (0, 0) fica no canto superior esquerdo do canvas. Ao longo do eixo X, os valores aumentam em direção à borda direita da tela. Ao longo do eixo Y, os valores aumentam em direção à borda de baixo do canvas.
+
+</p><p class="legend top" style="width:500px;text-align:center">Diagrama de coordenadas do Canvas<span class="arrow">↷</span><br></p>
+<canvas id="c" width="500" height="375"></canvas>
+
+<p>O diagrama de coordenadas foi desenhado com o elemento <code>&lt;canvas&gt;</code>. Ele compreende:
+
+</p><ul>
+<li>um conjunto de linhas verticais esbranquiçadas
+</li><li>um conjunto de linhas horizontais esbranquiçadas
+</li><li>duas linhas horizontais pretas
+</li><li>duas pequenas linhas diagonais pretas que formam uma flecha
+</li><li>duas linhas verticais pretas
+</li><li>duas pequenas linhas diagonais pretas que formam uma flecha
+</li><li>a letra “x”
+</li><li>a letra “y”
+</li><li>o texto “(0, 0)” próximo ao canto superior esquerdo
+</li><li>o texto “(500, 375)” próximo ao canto inferior direito
+</li><li>um ponto no canto superior esquerdo, e outro no canto inferior direito
+</li></ul>
+
+<p>Primeiro temos que definir o elemento <code>&lt;canvas&gt;</code>. O elemento <code>&lt;canvas&gt;</code> define a largura (<code>width</code>), a altura (<code>height</code>) e o identificador (<code>id</code>) para que possamos encontrá-lo mais tarde.
+
+</p><pre><code>&lt;canvas id="c" width="500" height="375"&gt;&lt;/canvas&gt;</code></pre>
+
+<p>Depois nós precisamos encontrar o elemento <code>&lt;canvas&gt;</code> no DOM e buscar seu contexto de desenho.
+
+</p><pre><code>var c_canvas = document.getElementById("c");
+var context = c_canvas.getContext("2d");</code></pre>
+
+<p>Agora podemos começar a desenhar as linhas.
+
+</p><p class="a">❧
+
+</p><h2 id="paths">Caminhos</h2>
+
+<table class="bc">
+<thead>
+<tr><th title="Internet Explorer">IE</th><th title="Mozilla Firefox">Firefox</th><th title="Apple Safari">Safari</th><th title="Google Chrome">Chrome</th><th>Opera</th><th>iPhone</th><th>Android
+</th></tr></thead><tbody>
+<tr><td>7.0+<sup>*</sup></td><td>3.0+</td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr></tbody><tfoot>
+<tr><td colspan="7" style="text-align:left">* Internet Explorer 7 e 8 necessitam da biblioteca <a href="http://code.google.com/p/explorercanvas/">explorercanvas</a>. Internet Explorer 9 suporta caminhos do <code>&lt;canvas&gt;</code> nativamente.
+</td></tr></tfoot></table>
+
+<p style="float:left;margin:1.75em 1.75em 1.75em 0"><img src="./Canvas - Dive Into HTML5_files/openclipart.org_media_files_johnny_automatic_7563.png" alt="gerbil sitting on a chair with a quill and ink jar" width="167" height="347">
+
+</p><p>Imagine que você está desenhando um quadro com tinta. Você não quer começar mergulhando e desenhando o quadro com a tinta, isso porque você pode cometer um erro. Ao invés disso, você rascunha as linhas e curvas com um lápis, e quando você estiver feliz com aquilo, irá traçar com tinta por cima do rascunho.
+
+</p><p>Cada canvas tem um <dfn>caminho</dfn>. Definir um caminho é como desenhar com um lápis. Você pode desenhar o que quiser, mas não irá fazer do produto final até que você pegue a pena e trace seu caminho com tinta.
+
+</p><p>Para desenhar linhas retas com lápis, use os dois métodos seguintes:
+
+</p><ol style="list-style-position:inside">
+<li><code>moveTo(x, y)</code> move o lápis para o ponto inicial especificado.
+</li><li><code>lineTo(x, y)</code> desenha a linha para o ponto final especificado.
+</li></ol>
+
+<p>Quanto mais você chamar <code>moveTo()</code> e <code>lineTo()</code>, maior será o tamanho do caminho. Esses são métodos “lápis” — você pode chamá-los o quanto quiser, mas você não irá ver nada no canvas até que você invoque os métodos “tinta”.
+
+</p><p>Vamos começar desenhando nossa grade esbranquiçada.
+
+</p><pre style="float:left"><code>for (var x = 0.5; x &lt; 500; x += 10) {
+  context.moveTo(x, 0);
+  <mark>context.lineTo(x, 375);</mark>
+}</code></pre>
+<p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;⇜</span> Desenha as linhas verticais</p>
+
+<pre style="clear:left;float:left"><code>for (var y = 0.5; y &lt; 375; y += 10) {
+  context.moveTo(0, y);
+  <mark>context.lineTo(500, y);</mark>
+}</code></pre>
+<p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;⇜</span> Desenha as linhas horizontais</p>
+
+<p class="clear">Esses foram todos métodos “lápis”. Nada foi desenhado no canvas ainda. Nós precisamos de um método “tinta” para tornar isso permanente.
+
+</p><pre><code>context.strokeStyle = "#eee";
+<mark>context.stroke();</mark></code></pre>
+
+<p><code>stroke()</code> é um dos métodos “tinta”. Ele pega o caminho complexo que você definiu com todos aqueles <code>moveTo()</code> e <code>lineTo()</code>, e realmente desenha eles no canvas. O <code>strokeStyle</code> controla a cor das linhas. Esse é o resultado:</p>
+
+<canvas id="c2" width="500" height="375"></canvas>
+
+<div class="pf clear" id="pixel-madness">
+<h4>Pergunte ao Professor Marcação</h4>
+<div class="inner">
+<blockquote class="note">
+<p><span>☞</span>P: Por que você começou com <var>x</var> e <var>y</var> com <code>0.5</code>? Por que não <code>0</code>?<br>
+R: Imagine cada pixel como um grande quadrado. As coordenadas inteiras (0, 1, 2…) são arestas desse quadrado. Se você desenhar uma linha com uma unidade de largura entre coordenadas inteiras, ele irá sobrepor lados opostos do quadrado de pixel, e a linha resultante será desenhada com dois pixels de largura. Para desenhar uma linha que tenha apenas um pixel de largura, você precisa mudar as coordenadas para 0.5 perpendicular à direção da linha.
+
+</p><p>Por exemplo, se você tentar desenhar a linha de <code>(1,&nbsp;0)</code> para <code>(1,&nbsp;3)</code>, o navegador irá desenhar a linha cobrindo 0.5 pixels da tela em ambos os lados <code>x=1</code>. A tela não consegue exibir meio pixel, então irá expandir a linha para cobrir um total de dois pixels:
+</p><p><img src="./Canvas - Dive Into HTML5_files/canvas-half-pixels-1.jpg" alt="A line from (1,0) to (1,3) is drawn 2 pixels wide" width="406" height="314">
+</p><p>Mas se você tentar desenhar uma linha de <code>(1.5,&nbsp;0)</code> para <code>(1.5,&nbsp;3)</code>, o navegador irá desenhar a linha cobrindo 0.5 pixels da tela em ambos os lados <code>x=1.5</code>, o que resulta na verdade em uma linha de 1 pixel de largura:
+</p><p><img src="./Canvas - Dive Into HTML5_files/canvas-half-pixels-2.jpg" alt="A line from (1.5,0) to (1.5,3) is draw 1 pixel wide" width="404" height="323">
+</p><p><em>Agradecimentos ao Jason Johnson por prover esses diagramas.</em>
+</p></blockquote>
+</div>
+</div>
+
+<p>Agora vamos desenhar a flecha horizontal. Todas as linhas e curvas no caminho são desenhadas com a mesma cor (ou degradê — sim, nós vamos chegar nisso em breve). Nós queremos desenhar a flecha com uma tinta de cor diferente — preta ao invés de esbranquiçada — então vamos precisar de um novo caminho.
+
+</p><p class="legend top" style="margin-left:2em">Um novo caminho <span class="arrow">↷</span><br></p>
+<pre><code><mark>context.beginPath();</mark>
+context.moveTo(0, 40);
+context.lineTo(240, 40);
+context.moveTo(260, 40);
+context.lineTo(500, 40);
+context.moveTo(495, 35);
+context.lineTo(500, 40);
+context.lineTo(495, 45);</code></pre>
+
+<p>A flecha vertical é praticamente igual. Já que a flecha vertical utiliza a mesma cor que a flecha horizontal, nós <strong>não</strong> vamos precisar criar um novo caminho. As duas flechas farão parte de um mesmo caminho.
+
+</p><pre style="float:left"><code>context.moveTo(60, 0);
+context.lineTo(60, 153);
+context.moveTo(60, 173);
+context.lineTo(60, 375);
+context.moveTo(65, 370);
+context.lineTo(60, 375);
+context.lineTo(55, 370);</code></pre>
+<p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;↜</span> Não é um novo caminho</p>
+
+<p class="clear">Eu disse que essas flechas serão pretas, mas o <code>strokeStyle</code> continua esbranquiçado. (O <code>fillStyle</code> e o <code>strokeStyle</code> não são resetados quando você começa um novo caminho.) Tudo bem, porque nós vamos apenas rodar uma série de métodos “lápis”. Mas antes de desenhar de verdade, na “tinta”, nós vamos precisar definir o <code>strokeStyle</code> para preto. Caso contrário, essas duas flechas ficarão esbranquiçadas, e nós dificilmente vamos ser capazes de vê-las! As seguintes linhas mudam a cor para preto e desenham as linhas no canvas:
+
+</p><pre><code>context.strokeStyle = "#000";
+context.stroke();</code></pre>
+
+<p>E o resultado:</p>
+
+<canvas id="c3" width="500" height="375"></canvas>
+
+<p class="a">❧
+
+</p><h2 id="text">Texto</h2>
+
+<table class="bc">
+<thead>
+<tr><th title="Internet Explorer">IE</th><th title="Mozilla Firefox">Firefox</th><th title="Apple Safari">Safari</th><th title="Google Chrome">Chrome</th><th>Opera</th><th>iPhone</th><th>Android
+</th></tr></thead><tbody>
+<tr><td>7.0+<sup>*</sup></td><td>3.0+<sup>†</sup></td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr></tbody><tfoot>
+<tr><td colspan="7" style="text-align:left">* Internet Explorer 7 e 8 necessitam da biblioteca <a href="http://code.google.com/p/explorercanvas/">explorercanvas</a>. Internet Explorer 9 suporta <code>&lt;canvas&gt;</code> nativamente.
+</td></tr><tr><td colspan="7" style="text-align:left">† Mozilla Firefox 3.0 necessita uma biblioteca compatível.
+</td></tr></tfoot></table>
+
+<p>Em adição ao desenho de <a href="http://diveintohtml5.com.br/canvas.html#paths">linhas com canvas</a>, você também pode desenhar texto com um canvas. Diferentemente do texto em torno de uma página web, não há box model. Isso significa que nenhuma das técnicas familiares de layout em CSS são válidas: sem floats, sem margins, sem padding, sem word wrapping. (Talvez você pense que isso é uma boa coisa!) Você pode definir alguns poucos atributos de fonte, depois pode pegar um ponto no canvas e começar a desenhar seu texto ali.
+
+</p><p>Os atributos de fonte a seguir estão disponíveis no <a href="http://diveintohtml5.com.br/canvas.html#shapes">contexto do desenho</a>:
+
+</p><ul>
+<li><code>font</code> pode ser qualquer coisa que você colocaria na regra <code>font</code> do <abbr>CSS</abbr>. Incluindo font style, font variant, font weight, font size, line height, e font family.
+</li><li><code>textAlign</code> controla o alinhamento do texto. É parecido (mas não idêntico) a regra <code>text-align</code> do <abbr>CSS</abbr>. Os possíveis valores são <code>start</code>, <code>end</code>, <code>left</code>, <code>right</code>, e <code>center</code>.
+</li><li><code>textBaseline</code> controla onde o texto é desenhado relativo ao ponto de início. Os possíveis valores são <code>top</code>, <code>hanging</code>, <code>middle</code>, <code>alphabetic</code>, <code>ideographic</code>, ou <code>bottom</code>.
+</li></ul>
+
+<p><code>textBaseline</code> é complicado, porque texto é complicado (Inglês não é, mas você pode desenhar qualquer caracter Unicode que queira no  canvas, e Unicode é complicado). A especificação da <abbr>HTML5</abbr> <a href="./Canvas - Dive Into HTML5_files/the-canvas-element.html">explica os diferentes textBaselines</a>:
+
+</p><blockquote cite="./Canvas - Dive Into HTML5_files/the-canvas-element.html">
+<p>A parte superior do quadrado 'em' fica aproximadamente na parte superior dos glifos em uma fonte, a linha de base é pendurada no lugar onde alguns glifos como <span class="u">आ</span> são âncoradas, o meio é metade do caminho entre a parte superior do quadrado 'em' e a base do quadrado 'em', a linha de base alfabética é onde os caracteres como <span class="u">Á</span>, <span class="u">ÿ</span>, <span class="u">f</span>, e <span class="u">Ω</span> são âncorados, a linha de base ideográfica é onde glifos como <span class="u">私</span> e <span class="u">達</span> são âncorados, e a base do quadrado 'em' fica aproximadamente na base do glifo em uma fonte. O topo e a base da caixa delimitadora podem ser longe das linhas de base, devido a glifos que se estendem muito além do quadrado.</p>
+<p><img src="./Canvas - Dive Into HTML5_files/baselines.png" alt="diagram of different values of the textBaseline property" width="680" height="227">
+</p></blockquote>
+
+<p>Para alfabetos simples como o Inglês, você pode usar com segurança o <code>top</code>, <code>middle</code>, ou <code>bottom</code> para a propriedade <code>textBaseline</code>.
+
+</p><p>Vamos desenhar algum texto! O texto desenhado dentro do canvas herda o tamanho da fonte e o estilo do próprio elemento <code>&lt;canvas&gt;</code>, você pode sobrescrever isso definindo a propriedade <code>font</code> para o contexto de desenho.
+
+</p><pre style="float:left"><code><mark>context.font = "bold 12px sans-serif";</mark>
+context.fillText("x", 248, 43);
+context.fillText("y", 58, 165);</code></pre>
+<p class="legend right"><span class="arrow">&nbsp;↜</span> Altera o estilo da fonte</p>
+
+<p class="clear">O método <code>fillText()</code> desenha o texto de fato.</p>
+
+<pre style="float:left"><code>context.font = "bold 12px sans-serif";
+<mark>context.fillText("x", 248, 43);</mark>
+context.fillText("y", 58, 165);</code></pre>
+<p class="legend right" style="margin-top:2.6em"><span class="arrow">&nbsp;⇜</span> Desenha o texto</p>
+
+<div class="pf clear" id="relative-font-size">
+<h4>Pergunte ao Professor Marcação</h4>
+<div class="inner">
+<blockquote class="note">
+<p><span>☞</span>P: Posso usar tamanhos de fontes relativos para desenhar texto em um canvas?<br>
+R: Sim. Como qualquer outro elemento <abbr>HTML</abbr> na sua página, o próprio elemento <code>&lt;canvas&gt;</code> computa o tamanho da fonte baseado nas regras CSS da sua página. Se você definir a propriedade <code>context.font</code> para um tamanho relativo de fonte como <code>1.5em</code> ou <code>150%</code>, seu navegador irá manipular isso para o tamanho computado no próprio elemento <code>&lt;canvas&gt;</code>.
+</p></blockquote>
+</div>
+</div>
+
+<p>Para o texto no canto superior esquerdo, vamos dizer que eu queira colocar o topo do texto no <code>y=5</code>. Mas eu sou um cara preguiçoso — Eu não quero medir a altura do texto e calcular a linha de base. Ao invés disso, eu posso definir o <code>textBaseline</code> para <code>top</code> e passar para o canto superior esquerdo a coordenada da caixa delimitadora do texto.
+
+</p><pre><code>context.textBaseline = "top";
+context.fillText("( 0 , 0 )", <mark>8, 5</mark>);</code></pre>
+
+<p>Agora para o texto no canto inferior direito. Vamos dizer que eu queira que fique na coordenada <code>(492,370)</code> — somente há alguns pixels de distância do canto inferior direito do canvas — mas eu não quero medir a altura e largura do texto. Posso definir a propriedade <code>textAlign</code> para <code>right</code> e a <code>textBaseline</code> para <code>bottom</code>, então chamar <code>fillText()</code> com as coordenadas do canto inferior direito da caixa delimitadora do texto.
+
+</p><pre><code>context.textAlign = "right";
+context.textBaseline = "bottom";
+context.fillText("( 500 , 375 )", <mark>492, 370</mark>);</code></pre>
+
+<p>E o resultado:</p>
+
+<canvas id="c4" width="500" height="375"></canvas>
+
+<p>Oops! Nós nos esquecemos dos pontos nos cantos. Nós iremos ver como desenhar círculos um pouco mais tarde. Por enquanto, vou trapacear um pouquinho e <a href="http://diveintohtml5.com.br/canvas.html#shapes">desenhar eles como retângulos</a>.
+
+</p><pre style="float:left"><code>context.fillRect(0, 0, 3, 3);
+context.fillRect(497, 372, 3, 3);</code></pre>
+<p class="legend right"><span class="arrow">&nbsp;⇜</span> Desenha dois “pontos”</p>
+
+<p>E isso é tudo! Aqui está o produto final:</p>
+
+<canvas id="c5" width="500" height="375" class="clear"></canvas>
+
+<p class="a">❧
+
+</p><h2 id="gradients">Degradês</h2>
+
+<table class="bc">
+<thead>
+<tr><th></th><th title="Internet Explorer">IE</th><th title="Mozilla Firefox">Firefox</th><th title="Apple Safari">Safari</th><th title="Google Chrome">Chrome</th><th>Opera</th><th>iPhone</th><th>Android
+</th></tr></thead><tbody>
+<tr>
+</tr><tr><th>degradês lineares</th><td>7.0+<sup>*</sup></td><td>3.0+</td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr><tr><th>degradês radiais</th><td>9.0+</td><td>3.0+</td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr></tbody><tfoot>
+<tr><td colspan="8" style="text-align:left">* Internet Explorer 7 e 8 necessitam da biblioteca <a href="http://code.google.com/p/explorercanvas/">explorercanvas</a>. Internet Explorer 9 suporta <code>&lt;canvas&gt;</code> degradê nativamente.
+</td></tr></tfoot></table>
+
+<p>Mais cedo nesse capítulo, você aprendeu como desenhar <a href="http://diveintohtml5.com.br/canvas.html#shapes">um retângulo preenchido com uma cor sólida</a>, depois <a href="http://diveintohtml5.com.br/canvas.html#paths">uma linha com a borda de uma cor sólida</a>. Mas formas e linhas não são limitadas a cores sólidas. Você pode usar qualquer mágica com degradês. Vamos ver um exemplo.</p>
+
+<canvas id="d" width="300" height="225"></canvas>
+
+<p>A marcação parece a mesma que qualquer outro canvas.
+
+</p><pre><code>&lt;canvas id="d" width="300" height="225"&gt;&lt;/canvas&gt;</code></pre>
+
+<p>Primeiro, nós precisamos encontrar o elemento <code>&lt;canvas&gt;</code> e seu contexto de desenho.
+
+</p><pre><code>var d_canvas = document.getElementById("d");
+var context = d_canvas.getContext("2d");</code></pre>
+
+<p>Uma vez tendo o contexto de desenho, nós começamos a definir o degradê. O <dfn>degradê</dfn> é uma transição suave entre duas ou mais cores. O contexto de desenho do canvas suporta dois tipos de degradês:
+
+</p><ol>
+<li><code>createLinearGradient(x0, y0, x1, y1)</code> pinta através de uma linha de (x0, y0) até (x1, y1).
+</li><li><code>createRadialGradient(x0, y0, r0, x1, y1, r1)</code> pinta através de um cone entre dois círculos. Os primeiros três parâmetros representam o início do círculo, com origem (x0, y0) e raio r0. Os últimos três parâmetros representam o fim do círculo, com origem (x1, y1) e raio r1.
+</li></ol>
+
+<p>Vamos criar um degradê linear. Degradês podem ter qualquer tamanho, mas eu vou criar esse degradê com 300 pixels de largura, como o canvas.
+
+</p><p class="legend top" style="margin-left:2.5em">Cria um objeto degradê<span class="arrow">↷</span><br></p>
+<pre><code>var my_gradient = <mark>context.createLinearGradient(0, 0, 300, 0);</mark></code></pre>
+
+<p>Por conta dos valores <code>y</code> (o 2<sup>º</sup> e 4<sup>º</sup> parâmetros) são ambos 0, esse degradê irá sombrear uniformemente da esquerda para direita.
+
+</p><p>Uma vez tendo o objeto degradê, nós podemos definir as cores do degradê. O degradê possui duas ou mais <dfn>paradas de cor</dfn>. Paradas de cor podem estar em qualquer lugar através do degradê. Para adicionar uma parada de cor, você precisa especificar sua posição através do degradê. As posições no degradê podem estar em qualquer lugar entre 0 e 1.
+
+</p><p>Vamos definir um degradê que irá sombrear do preto ao branco.
+
+</p><pre><code>my_gradient.addColorStop(0, "black");
+my_gradient.addColorStop(1, "white");</code></pre>
+
+<p>Definir um degradê não desenha nada no canvas. É só um objeto armazenado em algum lugar na memória. Para desenhar o degradê, você define seu <code>fillStyle</code> para o degradê e desenha a forma, como um retângulo ou linha.
+
+</p><p class="legend top">Fill style é um degradê <span class="arrow">↷</span><br></p>
+<pre><code><mark>context.fillStyle = my_gradient;</mark>
+context.fillRect(0, 0, 300, 225);</code></pre>
+
+<p>E esse é o resultado:</p>
+
+<canvas id="d2" width="300" height="225"></canvas>
+
+<p>Supondo que você queira um degradê que irá sombrear de cima para baixo. Quando você criar um objeto degradê, deixe os valores <code>x</code> (1<sup>º</sup> e 3<sup>º</sup> parâmetros) constante, e faça que os valores <code>y</code> (2<sup>º</sup> e 4<sup>º</sup> parâmetros) alcancem de 0 até a altura do canvas.
+
+</p><p class="legend top" style="margin-left:6.5em">valores x são 0, valores y variam <span class="arrow">↷</span><br></p>
+<pre><code>var my_gradient = context.createLinearGradient(<mark>0, 0, 0, 225</mark>);
+my_gradient.addColorStop(0, "black");
+my_gradient.addColorStop(1, "white");
+context.fillStyle = my_gradient;
+context.fillRect(0, 0, 300, 225);</code></pre>
+
+<p>E esse é o resultado:</p>
+
+<canvas id="d3" width="300" height="225"></canvas>
+
+<p>Você também pode criar degradê na diagonal.
+
+</p><p class="legend top" style="margin-left:8.5em">ambos valores x e y variam <span class="arrow">↷</span><br></p>
+<pre><code>var my_gradient = context.createLinearGradient(<mark>0, 0, 300, 225</mark>);
+my_gradient.addColorStop(0, "black");
+my_gradient.addColorStop(1, "white");
+context.fillStyle = my_gradient;
+context.fillRect(0, 0, 300, 225);</code></pre>
+
+<p>E esse é o resultado:</p>
+
+<canvas id="d4" width="300" height="225"></canvas>
+
+<p class="a">❧
+
+</p><h2 id="images">Imagens</h2>
+
+<table class="bc">
+<thead>
+<tr><th title="Internet Explorer">IE</th><th title="Mozilla Firefox">Firefox</th><th title="Apple Safari">Safari</th><th title="Google Chrome">Chrome</th><th>Opera</th><th>iPhone</th><th>Android
+</th></tr></thead><tbody>
+<tr><td>7.0+<sup>*</sup></td><td>3.0+</td><td>3.0+</td><td>3.0+</td><td>10.0+</td><td>1.0+</td><td>1.0+
+</td></tr></tbody><tfoot>
+<tr><td colspan="7" style="text-align:left">* Internet Explorer 7 e 8 necessitam da biblioteca <a href="http://code.google.com/p/explorercanvas/">explorercanvas</a>. Internet Explorer 9 suporta <code>&lt;canvas&gt;</code> imagens nativamente.
+</td></tr></tfoot></table>
+
+<p>Aqui está um gato:
+
+</p><p style="float:left"><img src="./Canvas - Dive Into HTML5_files/openclipart.org_media_files_johnny_automatic_1360.png" alt="sleeping cat" width="177" height="113" id="cat">
+</p><p class="legend right" style="margin-top:4em"><span class="arrow">&nbsp;⇜</span> Um elemento &lt;img&gt;</p>
+
+<p class="clear">Aqui está o mesmo gato, só que desenhado em um canvas:
+
+</p><div style="float:right">
+<p class="legend left" style="margin-top:2em">Um elemento &lt;canvas&gt; <span class="arrow">⇝&nbsp;</span></p>
+<canvas id="e" width="177" height="113"></canvas>
+</div>
+
+<p class="clear">O contexto de desenho do canvas define o método <code>drawImage()</code> para desenhar uma imagem no canvas. O método pode ter três, cinco ou nove argumentos.
+
+</p><ul>
+<li><code>drawImage(image, dx, dy)</code> pega uma imagem e a desenha no canvas. A coordenada <code>(dx, dy)</code> será o canto superior esquerdo da imagem. Coordenadas <code>(0, 0)</code> devem desenhar a imagem no canto superior esquerdo do canvas.
+</li><li><code>drawImage(image, dx, dy, dw, dh)</code> pega uma imagem, escala para a largura de <code>dw</code> e altura de <code>dh</code>, e a desenha no canvas nas coordenadas <code>(dx, dy)</code>.
+</li><li><code>drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)</code> pega uma imagem, ajusta ela para o retângulo <code>(sx, sy, sw, sh)</code>, escala para as dimensões <code>(dw, dh)</code>, e a desenha no canvas nas coordenadas <code>(dx, dy)</code>.
+</li></ul>
+
+<p>A especificação da <abbr>HTML5</abbr> <a href="./Canvas - Dive Into HTML5_files/the-canvas-element(1).html">explica os parâmetros de <code>drawImage()</code></a>:
+
+</p><blockquote cite="./Canvas - Dive Into HTML5_files/the-canvas-element(1).html">
+<p>O retângulo de origem é o retângulo [no interior da imagem fonte] cujos cantos são os quatro pontos <code>(sx, sy)</code>, <code>(sx+sw, sy)</code>, <code>(sx+sw, sy+sh)</code>, <code>(sx, sy+sh)</code>.
+</p><p>O retângulo de destino é o retângulo [no interior do canvas] cujos cantos são os quatro pontos <code>(dx, dy)</code>, <code>(dx+dw, dy)</code>, <code>(dx+dw, dy+dh)</code>, <code>(dx, dy+dh)</code>.
+</p><p><img src="./Canvas - Dive Into HTML5_files/drawImage.png" alt="diagram of drawImage parameters" width="327" height="330">
+</p></blockquote>
+
+<p>Para desenhar uma imagem no canvas, você precisa de uma imagem. A imagem pode ser um elemento <code>&lt;img&gt;</code> existente, ou pode ser criada com o objeto <code>Image()</code> do JavaScript. De qualquer maneira, você precisa garantir que a imagem está completamente carregada antes de desenhá-la no canvas.
+
+</p><p>Se você está usando um elemento <code>&lt;img&gt;</code> existente, você pode seguramente desenhá-la no canvas durante o evento <code>window.onload</code>.
+</p><p class="legend top" style="margin-left:6.5em"><span class="arrow">↶</span> usando um elemento &lt;img&gt;<br></p>
+<pre><code>&lt;img <mark>id="cat"</mark> src="images/cat.png" alt="sleeping cat" width="177" height="113"&gt;
+&lt;canvas id="e" width="177" height="113"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+<mark>window.onload</mark> = function() {
+  var canvas = document.getElementById("e");
+  var context = canvas.getContext("2d");
+  var cat = document.getElementById("cat");
+  <mark>context.drawImage(cat, 0, 0);</mark>
+};
+&lt;/script&gt;</code></pre>
+
+<p>Se você está criando o objeto de imagem inteiramente no JavaScript, você pode seguramente desenhar a imagem no canvas durante o evento <code>Image.onload</code>.
+
+</p><p class="legend top" style="margin-left:3.5em">usando um objeto Image() <span class="arrow">↷</span><br></p>
+<pre><code>&lt;canvas id="e" width="177" height="113"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+  var canvas = document.getElementById("e");
+  var context = canvas.getContext("2d");
+  var cat = <mark>new Image()</mark>;
+  cat.src = "images/cat.png";
+  <mark>cat.onload</mark> = function() {
+    context.drawImage(cat, 0, 0);
+  };
+&lt;/script&gt;</code></pre>
+
+<p>O 3<sup>º</sup> e 4<sup>º</sup> parâmetros opcionais do método <code>drawImage()</code> controlam a escala da imagem. Essa é a mesma imagem, escalada pela metade de sua largura e altura e desenhada repetidamente em diferentes coordenadas no mesmo canvas.</p>
+
+<canvas id="multicat" width="500" height="375"></canvas>
+
+<p>Aqui está o script que produz o efeito “multicat”:
+
+</p><pre style="float:left"><code>cat.onload = function() {
+  for (var x = 0, y = 0;
+       x &lt; 500 &amp;&amp; y &lt; 375;
+       x += 50, y += 37) {
+    context.drawImage(cat, x, y, <mark>88, 56</mark>);
+  }
+};
+</code></pre>
+<p class="legend right" style="margin-top:6em"><span class="arrow">&nbsp;⇜</span> Escala a imagem</p>
+
+<p class="clear">Todo esse esforço levanta a seguinte questão: por que você deveria desenhar uma imagem dentro de um canvas em primeiro lugar? O que faz com que a complexidade extra de uma imagem em um canvas ofereça em cima de um elemento <code>&lt;img&gt;</code> e algumas regras <abbr>CSS</abbr>? Até mesmo o efeito “multicat” pode ser replicado com 10 elementos <code>&lt;img&gt;</code> sobrepostos.
+
+</p><p>A resposta simples é, pelo mesmo motivo que você iria querer <a href="http://diveintohtml5.com.br/canvas.html#text">desenhar um texto no canvas</a>. O <a href="http://diveintohtml5.com.br/canvas.html#coordinates">diagrama de coordenadas do canvas</a> inclui texto, linhas, e formas; o texto no canvas é só uma parte de um grande trabalho. Um diagrama mais complexo poderia facilmente utilizar o <code>drawImage()</code> para incluir ícones, sprites, e outros gráficos.
+
+</p><p class="a">❧
+
+</p><h2 id="ie">E quanto ao IE?</h2>
+
+<p>Versões do Internet Explorer antes de 9.0 não suportam a <abbr>API</abbr> de canvas. (IE9 <a href="http://msdn.microsoft.com/en-us/ie/ff468705.aspx#_HTML5_canvas">suporta completamente a <abbr>API</abbr></a> de canvas.) Entretanto, essas versões antigas do Internet Explorer suportam <em>sim</em> uma tecnologia proprietária da Microsoft chamada <abbr>VML</abbr>, na qual pode fazer muitas das coisas que o elemento <code>&lt;canvas&gt;</code> faz. E assim, nasceu o <code>excanvas.js</code>.
+
+</p><p><a href="http://code.google.com/p/explorercanvas/">Explorercanvas</a> (<code>excanvas.js</code>) é uma biblioteca JavaScript de código livre, licenciada pela Apache que implementa a <abbr>API</abbr> de canvas no Internet Explorer. Para utilizá-la, inclua o seguinte elemento <code>&lt;script&gt;</code> no topo da sua página.
+
+</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Dive Into HTML5&lt;/title&gt;
+  <mark>&lt;!--[if lt IE 9]&gt;
+    &lt;script src="excanvas.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;</mark>
+&lt;/head&gt;
+&lt;body&gt;
+  ...
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>O <code>&lt;!--[if lt IE 9]&gt;</code> e <code>&lt;![endif]--&gt;</code> são <a href="http://msdn.microsoft.com/en-us/library/ms537512(VS.85).aspx">comentários condicionais</a>. Internet Explorer interpreta eles como uma declaração <code>if</code>: “se o navegador é uma versão do Internet Explorer inferior da (mas não inclusa) versão 9, então execute o bloco.” Cada outro navegador vai tratar o bloco inteiro como um bloco de comentário <abbr>HTML</abbr>. O resultado na prática é que o Internet Explorer 7 e 8 irão realizar o download do script <code>excanvas.js</code> e executá-los, mas outros navegadores irão ignorar o script (não realizando o download dele, não executando ele, não fazendo nada). Isso irá fazer com que sua página carregue mais rapidamente para aqueles navegadores que implementem a <abbr>API</abbr> de canvas nativamente.
+
+</p><p>Uma vez incluindo o <code>excanvas.js</code> no <code>&lt;head&gt;</code> da sua página, você não precisa fazer nada mais para acomodar o Internet Explorer. Só inclua os elementos <code>&lt;canvas&gt;</code> na sua marcação, ou crie eles dinâmicamente com JavaScript. Siga as instruções desse capítulo para capturar o contexto de desenho do elemento <code>&lt;canvas&gt;</code>, e você poderá desenhar formas, texto, e padrões.
+
+</p><p>Bem… não exatamente. Existem algumas limitações:
+
+</p><ol>
+<li><a href="http://diveintohtml5.com.br/canvas.html#gradients">Degradês</a> só podem ser lineares. <a href="https://developer.mozilla.org/En/Canvas_tutorial/Applying_styles_and_colors#A_createRadialGradient_example">Degradês radiais</a> não são suportados.
+</li><li>Padrões devem se repetir em ambas as direções.
+</li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#clipping-region">Regiões clipping </a> não são suportadas.
+</li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-scale">Escala</a> não uniforme não funciona corretamente com escalas de bordas.
+</li><li>É lento. Isso não deve ser um choque violento para ninguém, já que o parser de JavaScript do Internet Explorer é mais lento do que dos outros navegadores para começar. Uma vez começando a desenhar formas complexas usando a biblioteca JavaScript library que traduz comandos para outro tecnologia completamente diferente, coisas vão naturalmente atolar. Você não irá notar degradação de performance em exemplos simples como desenhando algumas linhas e transformando uma imagem, mas você rapidamente irá notar uma vez que comece realizando animações baseadas em canvas ou outras coisas loucas.
+</li></ol>
+
+<p>Há mais uma advertência sobre o uso de <code>excanvas.js</code>, e é um problema que passei enquanto criava o exemplo desse capítulo. ExplorerCanvas inicializa sua própria interface de falso-canvas automaticamente uma vez incluindo o script <code>excanvas.js</code> na sua página <abbr>HTML</abbr>. Mas isso não significa que o  Internet Explorer está pronto para usá-lo imediatamente. Em algumas situações, você pode rodar sob uma condição onde a interface do falso-canvas está <em>quase</em>, mas ainda não, pronta para ser usada. O principal sintoma desse estado é que o Internet Explorer irá reclamar que o “<samp>objeto não suporta essa propriedade ou método</samp>” sempre que você tentar fazer qualquer coisa com o elemento <code>&lt;canvas&gt;</code>, como pegar seu contexto de desenho.
+
+</p><p>A solução mais simples para fazer é adiar todas as suas manipulações relacionadas ao canvas até depois que evento <code>onload</code> seja disparado. Isto pode levar um tempo — se a sua página possui muitas imagens ou vídeos, elas irão atrasar o <code>onload</code> — mas irá dar ao ExplorerCanvas tempo para trabalhar na sua mágica.
+
+</p><p class="a">❧
+
+</p><h2 id="halma">Um exemplo completo ao vivo</h2>
+
+<p>Halma é um jogo de tabuleiro com séculos de idade. Muitas variações existem. Nesse exemplo, criei uma versão solitária de Halma com 9 peças em um tabuleiro 9 × 9. No início do jogo, as peças formam um quadrado 3 × 3 no canto interior esquerdo do tabuleiro. O objetivo do jogo é mover todas as peças até que formem um quadrado 3 × 3 no canto superior direito do tabuleiro, com o menor número de movimentos.
+
+</p><p>Existem dois tipos de movimentos legais no Halma:
+
+</p><ul>
+<li>Pegue uma peça e mova para qualquer quadrado vazio adjacente. Um quadrado “vazio” é um que não contém nenhuma peça nele. Um quadrado “adjacente” é um imediatamente ao norte, sul, leste, oeste, noroeste, nordeste, sudoeste ou sudeste da peça na sua posição atual. (O tabuleiro não é girado em torno de um lado para outro. Se uma peça está na coluna mais a esquerda, não pode se mover para oeste, noroeste ou sudoeste. Se uma peça está na linha mais embaixo, não pode se mover para o sul, sudeste ou sudoeste.)
+</li><li>Pegue uma peça e pule por cima de uma peça adjacente, e possivelmente repita. Isso é, se você pular por cima de uma peça adjacente, então pule por cima de <em>outra</em> peça adjacente para sua nova posição, isso conta como um único movimento. Na verdade, qualquer número de puladas por cima continuam contando como um movimento único. (Já que o objetivo é minimizar o número total de movimentos, ir bem no Halma envolve construir, e depois usar, longas cadeias escalonadas para que então outras peças possam pular por cima em uma longa sequência.)
+</li></ul>
+
+<p>Aqui está o jogo propriamente dito. Você também pode <a href="http://diveintohtml5.com.br/examples/canvas-halma.html">jogá-lo em uma página separada</a> se você quiser cutucar seu developer tools.</p>
+
+<canvas id="halmacanvas" width="451" height="451"></canvas>
+
+<p style="margin-top:0;font-style:normal" class="legend">Moves: <span id="halmamovecount">0</span>
+
+</p><p>Como isso funciona? Estou feliz que você perguntou. Não irei mostrar <em>todo</em> código aqui. (Você pode vê-lo em <a href="./Canvas - Dive Into HTML5_files/halma.js">diveintohtml5.org/examples/halma.js</a>.) Na verdade irei pular a maioria do código de jogabilidade, mas quero ressaltar algumas partes do código que realmente mexem o desenho no canvas e a resposta aos cliques de mouse no elemento canvas.
+
+</p><p>Durante o carregamento da página, nós inicializamos o jogo ao definir as dimensões no <code>&lt;canvas&gt;</code> e guardamos as referências no seu contexto de desenho.
+
+</p><pre><code>gCanvasElement.width = kPixelWidth;
+gCanvasElement.height = kPixelHeight;
+gDrawingContext = gCanvasElement.getContext("2d");</code></pre>
+
+<p>Depois fazemos algo que você ainda não viu: nós adicionamos uma escuta de evento ao elemento <code>&lt;canvas&gt;</code> para ouvir por eventos de clique.
+
+</p><pre><code>gCanvasElement.<mark>addEventListener</mark>(<mark>"click"</mark>, halmaOnClick, false);</code></pre>
+
+<p>A função <code>halmaOnClick()</code> é chamada quando o usuário clica em qualquer lugar no canvas. Seu argumento é um objeto <code>MouseEvent</code> que contém as informações sobre onde o usuário clicou.
+
+</p><pre><code>function halmaOnClick(e) {
+    var cell = <mark>getCursorPosition(e)</mark>;
+
+    // o resto é só lógica do jogo
+    for (var i = 0; i &lt; gNumPieces; i++) {
+	if ((gPieces[i].row == cell.row) &amp;&amp;
+	    (gPieces[i].column == cell.column)) {
+	    clickOnPiece(i);
+	    return;
+	}
+    }
+    clickOnEmptyCell(cell);
+}</code></pre>
+
+<p>O próximo passo é pegar o objeto <code>MouseEvent</code> e calcular em qual quadrado no tabuleiro Halma acaba de ser clicado. O tabuleiro Halma contempla todo o  canvas, ou seja cada clique em <em>qualquer lugar</em> do tabuleiro. Nós só precisamos descobrir onde. Isto é complicado, porque eventos de mouse são implementados diferentemente em quase todo navegador.
+
+</p><pre><code>function getCursorPosition(e) {
+    var x;
+    var y;
+    if (e.pageX != undefined &amp;&amp; e.pageY != undefined) {
+	x = e.pageX;
+	y = e.pageY;
+    }
+    else {
+	x = e.clientX + document.body.scrollLeft +
+            document.documentElement.scrollLeft;
+	y = e.clientY + document.body.scrollTop +
+            document.documentElement.scrollTop;
+    }</code></pre>
+
+<p>Nesse ponto, nós temos as coordenadas <code>x</code> e <code>y</code> que são relativas ao documento (isso é, a página <abbr>HTML</abbr> inteira). Isso não é muito útil ainda. Nós queremos as coordenadas relativas ao canvas.
+
+</p><pre><code>    x -= gCanvasElement.offsetLeft;
+    y -= gCanvasElement.offsetTop;</code></pre>
+
+<p>Agora nós temos as coordenadas <code>x</code> e <code>y</code> que são <a href="http://diveintohtml5.com.br/canvas.html#coordinates">relativas ao canvas</a>. Isso é, se <code>x</code> é 0 e <code>y</code> é 0 nesse ponto, nós sabemos que o usuário acabou de clicar no pixel do canto superior esquerdo do canvas.
+
+</p><p>Daqui em diante, nós podemos calcular em qual quadrado do Halma o usuário clicou, e então agir de acordo com isso.
+
+</p><pre><code>    var cell = new Cell(Math.floor(y/kPieceHeight),
+                        Math.floor(x/kPieceWidth));
+    return cell;
+}</code></pre>
+
+<p>Ufa! Eventos de mouse são difíceis. Mas você pode usar a mesma lógica (na verdade, o exato mesmo código) em todas as suas aplicações baseadas em canvas. Lembre-se: mouse click → coordenadas relativas ao documento → coordenadas relativas ao canvas → código específico de aplicação.
+
+</p><p>OK, vamos olhar para a rotina principal do desenho. Porque os gráficos são simples, escolhi limpar e redesenhar o tabuleiro em cada hora que houver qualquer mudança no jogo. Isso não é estritamente necessário. O contexto de desenho do canvas irá reter qualquer coisa que você tenha desenhado anteriormente nele, até mesmo se o usuário realizar scroll para fora do campo de visão ou mudar de uma aba para outra e depois voltar. Se você está desenvolvendo uma aplicação baseada em canvas com gráficos mais complicados (como um jogo de arcade), você pode otimizar a performance ao identificar quais regiões do canvas estão “sujas” e redesenhar apenas as regiões sujas. Mas isso está fora do escopo desse livro.
+
+</p><pre><code>gDrawingContext.clearRect(0, 0, kPixelWidth, kPixelHeight);</code></pre>
+
+<p>A rotina de desenho do tabuleiro deve lhe parecer familiar. É similar como nós desenhamos o <a href="http://diveintohtml5.com.br/canvas.html#coordinates">digrama de coordenadas do canvas</a> anteriormmente nesse capítulo.
+
+</p><pre><code>gDrawingContext.<mark>beginPath()</mark>;
+
+/* linhas verticais */
+for (var x = 0; x &lt;= kPixelWidth; x += kPieceWidth) {
+    gDrawingContext.<mark>moveTo</mark>(0.5 + x, 0);
+    gDrawingContext.<mark>lineTo</mark>(0.5 + x, kPixelHeight);
+}
+
+/* linhas horizontais */
+for (var y = 0; y &lt;= kPixelHeight; y += kPieceHeight) {
+    gDrawingContext.<mark>moveTo</mark>(0, 0.5 + y);
+    gDrawingContext.<mark>lineTo</mark>(kPixelWidth, 0.5 +  y);
+}
+
+/* desenhe! */
+gDrawingContext.<mark>strokeStyle</mark> = "#ccc";
+gDrawingContext.<mark>stroke()</mark>;</code></pre>
+
+<p>A brincadeira começa de verdade quando nós vamos desenhar cada peça individual. Uma peça é um círculo, algo que ainda não desenhamos antes. Além disso, se o usuário seleciona a peça em antecipação ao seu movimento, nós queremos desenhar a peça em forma de um círculo preenchido. Aqui, o argumento <code>p</code> representa a peça, na qual possui as propriedades de <code>linha</code> e <code>coluna</code> que denotam a posição atual da peça no tabuleiro. Nós usamos algumas constantes do jogo para traduzir <code>(coluna, linha)</code> em coordenadas <code>(x, y)</code> relativas ao canvas, então desenhar o círculo, e (se a peça for selecionada) preencher o círculo com uma cor sólida.
+
+</p><pre><code>function drawPiece(p, selected) {
+    var column = p.column;
+    var row = p.row;
+    var <mark>x</mark> = (column * kPieceWidth) + (kPieceWidth/2);
+    var <mark>y</mark> = (row * kPieceHeight) + (kPieceHeight/2);
+    var radius = (kPieceWidth/2) - (kPieceWidth/10);</code></pre>
+
+<p>Esse é o fim da lógica específica do jogo. Agora nós temos as coordenadas <code>(x, y)</code>, relativas ao canvas, para o centro do círculo que queremos desenhar. Não há um método <code>circle()</code> na <abbr>API</abbr> do canvas, mas há um método <code>arc()</code>. E realmente, o que é um círculo se não um arco que faz uma volta completa? Você lembra de geometria básica? O método <code>arc()</code> pega o ponto central <code>(x, y)</code>, o raio, o ângulo inicial e final (em radianos), e a direção (<code>false</code> para sentido horário, <code>true</code> para sentido anti-horário). Você pode usar o módulo <code>Math</code> que está dentro do JavaScript para calcular radianos.
+
+</p><pre><code>gDrawingContext.beginPath();
+gDrawingContext.<mark>arc</mark>(x, y, radius, 0, <mark>Math.PI * 2</mark>, false);
+gDrawingContext.closePath();</code></pre>
+
+<p>Mas espera aí! Nada foi desenhado ainda. Como <code>moveTo()</code> e <code>lineTo</code>, o método <code>arc()</code> é um método <a href="http://diveintohtml5.com.br/canvas.html#paths">“lápis”</a>. Para realmente desenhar o círculo, nós precisamos definir o <code>strokeStyle</code> e chamar o <code>stroke()</code> para traçar a “tinta.”
+
+</p><pre><code>gDrawingContext.<mark>strokeStyle</mark> = "#000";
+gDrawingContext.<mark>stroke()</mark>;</code></pre>
+
+<p>E se a peça estiver selecionada? Nós podemos reutilizar o mesmo caminho que criamos para desenhar o contorno da peça, para preencher o círculo com uma cor sólida.
+
+</p><pre><code>if (selected) {
+    gDrawingContext.<mark>fillStyle</mark> = "#000";
+    gDrawingContext.<mark>fill()</mark>;
+}</code></pre>
+
+<p>E isso é… bem, isso é tudo. O resto do programa é lógica específica do jogo — distinguindo entre movimentos válidos e inválidos, registrando o número de movimentos, detectando se o jogo está terminado. Com 9 círculos, algumas linhas, e 1 <code>onclick</code> handler, nós criamos um jogo inteiramente em <code>&lt;canvas&gt;</code>. Huzzah!
+
+</p><p class="a">❧
+
+</p><h2 id="further-reading">Leitura complementar</h2>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en/Canvas_tutorial">Canvas tutorial</a> no Mozilla Developer Center
+</li><li><a href="http://dev.opera.com/articles/view/html-5-canvas-the-basics/"><abbr>HTML5</abbr> <code>canvas</code> — o básico</a>, por Mihai Sucan
+</li><li><a href="http://www.canvasdemos.com/">CanvasDemos.com</a>: demos, ferramentas, e tutoriais para o elemento <abbr>HTML</abbr> <code>canvas</code>
+</li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html">O elemento <code>canvas</code></a> no rascunho da especificação do <abbr>HTML5</abbr>
+</li><li><a href="http://msdn.microsoft.com/en-us/ie/ff468705.aspx#_HTML5_canvas">Internet Explorer 9 Guia para desenvolvedores: elemento HTML5 <code>canvas</code></a>
+</li></ul>
+
+<p class="a">❧
+
+</p><p>Isso foi “Vamos Chamá-lo (Superfície) De Desenho.” Consulte o <a href="http://diveintohtml5.com.br/table-of-contents.html">Sumário</a>, caso queira continuar com a leitura.
+
+</p><div class="pf">
+<h4>Você sabia?</h4>
+<div class="moneybags">
+<blockquote><p>Em associação a <span lang="en">Google Press</span>, O’Reilly está distribuindo este livro em variados formatos, incluindo papel, ePub, Mobi, <abbr>DRM</abbr>-free e <abbr>PDF</abbr>. A edição paga é chamada <span lang="en">“HTML5: Up &amp; Running”</span> e está disponível agora. Este capítulo está incluído na versão paga.
+</p><p>Se você gostou deste capítulo e quer mostrar sua apreciação, basta <a href="http://www.amazon.com/HTML5-Up-Running-Mark-Pilgrim/dp/0596806027?ie=UTF8&tag=diveintomark-20&creativeASIN=0596806027">comprar o livro “<abbr>HTML5</abbr>: Up &amp; Running” com esse link afiliado</a> ou <a href="http://oreilly.com/catalog/9780596806033">comprar a edição eletrônica diretamente da O’Reilly</a>. Você vai ganhar um livro, e eu vou ganhar um trocado. Atualmente, não aceito doações diretas.
+</p></blockquote>
+</div>
+</div>
+
+<p class="c">Copyright MMIX–MMXI <a href="http://diveintohtml5.com.br/about.html">Mark Pilgrim</a>
+
+</p><form action="http://www.google.com/cse"><div><input type="hidden" name="cx" value="014437924039265546826:2nmoshc8y3y"><input type="hidden" name="ie" value="UTF-8"><input type="search" name="q" size="25" placeholder="powered by Google™">&nbsp;<input type="submit" name="sa" value="Search"></div></form>
+
+<script type="text/javascript" async="" src="./Canvas - Dive Into HTML5_files/ga.js"></script><script src="./Canvas - Dive Into HTML5_files/jquery.js"></script>
+<script src="./Canvas - Dive Into HTML5_files/canvastext-fx3.js"></script>
+<script src="./Canvas - Dive Into HTML5_files/dih5.js"></script>
+<script src="./Canvas - Dive Into HTML5_files/halma.js"></script>
+<script>
+function draw_b() {
+try {
+  var b_canvas = document.getElementById("b");
+  var b_context = b_canvas.getContext("2d");
+  b_context.fillRect(50, 25, 150, 100);
+} catch(err) {}
+}
+
+function reset_b() {
+try {
+  var b_canvas = document.getElementById("b");
+  b_canvas.width = b_canvas.width;
+} catch(err) {}
+}
+
+function draw_grid(ctx) {
+try {
+  /* vertical lines */
+  for (var x = 0.5; x < 500; x += 10) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, 375);
+  }
+
+  /* horizontal lines */
+  for (var y = 0.5; y < 375; y += 10) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(500, y);
+  }
+
+  /* draw it! */
+  ctx.strokeStyle = "#eee";
+  ctx.stroke();
+} catch(err) {}
+}
+
+function draw_arrows(ctx) {
+try {
+  /* x-axis */
+  ctx.beginPath();
+  ctx.moveTo(0, 40);
+  ctx.lineTo(240, 40);
+  ctx.moveTo(260, 40);
+  ctx.lineTo(500, 40);
+  ctx.moveTo(495, 35);
+  ctx.lineTo(500, 40);
+  ctx.lineTo(495, 45);
+
+  /* y-axis */
+  ctx.moveTo(60, 0);
+  ctx.lineTo(60, 153);
+  ctx.moveTo(60, 173);
+  ctx.lineTo(60, 375);
+  ctx.moveTo(65, 370);
+  ctx.lineTo(60, 375);
+  ctx.lineTo(55, 370);
+
+  /* draw it! */
+  ctx.strokeStyle = "#000";
+  ctx.stroke();
+} catch(err) {}
+}
+
+function draw_labels(ctx) {
+try {
+  ctx.font = "bold 12px sans-serif";
+  ctx.fillText("x", 248, 43);
+  ctx.fillText("y", 58, 165);
+} catch(err) {}
+
+try {
+  ctx.textBaseline = "top";
+  ctx.fillText("( 0 , 0 )", 8, 5);
+} catch(err) {}
+
+try {
+  ctx.textAlign = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("( 500 , 375 )", 492, 370);
+} catch(err) {}
+}
+
+function draw_dots(ctx) {
+try {
+  ctx.fillRect(0, 0, 3, 3);
+  ctx.fillRect(497, 372, 3, 3);
+} catch(err) {}
+}
+
+function draw_gradients() {
+try {
+  var d = document.getElementById("d");
+  var context = d.getContext("2d");
+  var my_gradient = context.createLinearGradient(0, 0, 300, 0);
+  my_gradient.addColorStop(0, "black");
+  my_gradient.addColorStop(1, "white");
+  context.fillStyle = my_gradient;
+  context.fillRect(0, 0, 300, 225);
+} catch(err) {}
+
+try {
+  var d2 = document.getElementById("d2");
+  var context = d2.getContext("2d");
+  var my_gradient = context.createLinearGradient(0, 0, 300, 0);
+  my_gradient.addColorStop(0, "black");
+  my_gradient.addColorStop(1, "white");
+  context.fillStyle = my_gradient;
+  context.fillRect(0, 0, 300, 225);
+} catch(err) {}
+
+try {
+  var d3 = document.getElementById("d3");
+  var context = d3.getContext("2d");
+  var my_gradient = context.createLinearGradient(0, 0, 0, 225);
+  my_gradient.addColorStop(0, "black");
+  my_gradient.addColorStop(1, "white");
+  context.fillStyle = my_gradient;
+  context.fillRect(0, 0, 300, 225);
+} catch(err) {}
+
+try {
+  var d4 = document.getElementById("d4");
+  var context = d4.getContext("2d");
+  var my_gradient = context.createLinearGradient(0, 0, 300, 225);
+  my_gradient.addColorStop(0, "black");
+  my_gradient.addColorStop(1, "white");
+  context.fillStyle = my_gradient;
+  context.fillRect(0, 0, 300, 225);
+} catch(err) {}
+}
+
+function draw_images(imagesReady) {
+  var cat_canvas = document.getElementById("e");
+  var cat_context = cat_canvas.getContext("2d");
+  var cat_canvas2 = document.getElementById("multicat");
+  var cat_context2 = cat_canvas2.getContext("2d");
+  var cat_image = document.getElementById("cat");
+  var _draw = function() {
+    cat_context.drawImage(cat_image, 0, 0);
+    for (var x = 0, y = 0; x < 500 && y < 375; x += 50, y += 37) {
+      cat_context2.drawImage(cat_image, x, y, 88, 56);
+    }
+  };
+  if (!!imagesReady) {
+    _draw();
+  } else {
+    window.onload = _draw;
+  }
+}
+
+function draw(imagesReady) {
+  var c = document.getElementById("c");
+  var ctx = c.getContext("2d");
+  draw_grid(ctx);
+  draw_arrows(ctx);
+  draw_labels(ctx);
+  draw_dots(ctx);
+
+  var c2 = document.getElementById("c2");
+  ctx = c2.getContext("2d");
+  draw_grid(ctx);
+
+  var c3 = document.getElementById("c3");
+  ctx = c3.getContext("2d");
+  draw_grid(ctx);
+  draw_arrows(ctx);
+
+  var c4 = document.getElementById("c4");
+  ctx = c4.getContext("2d");
+  draw_grid(ctx);
+  draw_arrows(ctx);
+  draw_labels(ctx);
+
+  var c5 = document.getElementById("c5");
+  var ctx = c5.getContext("2d");
+  draw_grid(ctx);
+  draw_arrows(ctx);
+  draw_labels(ctx);
+  draw_dots(ctx);
+
+  draw_gradients();
+  draw_images(imagesReady);
+
+  initGame(document.getElementById("halmacanvas"), document.getElementById("halmamovecount"));
+}
+
+$(function() {
+  if (!(!/*@cc_on!@*/0)) {
+    window.attachEvent('onload', draw);
+  } else {
+    draw(false);
+  }
+});
+</script>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4114546-27']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body></html>

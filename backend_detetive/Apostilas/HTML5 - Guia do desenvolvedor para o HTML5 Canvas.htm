@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://msdn.microsoft.com/pt-br/library/dn151487.aspx -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="WT.seg_1" content="pt-br"><link rel="canonical" href="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/HTML5 - Guia do desenvolvedor para o HTML5 Canvas.htm">
+        <title>HTML5 - Guia do desenvolvedor para o HTML5 Canvas</title>
+
+
+
+
+<meta name="DCS.dcsuri" content="/pt-br/library/dn151487(d=default,l=pt-br,v=msdn.10).aspx">
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/pt-br/library/dn151487(d=default,l=pt-br,v=msdn.10).aspx">
+
+<meta name="ms.normalizedurl" content="http://msdn.microsoft.com/pt-br/library/dn151487(d=default,l=pt-br,v=msdn.10).aspx">
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/pt-br/library/dn151487(d=default,l=pt-br,v=msdn.10).aspx">
+
+<meta name="MN" content="FB361398-8:26:50 AM">
+
+<meta name="Search.ShortId" content="dn151487">
+
+<meta name="ms.shortidmsdn" content="dn151487">
+
+<meta name="Ms.Locale" content="pt-br">
+
+
+
+
+
+
+
+
+        
+    <link rel="stylesheet" type="text/css" href="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/Combined.css"><style type="text/css"></style><script type="text/javascript" async="" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/ms2.js"></script><script type="text/javascript" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/ai.js" async=""></script><script class="mtps-injected">try {
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "http://i.msdn.microsoft.com", 
+	"js": "http://i2.msdn.microsoft.com", 
+	"css": "http://i3.msdn.microsoft.com"
+});
+/**/
+} finally { MTPS._injectNextScript_0 && MTPS._injectNextScript_0(); }</script><script class="mtps-injected" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/jquery-1.8.2.min.js"></script><script class="mtps-injected">try {
+//
+  var literalNormalizedUrl = '/pt-br/library/dn151487(d=default,l=pt-br,v=msdn.10).aspx';
+  var wt_nvr_ru = 'WT_NVR_RU';
+  var wt_fpcdom = '.microsoft.com';
+  var wt_domlist = 'msdn.microsoft.com';
+  var wt_pathlist = '';
+  var wt_paramlist = 'DCSext.mtps_devcenter';
+  var wt_siteid = 'MSDN';
+  var gDomain = 'm.webtrends.com';
+  var gDcsId = 'dcsmgru7m99k7mqmgrhudo0k8_8c6m';
+  var gFpc = 'WT_FPC';
+
+
+
+  if (document.cookie.indexOf(gFpc + "=") == -1) {
+    var wtidJs = document.createElement("script");
+    wtidJs.src = "//" + gDomain + "/" + gDcsId + "/wtid.js";
+    document.getElementsByTagName("head")[0].appendChild(wtidJs);
+  }
+
+
+
+  var detectedLocale = 'pt-br';
+  var wtsp = 'msdnlib_techart';
+  var gTrackEvents = '0';
+/**/
+} finally { MTPS._injectNextScript_2 && MTPS._injectNextScript_2(); }</script><script class="mtps-injected">try {
+/**/
+  var omni_guid = "11bb1ef2-dabe-4d4e-b2b1-bbe10158767d";
+/**/
+} finally { MTPS._injectNextScript_3 && MTPS._injectNextScript_3(); }</script><script class="mtps-injected">try {
+//
+
+            window.appInsightsId = '60854590-027a-4ae4-98be-2741a40f355f';
+            //
+} finally { MTPS._injectNextScript_4 && MTPS._injectNextScript_4(); }</script><script class="mtps-injected" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/Combined.js"></script><script class="mtps-injected" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/SearchBox.jss"></script><script class="mtps-injected" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/Combined(1).js"></script><script src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/broker.js"></script><script class="mtps-injected">try {
+$(document).ready(function() {
+        try {
+            var token = $("#globalRequestVerification input[name='__RequestVerificationToken']").clone();
+            $("#siteFeedbackForm").append(token);
+        } catch(err) {
+            
+        }
+    });
+} finally { MTPS._injectNextScript_8 && MTPS._injectNextScript_8(); }</script><link href="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/PrintView.css" rel="stylesheet" type="text/css" media="print"></head>
+    <body class="library">
+        <div id="page">
+            
+            
+  
+            
+        
+    <link type="text/css" rel="stylesheet">
+    
+    <input type="hidden" id="isHeaderBleeding" value="true">
+    <div id="ux-header" dir="ltr" class="ltr msdn">
+        
+
+        <header>
+            <div class="row">
+                <div class="top mobile"></div>
+                <div class="left">
+                    <div class="siteLogo">  
+                        
+<a class="msdnLogoImg" href="http://msdn.microsoft.com/">
+                             <img src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/microsoftLogoForHeader.png">
+                         </a>
+                                                             
+                        <div data-fragmentname="SiteLogo" id="Fragment_SiteLogo" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="LinkWithImage topImage">
+    <a id="SiteLogo_2152_1" href="http://msdn.microsoft.com/">
+                
+                Developer Network
+            </a>
+  </div>
+</div>    
+                    </div>
+                    <div id="grip"></div>
+                </div>
+                
+                <div class="right desktop">
+                    <div class="auxNav">
+                        <div data-fragmentname="Subscriptions" id="Fragment_Subscriptions" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://msdn.microsoft.com/subscriptions/manage/hh442900" id="Subscriptions_2153_1" xmlns="http://www.w3.org/1999/xhtml">
+    <span style="line-height:18px;" xmlns="">Assinaturas do MSDN</span>
+  </a>
+</div>   
+                        <div data-fragmentname="GetTools" id="Fragment_GetTools" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="http://msdn.microsoft.com/dn369242" id="GetTools_2153_3" xmlns="http://www.w3.org/1999/xhtml">
+    <span style="line-height:18px;" xmlns="">Obter ferramentas</span>
+  </a>
+</div>   
+                        <div id="signIn">
+
+<a class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=12&ct=1398612410&rver=6.0.5276.0&wp=MCLBI&wlcxt=MSDN%24MSDN%24MSDN&wreply=http%3a%2f%2fmsdn.microsoft.com%2fpt-br%2flibrary%2fdn151487.aspx&lc=1046&id=254354&mkt=pt-BR" title=" Entrar  "> Entrar  </a></div>
+
+    
+
+                    </div>
+                    <div data-fragmentname="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get" onsubmit="return Epx.Controls.SearchBox.searchBoxOnSubmit(this);">
+      <input id="HeaderSearchTextBox" name="query" type="text" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" autocomplete="off">
+      <button id="HeaderSearchButton" value="" type="submit" class="header-search-button" title="Pesquisar no MSDN"></button>
+    <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; background-color: rgb(255, 255, 255); color: rgb(59, 59, 59); font-family: Arial; font-size: 13px;"><div id="SuggestionContainer"><ul style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;"></ul></div></div></form>
+    
+    
+  </div>
+</div> 
+                </div>
+            </div>
+       
+            <div class="row" id="droor" style="display: block;">
+                <div class="left" style="max-width: 1164px;">
+                            <nav>
+            <ul>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/dn308572" title="Página Inicial">Página Inicial</a>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/dn271881" title="Oportunidade">Oportunidade</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://msdn.microsoft.com/dn469160" title="Desktop">Desktop</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn338451" title="iOS">iOS</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn338440" title="Android">Android</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn338449" title="Web">Web</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn338450" title=".Net">.Net</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn338447" title="Design">Design</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn338446" title="Jogos">Jogos</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/dn271880" title="Plataformas">Plataformas</a>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/dn338064" title="Conecte-se">Conecte-se</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://tech-advisors.msdn.microsoft.com/pt-br" title="Tech Advisors">Tech Advisors</a></li>
+                                                 <li><a href="http://events.msdn.microsoft.com/pt-br" title="Eventos">Eventos</a></li>
+                                                 <li><a href="http://social.msdn.microsoft.com/forums/" title="Fóruns">Fóruns</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/dn292944" title="Downloads">Downloads</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://msdn.microsoft.com/dn369242" title="Ferramentas de desenvolvimento">Ferramentas de desenvolvimento</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn369240" title="SDKs">SDKs</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/dn369243" title="Assinaturas do MSDN">Assinaturas do MSDN</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="current active">
+
+                         <a href="http://msdn.microsoft.com/library" title="Biblioteca">Biblioteca</a>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://code.msdn.microsoft.com/" title="Exemplos">Exemplos</a>
+
+                     </li>
+            </ul>
+          
+        </nav>        
+
+                </div>
+                <div class="right mobile"></div>
+                
+                <div data-fragmentname="SocialLinks" id="Fragment_SocialLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Siga-nos</div>
+    <ul class="links horizontal">
+      <li>
+        <a href="http://www.facebook.com/microsoftdeveloper" target="_blank" id="SocialLinks_2152_4" class="facebook" xmlns="http://www.w3.org/1999/xhtml">http://www.facebook.com/microsoftdeveloper</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/msdev" target="_blank" id="SocialLinks_2152_5" class="twitter" xmlns="http://www.w3.org/1999/xhtml">https://twitter.com/msdev</a>
+      </li>
+      <li>
+        <a href="http://plus.google.com/111221966647232053570/" target="_blank" id="SocialLinks_2152_6" class="googlePlus" xmlns="http://www.w3.org/1999/xhtml">http://plus.google.com/111221966647232053570/</a>
+      </li>
+    </ul>
+  </div>
+</div> 
+                
+                <span id="singleCol"></span>
+                <span id="doubleCol"></span>
+            </div>
+            
+
+        </header>
+    </div>
+    
+    
+
+        
+    <div class="printExportMenus ltr">
+        <a id="isd_printABook" href="http://msdn.microsoft.com/pt-br/library/export/help/?returnUrl=%2fpt-br%2flibrary%2fdn151487.aspx" style="display: inline;">
+            Exportar (<span class="count">0</span>)
+        </a>
+        <a id="isd_print" href="http://msdn.microsoft.com/pt-br/library/dn151487(d=printer).aspx" rel="nofollow">
+            Imprimir 
+        </a>
+    </div>
+    
+
+        <div class="printExportMenus ltr">
+        <a id="expandCollapseAll" href="javascript:void(0)" style="display: none;">Expandir Tudo</a>
+    </div>
+
+    
+
+        
+            <div id="body">
+                
+
+
+
+
+
+
+
+
+    <div id="leftNav" style="width: 280px; max-width: 480px; min-height: 14371px; height: 2136px;">
+
+
+
+<div id="tocnav" style="width: 280px; position: fixed; top: -1526px;">
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/pt-br/library/dn151487.aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/pt-br/library/ms123401.aspx" id="ms310241_MSDN.10_pt-br" mtpsaliasid="" mtpsassetid="5DDC0A78-6B2C-43E3-9C56-55F45C0DFFA5_MSDN.10_pt-br" mtpsshortid="ms123401_MSDN.10_pt-br" title="Biblioteca MSDN">Biblioteca MSDN</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/pt-br/library/dn151487.aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/pt-br/library/jj149119.aspx" id="cc514048_MSDN.10_pt-br" mtpsaliasid="" mtpsassetid="69273390-7c16-4660-a6cc-a1f363408b30_MSDN.10_pt-br" mtpsshortid="jj149119_MSDN.10_pt-br" title="Artigos Técnicos">Artigos Técnicos</a>            </div>
+            <div class="toclevel1" data-toclevel="1" data-childrenloaded="true" style="padding-left: 17px;">
+<a class="toc_expanded" href="http://msdn.microsoft.com/pt-br/library/dn151487.aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/pt-br/library/hh972587.aspx" id="hh972587_MSDN.10_pt-br" mtpsaliasid="" mtpsassetid="MSDN|TA_Web_TOC|$\ta_web_toc.hxt@0,0_MSDN.10_pt-br" mtpsshortid="hh972587_MSDN.10_pt-br" title="Web">Web</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn468691.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Web - evitar impressão e botão Ctrl">Web - evitar impressão e botão Ctrl</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn450975.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Web - Criando e Consumindo Web API - Parte 1">Web - Criando e Consumindo Web API - Parte 1</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn450977.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Web - Criando e Consumindo Web API - Parte 2">Web - Criando e Consumindo Web API - Parte 2</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn466407.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Web - Criando e Consumindo Web API - Parte 3">Web - Criando e Consumindo Web API - Parte 3</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn466408.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Web - Criando e Consumindo Web API - Parte 4">Web - Criando e Consumindo Web API - Parte 4</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn466409.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Web - Criando e Consumindo Web API - Parte 5">Web - Criando e Consumindo Web API - Parte 5</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn369238.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - HTTP, REST e o ASP.NET">ASP.NET Web API - HTTP, REST e o ASP.NET</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376302.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - Estrutura da API">ASP.NET Web API - Estrutura da API</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376303.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - Roteamento">ASP.NET Web API - Roteamento</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376304.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - Hosting">ASP.NET Web API - Hosting</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376305.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - Consumo">ASP.NET Web API - Consumo</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376306.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - Formatadores">ASP.NET Web API - Formatadores</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376307.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API - Segurança">ASP.NET Web API - Segurança</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376309.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API – Testes e Tracing">ASP.NET Web API – Testes e Tracing</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn376308.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET Web API – Estensibilidade e Arquitetura">ASP.NET Web API – Estensibilidade e Arquitetura</a>            </div>
+            <div class="toclevel2 current" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/HTML5 - Guia do desenvolvedor para o HTML5 Canvas.htm" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Guia do desenvolvedor para o HTML5 Canvas">HTML5 - Guia do desenvolvedor para o HTML5 Canvas</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn151488.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - HTML5 - Como escolher entre o Canvas e o SVG para o seu site">HTML5 - HTML5 - Como escolher entre o Canvas e o SVG para o seu site</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn151489.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - HTML5 - Como criar Asteroids com o mecanismo de jogo HTML5 Impact">HTML5 - HTML5 - Como criar Asteroids com o mecanismo de jogo HTML5 Impact</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn151388.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Depure seu site mais rápido com o modo estrito do ECMAScript">Depure seu site mais rápido com o modo estrito do ECMAScript</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn151052.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Aprenda HTML5 em 5 minutos!">HTML5 - Aprenda HTML5 em 5 minutos!</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn189151.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - 5 principais práticas recomendadas para a criação de jogos HTML5 em ação!">HTML5 - 5 principais práticas recomendadas para a criação de jogos HTML5 em ação!</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn163524.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Como proteger seu site com área restrita HTML5">HTML5 - Como proteger seu site com área restrita HTML5</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn163510.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Internet - Design da Web responsivo">Internet - Design da Web responsivo</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/dn144998.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 – 12 ideias legais para localização geográfica e como usá-las">HTML5 – 12 ideias legais para localização geográfica e como usá-las</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj983454.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - 3 maneiras revolucionárias para visualizar HTML5">HTML5 - 3 maneiras revolucionárias para visualizar HTML5</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj983447.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Criação de experiências offline com AppCache e IndexedDB HTML5">HTML5 - Criação de experiências offline com AppCache e IndexedDB HTML5</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj944012.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Adicionar personalidade com transições e animações de CSS3">HTML5 - Adicionar personalidade com transições e animações de CSS3</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj938016.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Modernize seu jogo HTML5 Canvas: Dimensionamento de hardware e CSS3">HTML5 - Modernize seu jogo HTML5 Canvas: Dimensionamento de hardware e CSS3</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj938038.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Modernize seu jogo HTML5 Canvas: APIs offline, de arrastar e soltar e de arquivo">HTML5 - Modernize seu jogo HTML5 Canvas: APIs offline, de arrastar e soltar e de arquivo</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj937876.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - O guia completo para a criação de jogos HTML5 com Canvas e SVG">HTML5 - O guia completo para a criação de jogos HTML5 com Canvas e SVG</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj933432.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Internet Explorer 10 - Uso do simulador do Windows 8 e Visual Studio 2012 para depurar os eventos de toque do IE10">Internet Explorer 10 - Uso do simulador do Windows 8 e Visual Studio 2012 para depurar os eventos de toque do IE10</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj916682.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Criação de um aplicativo Windows 8 com HTML5: Como criar um pequeno leitor RSS (parte 1)">HTML5 - Criação de um aplicativo Windows 8 com HTML5: Como criar um pequeno leitor RSS (parte 1)</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj933416.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Criação de um aplicativo Windows 8 com HTML5: Como criar um pequeno leitor RSS (parte 2)">HTML5 - Criação de um aplicativo Windows 8 com HTML5: Como criar um pequeno leitor RSS (parte 2)</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj916262.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="IE - Carregue arquivos com a API de arquivo">IE - Carregue arquivos com a API de arquivo</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj937153.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="IE - Corrija Problemas Comuns do IE: Atualize o Docmode para padrões Web">IE - Corrija Problemas Comuns do IE: Atualize o Docmode para padrões Web</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/hh475801.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Mudando Imagens com um Clique ou mouseOver">HTML5 - Mudando Imagens com um Clique ou mouseOver</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/hh475803.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Trabalhando com a tag Audio do HTML5">HTML5 - Trabalhando com a tag Audio do HTML5</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/hh475808.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HTML5 - Divs invisíveis com JavaScript">HTML5 - Divs invisíveis com JavaScript</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/gg574358.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ASP.NET - Cuidados ao usar controles de origem de dados no ASP.NET">ASP.NET - Cuidados ao usar controles de origem de dados no ASP.NET</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/gg675173.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Webmatrix - Manipulando dados com WebMatrix">Webmatrix - Manipulando dados com WebMatrix</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/pt-br/library/jj125506.aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Silverlight - Animando transições em WPF">Silverlight - Animando transições em WPF</a>            </div>
+</div>
+        
+
+        
+
+        
+        
+        <div id="toc-resizable-ew" class="toc-resizable-ew"></div>
+        
+
+<a id="NavigationResize" href="javascript:void(0)" style="left: 280px; display: inline-block;">
+    <img class="cl_nav_resize_open" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/ImageSprite.png" title="Expandir" alt="Expandir">
+    <img class="cl_nav_resize_close" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/ImageSprite.png" title="Minimizar" alt="Minimizar" style="display: none;">
+</a>
+
+
+
+    </div>
+<div id="content" class="content" style="margin-left: 280px; width: auto;">
+
+
+
+
+
+
+    
+    
+
+    <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: none;"></div>
+
+    
+
+
+        
+
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  <h1 class="title">
+            HTML5 - Guia do desenvolvedor para o HTML5 Canvas
+          </h1><div id="ratingCounter" style="display: block;">
+        <span id="rcA" class="ratingText">
+            9 de 10 pessoas classificaram isso como útil <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="http://msdn.microsoft.com/pt-br/library/dn151487.aspx#feedback" title="Avalie este tópico">Avalie este tópico</a>
+            
+        </span>
+    </div>
+  
+  <div id="mainSection">
+      <div id="mainBody">
+        
+        <p></p>
+        <h2 class="subheading">Melcolm Sheridan</h2>
+        <h2 class="subheading">Março 2013</h2>
+        <p>Sem dúvida, o elemento canvas no HTML5 é o recurso que a maioria dos desenvolvedores vai querer usar para desenvolver aplicativos Web realmente ricos – sem precisarem instalar plug-ins de navegador como Flash Player da Adobe. O Canvas nasceu em uma época em que a riqueza do cliente está no foco dos desenvolvedores. Navegadores modernos como o Chrome, Firefox e o Internet Explorer 9 e 10 o suportam. Mas o que exatamente é o elemento canvas em HTML5? Como você o usa para criar aplicativos Web ricos?</p>
+        <p>Se você não tiver familiaridade com HTML5, antes de se aprofundar neste artigo, deve ler <a href="http://www.sitepoint.com/html-5-snapshot-2009/">Sim, você pode usar HTML5 hoje!</a> e <a href="http://www.sitepoint.com/html5-forms/">HTML5 e formas ainda mais extravagantes</a>.</p>
+        <h1 class="heading">Para que serve o elemento canvas?</h1>
+        <p>Oficialmente, o canvas é “uma tela de bitmap dependente de resolução que pode ser usada para a renderização de elementos gráficos ou outras imagens visuais rapidamente”. Em termos leigos, o canvas é um elemento novo em HTML5, que permite que se desenhem elementos gráficos usando JavaScript. Ele pode ser usado para renderizar texto, imagens, gráficos, linhas gradientes e outros efeitos dinamicamente. Desenhar na tela se dá através da <a href="http://msdn.microsoft.com/en-us/library/ff975057.aspx">API de tela 2D</a>. Essa API contém uma variedade de funções que fornecem o poder de se desenhar praticamente o que se queira na tela. Atualmente, a tela suporta uma interface 2D, não 3D. Então, qual é a aparência de uma tela? Com nada. Veja você mesmo.</p>
+        <p>&lt;canvas id=”myCanvas” style=”width:300px; height:300px”&gt;&lt;/canvas&gt;</p>
+        <p>O código acima renderiza uma tela no navegador, mas como a tela está vazia, você não verá nada. Vamos adicionar uma borda para vê-la com mais clareza. A imagem abaixo mostra a tela com uma borda preta.</p>
+        <p>
+          <img id="54A4388C38282CF6771560B204AED2FA" alt="Dn151487.54A4388C38282CF6771560B204AED2FA(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652725.png" title="Dn151487.54A4388C38282CF6771560B204AED2FA(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Ainda não muito empolgante, mas isso vai mudar quanto mais adiante você ler! Uma página da Web pode ter vários elementos canvas. Individualizar cada tela por ID dá a você o poder de visar uma tela específica através de JavaScript. Para desenhar em uma tela, você precisa fazer referência ao <em>contexto</em> dela. O contexto fornece a você acesso às propriedades e métodos 2D que permitem desenhar e manipular imagens em um elemento canvas. Vamos nos aprofundar mais no contexto posteriormente.</p>
+        <p>Todo elemento canvas têm coordenadas x e y, sendo x a coordenada horizontal e y a vertical. A imagem a seguir mostra essas coordenadas em uma tela.</p>
+        <p>
+          <img id="A1F7072B78C3976096D383F0B1ABDAA0" alt="Dn151487.A1F7072B78C3976096D383F0B1ABDAA0(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652726.png" title="Dn151487.A1F7072B78C3976096D383F0B1ABDAA0(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Vou me concentrar mais no contexto mais adiante.</p>
+        <h1 class="heading">Esclarecimento da relação SVG-Canvas</h1>
+        <p>É importante entender as diferenças entre o SVG e elementos canvas. O SVG é um formato de elementos gráficos vetoriais baseados em XML. Você pode adicionar estilos a ele com CSS e também comportamento dinâmico usando o SVG DOM. A tela permite que se desenhem elementos gráficos e formas através de JavaScript.  Também pode ser estilizada e você pode adicionar comportamento dinâmico a ela. Aqui estão alguns motivos para se usar o Canvas em vez do SVG.</p>
+        <ul>
+          <li>a tela é mais rápida para se desenharem elementos gráficos complexos</li>
+          <li>você pode salvar imagens fora da tela, enquanto não consegue usando o SVG</li>
+          <li>todo no Canvas é um pixel.</li>
+        </ul>
+        <p>Por outro lado, o SVG também tem algumas vantagens.</p>
+        <ul>
+          <li>não depende da resolução, então pode ser dimensionado para diferentes resoluções de tela</li>
+          <li>é XML, então é facílimo visar elementos diferentes</li>
+          <li>é bom em animações complexas</li>
+        </ul>
+        <p>Então, por que usar um em vez do outro? Bem, se o seu site é dependente da resolução, altamente interativo e você quer edição de imagens vetoriais, escolha o SVG. Por outro lado, se estiver desenvolvendo um jogo e quiser renderizar elementos gráficos de forma realmente rápida ou não quiser lidar com XML, escolha o Canvas. Em um mundo ideal eles trabalhariam juntos para complementar um ao outro.</p>
+        <p>Para ficar mais avançado na escolha entre SVG e Canvas, <a href="http://blogs.msdn.com/b/ie/archive/2011/04/22/thoughts-on-when-to-use-canvas-and-svg.aspx">leia este blog</a>.</p>
+        <h1 class="heading">Canvas e aceleração de hardware</h1>
+        <p>Usar o Canvas é simplesmente a melhor maneira de aprender sobre <a href="http://blogs.msdn.com/b/ie/archive/2011/04/26/understanding-differences-in-hardware-acceleration-through-paintball.aspx">aceleração de hardware na Web</a>. Em versões mais antigas de navegadores, a renderização de elementos gráficos – como a maioria das tarefas de uso intenso de computação – era tratada pela CPU, a unidade central de processamento. Navegadores modernos vêm inovando nessa área ao transferir tarefas de uso gráfico intenso para a GPU, a unidade de processamento gráfico, para renderizar os elementos gráficos e texto de uma página da Web usando Direct2D e DirectWrite. A alocação dessas tarefas para núcleos da GPU não apenas acelera o processamento de elementos gráficos, mas também facilita a carga da CPU enquanto <em>ela</em> cuida das tarefas seriais com mais eficiência.</p>
+        <p>O JavaScript também já foi acusado de monopolização de processamento. Um bom exemplo de se lidar com isso é o mecanismo JavaScript do IE9, o <a href="http://blogs.msdn.com/b/ie/archive/2010/08/25/chakra-interoperability-means-more-than-just-standards.aspx">Chakra</a>, que tira vantagem de núcleos multiprocessador para compilar JavaScript em código de máquina em segundo plano para processamento mais rápido.</p>
+        <p>Nos dois casos, o resultado final é desempenho acelerado.</p>
+        <p>Menciono isso, pois se você juntar processamento de elementos gráficos acelerado com processamento JavaScript acelerado, terá criado um ambiente ideal para tirar o máximo da tela HTML5.</p>
+        <p>Quando você  comandos de desenho à tela, o navegador os envia diretamente para o hardware gráfico sem mais desenvolvimento da sua parte. A aceleração de hardware funciona incrivelmente rápido para fornecer animações e elementos gráficos interativos em tempo real, sem reduzir a velocidade da experiência de usuário que você está proporcionando. </p>
+        <p>Existe uma liberação aqui para o desenvolvedor criativo, em saber que as experiências visuais que você pode colocar em código serão convertidas e renderizadas como pretendido.</p>
+        <p>Todas as maneiras seguintes de se trabalhar com Canvas proporcionam uma experiência aprimorada, intensificada e mais prazerosa quando visualizada através de um navegador com aceleração de hardware.</p>
+        <h1 class="heading">API de tela 2D</h1>
+        <p>A API de tela 2D é um objeto que permite desenhar e manipular imagens e elementos gráficos em um elemento canvas. Para fazer referência ao contexto da tela, você chama <a href="http://msdn.microsoft.com/en-us/library/ff975238.aspx">getContext</a>, que é um método no elemento canvas. Ele tem um parâmetro, que atualmente é <em>2d</em>. Aqui está o trecho de código para a referência ao contexto:</p>
+        <p>var myCanvas = document.getElementById(“myCanvas”);<br>var context = myCanvas.getContext(“2d”);</p>
+        <p>Cada tela tem seu próprio contexto, então, se a sua página contiver vários elementos canvas, você deve ter uma referência a cada contexto individual com que quiser trabalhar.</p>
+        <p>Além de getContext, há muitas outras funções à sua disposição na API de tela 2D. Algumas das notáveis estão descritas abaixo.</p>
+        <h2 class="subheading">Funções de transformação</h2>
+        <ul>
+          <li>scale – permite dimensionar o contexto atual.</li>
+          <li>rotate – permite a rotação das coordenadas x e y do contexto atual.</li>
+        </ul>
+        <h2 class="subheading">Funções de estado</h2>
+        <ul>
+          <li>save – permite salvar o estado atual do contexto</li>
+          <li>restore – permite restaurar o estado do contexto a partir de um estado salvo anteriormente.</li>
+        </ul>
+        <h2 class="subheading">Funções de texto</h2>
+        <ul>
+          <li>font – apanha ou define a fonte para o contexto atual.</li>
+          <li>fillText – renderiza texto preenchido na tela atual.</li>
+          <li>measureText – mede a largura atual do texto especificado.</li>
+        </ul>
+        <p>Como pode imaginar, há mais métodos associados à API de tela 2D. Veja <a href="http://msdn.microsoft.com/en-us/library/ff975057.aspx">esta</a> página para métodos que não cobri nesta seção.</p>
+        <p>A tela é bastante desinteressante se você não desenhar nela, então vejamos o que você pode desenhar uma vez que tenha o contexto.</p>
+        <h2 class="subheading">Formas e cores</h2>
+        <p>Existe um grupo inteiro de propriedades e funções dedicadas a desenhar formas. Comecemos com retângulos. Aqui estão as funções relacionadas disponíveis para desenhar retângulos.</p>
+        <ul>
+          <li>fillRect(x, y, w, h) – desenha o retângulo definido na tela, usando o estilo de preenchimento atual</li>
+          <li>strokeRect(x, y, w, h) – desenha a caixa de contorna o retângulo definido na tela, usando o traço atual</li>
+          <li>clearRect(x, y, w, h) – transforma todos os pixels na tela no retângulo definido em preto transparente</li>
+        </ul>
+        <p>Para desenhar um retângulo, a maneira mais fácil é usar fillRect Isso desenha um retângulo na tela usando o fillStyle atual. Aqui está como criar um retângulo preto:</p>
+        <p>var canvas = document.getElementById(“myCanvas”);<br>var context = canvas.getContext(“2d”);<br>context.fillRect(5, 5, 145, 145);</p>
+        <p>O código renderizará um retângulo preto, começando a 5 pixels do topo, 5 pixels da direita e 145 pixels em largura e altura. A imagem abaixo mostra o retângulo na tela.</p>
+        <p>
+          <img id="1DDE66E2614640A649D129E4E13CB1AC" alt="Dn151487.1DDE66E2614640A649D129E4E13CB1AC(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652727.png" title="Dn151487.1DDE66E2614640A649D129E4E13CB1AC(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Se você não especificar uma cor, o padrão sempre será preto. Para desenhar outro retângulo sobreposto, chame fillRect novamente com parâmetros diferentes. O fillStyle pode ser qualquer cor de CSS, então ele tira proveito da nova propriedade <a href="http://www.css3.info/preview/rgba/">opacity</a> no CSS3. O código a seguir desenha três retângulos na tela e muda a cor do mais embaixo para que fique semitransparente.</p>
+        <p>context.fillRect(5, 5, 145, 145);<br>context.fillStyle = “rgb(0, 162, 232)”;<br>context.fillRect(40, 55, 145, 145);<br>context.fillStyle = “rgba(255, 0, 0, 0.2)”;<br>context.fillRect(75, 105, 145, 145);</p>
+        <p>Aqui está o resultado:</p>
+        <p>
+          <img id="F07DCCBF0628110E041E74F7422E8833" alt="Dn151487.F07DCCBF0628110E041E74F7422E8833(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652728.png" title="Dn151487.F07DCCBF0628110E041E74F7422E8833(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Desenhar círculos também é facílimo. Para desenhar um círculo, a maneira mais fácil é usar <a href="http://msdn.microsoft.com/en-us/library/ff975305.aspx">arc</a>. Isso desenha um círculo na tela usando o fillStyle atual. A definição da função está abaixo.</p>
+        <ul>
+          <li>arc(x, y, radius, startAngle, endAngle, anticlockwise) – aponta para o subcaminho de modo que o arco descrito pela circunferência do círculo descrito pelos argumentos, começando e terminando nos ângulos inicial e final definidos e indo na direção definida, seja adicionado ao caminho</li>
+        </ul>
+        <p>Aqui está como criar um círculo preto:</p>
+        <p>context.beginPath();<br>context.fillStyle = “rgb(0, 0, 0)”;<br>context.arc(123, 93, 70, 0, 2 * Math.PI, true);<br>context.fill();</p>
+        <p>Como arc adiciona pontos no subcaminho, você deve chamar <a href="http://msdn.microsoft.com/en-us/library/ff975405.aspx">beginPath</a> primeiro e depois <a href="http://msdn.microsoft.com/en-us/library/ff975415.aspx">fill</a>. Isso preenche os subcaminhos com o fillStyle atual. A imagem abaixo mostra o resultado.</p>
+        <p>
+          <img id="2CF2AC1B306B622193F51AE21653D0C1" alt="Dn151487.2CF2AC1B306B622193F51AE21653D0C1(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652729.png" title="Dn151487.2CF2AC1B306B622193F51AE21653D0C1(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Para desenhar o contorno de um círculo, use <a href="http://msdn.microsoft.com/en-us/library/ff974918.aspx">strokeStyle</a> em vez de fillStyle. Depois chame <a href="http://msdn.microsoft.com/en-us/library/ff975431.aspx">stroke</a> em vez de fill.</p>
+        <p>context.beginPath();<br>context.strokeStyle = “rgb(0, 0, 0)”;<br>context.arc(123, 93, 70, 0, 2 * Math.PI, true);<br>context.stroke();</p>
+        <p>Círculos não precisam ter 360 graus. Para alterar a forma, altere os raios inicial e final.</p>
+        <p>context.beginPath();<br>context.strokeStyle = “rgb(0, 0, 0)”;<br>context.arc(123, 93, 70, 0, 0.5 * Math.PI, true);<br>context.stroke();</p>
+        <p>Aqui está um semicírculo.</p>
+        <p>
+          <img id="C5792ED2C9C7C40FC24369FA4AF8C8B8" alt="Dn151487.C5792ED2C9C7C40FC24369FA4AF8C8B8(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652731.png" title="Dn151487.C5792ED2C9C7C40FC24369FA4AF8C8B8(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Saindo de círculos e entrando em algo mais avançado, vejamos o desenho de curvas de <a href="http://en.wikipedia.org/wiki/B%c3%a9zier_curve">Bezier</a>. Essa tarefa complicada é relativamente simplificada usando a função <a href="http://msdn.microsoft.com/en-us/library/ff975406.aspx">bezierCurveTo</a>. Isso adiciona pontos no subcaminho atual usando os pontos de controle que representam uma curva de Bezier. Os parâmetros para bezierCurveTo estão abaixo.</p>
+        <ul>
+          <li>bezierCurveTo (cp1x, cp1y, cp2x, cp2y, x, y) – adiciona o ponto definido no caminho atual, conectado ao anterior por uma curva de Bezier com os pontos de controle definidos</li>
+        </ul>
+        <p>Uma curva de Bezier deve incluir três pontos. Os dois primeiro controlam o cálculo, e o terceiro ponto é o ponto final para a curva. Aqui está como criar uma curva de Bezier:</p>
+        <p>context.lineWidth = 20;<br>context.beginPath();<br>context.moveTo(5, 50);<br>context.bezierCurveTo(30, 30, 130, 530, 200, 100);<br>context.stroke();</p>
+        <p>A imagem abaixo é o que é desenhado na tela.</p>
+        <p>
+          <img id="75D6EC9E170F8948BBDBEC38BF7427A8" alt="Dn151487.75D6EC9E170F8948BBDBEC38BF7427A8(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652732.png" title="Dn151487.75D6EC9E170F8948BBDBEC38BF7427A8(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Curvas de Bezier dão a você um grande poder com que desenhar. Aqui está um exemplo do desenho de um smiley em uma tela.</p>
+        <p>// face<br>context.beginPath();<br>context.lineWidth = 10;<br>context.strokeStyle = “rgb(0, 0, 0)”;<br>context.arc(200, 233, 150, 0, 2 * Math.PI, true);<br>context.stroke();<br><br>// color face<br>context.beginPath();<br>context.fillStyle = “rgba(80, 100, 80, 0.4)”;<br>context.arc(200, 233, 150, 0, 2 * Math.PI, true);<br>context.fill();<br><br>// right eye<br>context.lineWidth = 20;<br>context.beginPath();<br>context.moveTo(230, 130);<br>context.bezierCurveTo(230, 130, 230, 130, 240, 200);<br>context.stroke();<br><br>// left eye<br>context.beginPath();<br>context.moveTo(170, 130);<br>context.bezierCurveTo(170, 130, 170, 130, 160, 200);<br>context.stroke();<br><br>// upper lip<br>context.beginPath();<br>context.moveTo(100, 230);<br>context.bezierCurveTo(100, 230, 200, 380, 300, 230);<br>context.stroke();<br><br>// lower lip<br>context.beginPath();<br>context.moveTo(100, 235);<br>context.bezierCurveTo(105, 270, 200, 480, 300, 232);<br>context.stroke();</p>
+        <p>A imagem abaixo mostra o smiley.</p>
+        <p>
+          <img id="E4041622D0421F05E94424E50DBD278A" alt="Dn151487.E4041622D0421F05E94424E50DBD278A(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652733.png" title="Dn151487.E4041622D0421F05E94424E50DBD278A(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Para complementar as formas possíveis na tela, você também pode misturar as cores como sólida, contorno, gradiente ou padrão. Usei principalmente <a href="http://msdn.microsoft.com/en-us/library/ff974906.aspx">fillStyle</a> nos exemplos anteriores. Essa função preenche o fundo do contexto com uma cor sólida. Ele pode ter uma variedade de cores. O exemplo seguinte tornará aleatória a cor de fundo e produz um efeito de arco-íris.</p>
+        <p>var a = 1;<br><br>for (j = 0; j &lt; 100; j++) {<br>var r = 255, g = 0, b = 0;<br><br>for (i = 0; i &lt; 150; i++) {<br>// Yellow<br>if (i &lt; 25) g += 10.2;<br>// Green<br>else if (i &gt;= 25 &amp;&amp; i &lt; 50) r -= 10.2;<br><br>// Blue<br>else if (i &gt;= 50 &amp;&amp; i &lt; 75) {<br>g -= 10.2;<br>b += 10.2;<br>}<br><br>// Purple<br>else if (i &gt;= 75 &amp;&amp; i &lt; 100) r += 10.2;<br><br>// Red<br>else b -= 10.2;<br><br>context.fillStyle = “rgba(” + Math.floor(r) + “,” +<br>Math.floor(g) + “,” + Math.floor(b) + “,” + a + “)”;<br>context.fillRect(3 * i, 5 * j, 3, 5); } a -= 0.01; }</p>
+        <p>O efeito pode ser visto na imagem abaixo.</p>
+        <p>
+          <img id="898F5FBD066B4860B5EA5293ED1C6AAA" alt="Dn151487.898F5FBD066B4860B5EA5293ED1C6AAA(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652734.png" title="Dn151487.898F5FBD066B4860B5EA5293ED1C6AAA(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Se não quiser cores sólidas, você pode usar strokeStyle e strokeRect para desenhar o contorno de um retângulo. Outro recurso de tela oferece a capacidade de se criarem gradientes. As funções relacionadas para isso estão abaixo.</p>
+        <ul>
+          <li>addColorStop(offset, color) – adiciona uma interrupção da cor definida no gradiente no deslocamento definido. 0.0 é o deslocamento em uma ponta do gradiente, 1.0 é o deslocamento na ponta oposta</li>
+          <li>createLinearGradient(x0, y0, x1, y1) – retorna um objeto CanvasGradient que representa um gradiente linear que pinta a linha dada pelas coordenadas</li>
+          <li>createRadialGradient(x0, y0, r0, x1, y1, r1) – retorna um objeto CanvasGradient que representa um gradiente radial que pinta ao longo do cone dado pelos círculos representados pelas coordenadas</li>
+        </ul>
+        <p>Um gradiente linear pode ser criado chamando <a href="http://msdn.microsoft.com/en-us/library/ff975411.aspx">createLinearGradient</a>. Para adicionar cor ao gradiente, você chama <a href="http://msdn.microsoft.com/en-us/library/ff975436.aspx">addColorStop</a>. Chamar isso adiciona a cor especificada nas coordenadas x e y. O exemplo a seguir demonstra um gradiente linear simples.</p>
+        <p>var gradient = context.createLinearGradient(0, 0,0, 145);<br>gradient.addColorStop(0, “#00ABEB”);<br>gradient.addColorStop(0.5, “yellow”);<br>gradient.addColorStop(0.8, “green”);<br>gradient.addColorStop(1, “white”);<br><br>context.fillStyle = gradient;<br>context.fillRect(5, 5, 145, 145);</p>
+        <p>Os gradientes podem ser vistos abaixo.</p>
+        <p>
+          <img id="98918FE4BE18742CAEF7298231C10062" alt="Dn151487.98918FE4BE18742CAEF7298231C10062(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652747.png" title="Dn151487.98918FE4BE18742CAEF7298231C10062(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Há muito mais sobre gradientes que eu não cobri. Para um quadro completo, você deve visitar o site do W3C <a href="http://www.w3.org/TR/2dcontext/#colors-and-styles">aqui</a>.</p>
+        <h1 class="heading">Linhas, texto e sombras</h1>
+        <p>Quando desenhar linhas, pense em caminhos. Cada tela tem um caminho. Definir um caminho é como desenhar uma linha. Qualquer linha é possível. Como quando escreve, você precisa definir um caminho e depois preenchê-lo. Aqui estão algumas das propriedades e funções relacionadas para desenhar linhas.</p>
+        <ul>
+          <li>lineWidth [ = value ] – retorna a largura de linha atual. Pode ser definido para alterar a largura da linha</li>
+          <li>lineCap [ = value ] – retorna o estilo da borda de linha atual. Pode ser definido para alterar estilo da borda de linha. Os estilos de borda de linha possíveis são butt, round e square</li>
+          <li>lineJoin [ = value ] – retorna o estilo de junção de linhas Pode ser definido para alterar estilo de junção de linhas. Os estilos de junção de linhas possíveis são bevel, round e miter</li>
+        </ul>
+        <p>Para desenhar linhas, você chama <a href="http://msdn.microsoft.com/en-us/library/ff975422.aspx">moveTo</a> e <a href="http://msdn.microsoft.com/en-us/library/ff975420.aspx">lineTo</a>. Essa função aceita parâmetros x e y que dizem a ela exatamente onde você quer desenhar a linha. Você pode especificar a largura da linha definindo <a href="http://msdn.microsoft.com/en-us/library/ff974912.aspx">lineWidth</a>. Uma vez definida a linha, você precisa chamar stroke para desenhá-la.</p>
+        <p>O exemplo a seguir demonstra como desenhar uma série de linha, de grossas a finas.</p>
+        <p>for (i = 15; i &gt; 0; i–) {<br>context.strokeStyle = “blue”;<br>context.lineWidth = i;<br>context.beginPath();<br>context.moveTo(55, 15 + (15 – i) * 24);<br>context.lineTo(335, 15 + (15 – i) * 24);<br>context.stroke();<br>}</p>
+        <p>O resultado está abaixo.</p>
+        <p>
+          <img id="FD60B96F76A44039DA1A6A0E65582D32" alt="Dn151487.FD60B96F76A44039DA1A6A0E65582D32(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652748.png" title="Dn151487.FD60B96F76A44039DA1A6A0E65582D32(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Para deixar as linhas mais bonitas, você também pode alterar a borda, a forma do final da linha, definindo a propriedade <a href="http://msdn.microsoft.com/en-us/library/ff974910.aspx">lineCap</a>. Para criar uma borda arredondada, posso definir a lineCap como <em>round</em>.</p>
+        <p>context.lineCap = “round”;</p>
+        <p>Fazer isso no exemplo desenha as linhas arredondadas.</p>
+        <p>
+          <img id="03471A3FCD5ED03D9518280F1ACCEB88" alt="Dn151487.03471A3FCD5ED03D9518280F1ACCEB88(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652749.png" title="Dn151487.03471A3FCD5ED03D9518280F1ACCEB88(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Assim como linhas, texto é simples de desenhar em um elemento canvas. Diferentemente do texto em uma página da Web, não há modelo de caixa, o que significa que a CSS com que você tem familiaridade não está disponível. Mas você tem opções. Algumas das propriedades e funções relacionadas para desenhar texto estão abaixo.</p>
+        <ul>
+          <li>font [ = value ] – retorna as definições de fonte atuais. Pode ser definido para alterar a fonte. A sintaxe é a mesma que para a propriedade ‘font’ da CSS</li>
+          <li>textAlign [ = value ] – retorna as definições de alinhamento do texto atuais. Pode ser definido para alterar o alinhamento. Os valores possíveis são start, end, left, right e center</li>
+          <li>textBaseline [ = value ] – retorna as definições de alinhamento de linha de base atuais. Pode ser definido para alterar o alinhamento da linha de base.</li>
+          <li>fillText(text, x, y [, maxWidth ] ) – preenche o texto na posição definida</li>
+          <li>strokeText(text, x, y [, maxWidth ] ) – traça o texto na posição definida</li>
+        </ul>
+        <p>Para imprimir texto simples, use fillText. Vou definir o tamanho da fonte e o tipo usando a propriedade font.</p>
+        <p>context.font = ’24px “Tahoma”‘;<br>context.fillText(“Hello World!”, 0, 0);</p>
+        <p>Aqui está o resultado:</p>
+        <p>
+          <img id="C194167BA13EF5EE8F0EF4B89E1BB34E" alt="Dn151487.C194167BA13EF5EE8F0EF4B89E1BB34E(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652750.png" title="Dn151487.C194167BA13EF5EE8F0EF4B89E1BB34E(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Para criar texto transparente, defina fillStyle.</p>
+        <p>context.fillStyle = “rgba(0, 0, 0, 0.2)”;</p>
+        <p>E o resultado:</p>
+        <p>
+          <img id="990628001132954E35FE9487856BABDD" alt="Dn151487.990628001132954E35FE9487856BABDD(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652751.png" title="Dn151487.990628001132954E35FE9487856BABDD(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>Adicionar efeitos como sombras também é muito fácil. O código a seguir usa os objetos de desenho de sombra para criar a sombra.</p>
+        <p>context.shadowOffsetX = 5;<br>context.shadowOffsetY = 5;<br>context.shadowBlur = 5;<br>context.shadowColor = “rgba(0, 0, 0, 1)”;</p>
+        <p>
+          <img id="F2789A9F0F1BE62F6655E7C3EACC1794" alt="Dn151487.F2789A9F0F1BE62F6655E7C3EACC1794(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652752.png" title="Dn151487.F2789A9F0F1BE62F6655E7C3EACC1794(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>A sombra pode ser personalizada para criar qualquer ângulo ou cor de sombra que você quiser. Demonstrei apenas uma pequena fração do que você pode fazer com texto na tela. Para mais informações a esse respeito, veja a <a href="http://www.w3.org/TR/2dcontext/#text">section</a> Texto no W3C.</p>
+        <h1 class="heading">Imagens e vídeo</h1>
+        <p>Bem, quando se trabalha com a tela, também é possível trabalhar com imagens e vídeo.  A pergunta óbvia é: por que não usar simplesmente um elemento &lt;img&gt; padrão? A grande vantagem é que sua imagem pode fazer parte de uma imagem muito maior e mais complexa graças a toda a magia que você pode criar com o elemento canvas. Existe uma função principal para se trabalhar com imagens e vídeos, e ela é <a href="http://msdn.microsoft.com/en-us/library/ff975414.aspx">drawImage</a>. A porção de código a seguir se refere à imagem sheep (ovelha) e a desenha na tela.</p>
+        <p>var image = document.getElementById(“mySheep”);<br>context.drawImage(image, 10, 10, 128, 128);</p>
+        <p>&lt;img id=”mySheep” src=”sheep.png” style=”display:none;” /&gt;</p>
+        <p>O código desenha a ovelha na tela.</p>
+        <p>
+          <img id="6F97D31FD731C10107BB5C687AF47C48" alt="Dn151487.6F97D31FD731C10107BB5C687AF47C48(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652753.png" title="Dn151487.6F97D31FD731C10107BB5C687AF47C48(pt-br,MSDN.10).png" xmlns="">
+        </p>
+        <p>A imagem pode ser invertida, desaparecer ou aparecer gradualmente ou simplesmente ser girada agora que está na tela.</p>
+        <p>Vídeos seguem um caminho semelhante. Primeiro, você precisa usar o elemento HTML5 video. Como pode imaginar, esse elemento tem uma infinidade de funcionalidades associadas, então antes de começarmos, você deve ler a respeito <a href="http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element">aqui</a>. O elemento video por si só não é muito interessante. Ele contém um atributo controls, que determina se o navegador deve exibir o conjunto padrão de controles de vídeo, e loop, que diz ao navegador se o vídeo é recursivo. Dentro do elemento video você especifica três filhos, cada qual com o mesmo vídeo, mas com formatos diferentes. Nenhuma novidade nisso, mas quando você une o elemento vídeo com a tela... bem, pode inventar coisas surpreendentes.</p>
+        <p>Primeiro vou adicionar a tela e o vídeo HTML</p>
+        <p>&lt;canvas id=”myCanvas”&gt; &lt;/canvas&gt;<br>&lt;video id=”myVideo” controls loop&gt;<br>&lt;source src=”video.webm” type=”video/webm”&gt;<br>&lt;source src=”video.ogg” type=”video/ogg”&gt;<br>&lt;source src=”video.mp4″ type=”video/mp4″&gt;<br>&lt;/video&gt;</p>
+        <p>Nada demais acontecendo aqui. O vídeo será reproduzido dentro da marca video, mas vou desenhar o vídeo na tela e posicioná-lo centralizado ali. O resultado é impressionante. Aqui está o código.</p>
+        
+<div id="code-snippet-1" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>Function</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copiar para a área de transferência." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_1c7c57d0-c87b-4aaa-8641-9f00ed3b1bcb');">Copiar</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_1c7c57d0-c87b-4aaa-8641-9f00ed3b1bcb" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>var canvas = function () {
+return {
+draw: function () {
+var video = document.getElementById(“myVideo”);
+var canvas = document.getElementById(“myCanvas”);
+var context = canvas.getContext(“2d”);
+
+var width = Math.floor(canvas.clientWidth / 100);
+var height = Math.floor(canvas.clientHeight / 100);
+
+canvas.width = width; canvas.height = height;
+
+video.play();
+context.drawImage(video, 0, 0, width, height);
+},
+init: function () {
+setInterval(canvas.draw, 16);
+
+}
+
+}
+
+} ();
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+      <p>O truque para fazer isso funcionar é desenhar o vídeo de forma recorrente na tela, caso contrário ele será desenhado apenas uma vez, e isso seria terrível. Por isso setInterval é chamado quando a página carrega. </p><h1 class="heading">Transformações e animações</h1><p>Transformações e animações são possíveis com o elemento canvas. Aqui estão algumas das propriedades e funções relacionadas para a execução de transformações.</p><ul><li>scale(x, y) – altera a matriz de transformação para aplicar uma transformação de dimensionamento com as características definidas</li><li>rotate(angle) – altera a matriz de transformação para aplicar uma transformação de rotação com as características definidas</li><li>translate(x, y) – altera a matriz de transformação para aplicar uma transformação de translação com as características definidas</li><li>transform(m11, m12, m21, m22, dx, dy) – altera a matriz de transformação para aplicar matriz definida pelos argumentos</li><li>transform(m11, m12, m21, m22, dx, dy) – altera a matriz de transformação para a matriz definida pelos argumentos</li></ul><p>Transformações e animações podem trabalhar separadamente, mas quando você as combina, como demonstrarei agora, elas podem causar uma poderosa impressão visual. Comecemos com rotação. Para girar o contexto, defina um ângulo e ele girará na tela. O exemplo a seguir desenha um retângulo a cada 250 milésimos de segundo e cada um deles é girado, então o efeito é como uma roda se movendo. As cores também são aleatórias para produzir um efeito brilhante.</p>
+        
+<div id="code-snippet-2" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>Function</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copiar para a área de transferência." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_58cf2be1-763a-4b8b-9f09-3fc5d32daf9d');">Copiar</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_58cf2be1-763a-4b8b-9f09-3fc5d32daf9d" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>var can = function () {
+var canvas;
+var context;
+
+return {
+draw: function () {
+var r = Math.floor(Math.random() * 255) + 70;
+var g = Math.floor(Math.random() * 255) + 70;
+var b = Math.floor(Math.random() * 255) + 70;
+var s = ‘rgba(‘ + r + ‘,’ + g + ‘,’ + b + ‘, 0.5)’;
+
+context.rotate(0.2 * Math.PI);
+context.fillStyle = s;
+context.fillRect(10, 0, 150, 50);
+},
+init: function () {
+canvas = document.getElementById(“myCanvas”);
+context = canvas.getContext(“2d”);
+context.translate(200, 250);
+setInterval(can.draw, 250);
+}
+}
+} ();
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+      <p>window.onload = can.init;</p><p>A imagem abaixo mostra o resultado.</p><p><img id="BBBC0E2D78D449ADE9A1843973B088A7" alt="Dn151487.BBBC0E2D78D449ADE9A1843973B088A7(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652754.png" title="Dn151487.BBBC0E2D78D449ADE9A1843973B088A7(pt-br,MSDN.10).png" xmlns=""></p><p>Dimensionar elementos da tela também é fácil. Vou ficar com a demonstração anterior, exceto para rotação; vou dimensionar cada retângulo a cada segundo. Aqui está o código.</p>
+        
+<div id="code-snippet-3" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>Function</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copiar para a área de transferência." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_6227e60e-b949-484c-bee8-27cee102e565');">Copiar</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_6227e60e-b949-484c-bee8-27cee102e565" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>var can = function () {
+var canvas;
+var context;
+var x = 0;
+var y = 0;
+
+function currectX() {
+return x = x + 1;
+}
+
+function currectY() {
+return y = y + 1;
+}
+
+return {
+draw: function () {
+var r = Math.floor(Math.random() * 255) + 70;
+var g = Math.floor(Math.random() * 255) + 70;
+var b = Math.floor(Math.random() * 255) + 70;
+var s = ‘rgba(‘ + r + ‘,’ + g + ‘,’ + b + ‘, 0.5)’;
+
+context.fillStyle = s;
+context.scale(1.2,1.2);
+context.fillRect(currectX(), currectY(), 5, 5);
+},
+init: function () {
+canvas = document.getElementById(“myCanvas”);
+context = canvas.getContext(“2d”);
+context.translate(0, 0);
+setInterval(can.draw, 1000);
+}
+}
+} ();
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+      <p>window.onload = can.init;</p><p>A imagem abaixo mostra o resultado.</p><p><img id="A7DB7FCCDD924EF03385BE59D4F4E035" alt="Dn151487.A7DB7FCCDD924EF03385BE59D4F4E035(pt-br,MSDN.10).png" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/IC652755.png" title="Dn151487.A7DB7FCCDD924EF03385BE59D4F4E035(pt-br,MSDN.10).png" xmlns=""></p><p>Como pode imaginar, esse é apenas um ponto de partida para transformações e animações. Para uma animação complexa, você pode dar uma olhada em Brilliant Lines, criado pelo grupo W3C. Ele pode ser encontrado <a href="http://www.w3.org/TR/2dcontext/#examples">aqui</a>. Encontre mais informações sobre transformações <a href="http://www.w3.org/TR/2dcontext/#transformations">aqui</a>.</p><h1 class="heading">Trabalhe com o mouse</h1><p>Como já pode ter adivinhado, também é possível trabalhar com o mouse. Como qualquer elemento em uma página da Web, você pode retornar as coordenadas x e y do mouse consultando as propriedades <a href="https://developer.mozilla.org/en/DOM/event.pageX">pageX</a> e <a href="https://developer.mozilla.org/en/DOM/event.pageY">pageY</a> do elemento. Aqui está o trecho de código para rastrear o mouse sobre uma tela.</p>
+        
+<div id="code-snippet-4" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>Function</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copiar para a área de transferência." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_5b8f4dc8-bd5d-4ab9-a242-4d35f1748236');">Copiar</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_5b8f4dc8-bd5d-4ab9-a242-4d35f1748236" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>var canvas = document.getElementById(“myCanvas”);
+var context = canvas.getContext(“2d”);
+
+canvas.onmousemove = function (e) {
+var x = e.pageX – this.offsetLeft;
+var y = e.pageY – this.offsetTop;
+
+var div = document.getElementById(“coords”);
+div.innerHTML = “x: ” + x + ” y: ” + y;
+};
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+      <p>No código acima, associei um elemento para capturar o movimento do mouse, então quando ele se move as coordenadas x e y são exibidas na tela. Perfeito e simples. Para algo um pouco mais avançado, eu quis fazer a tela se comportar como um pedaço de papel, oferecendo assim a capacidade de desenhar nela. Bem, o código para fazer isso não é muito complexo. Aqui está o código todo.</p>
+        
+<div id="code-snippet-5" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>Function</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copiar para a área de transferência." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_66841eb9-9fd3-46ab-8a6d-23971743e704');">Copiar</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_66841eb9-9fd3-46ab-8a6d-23971743e704" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>var canvas = document.getElementById(“myCanvas”);
+var context = canvas.getContext(“2d”);
+
+context.fillCircle = function (x, y, radius, fillColor) {
+this.fillStyle = fillColor;
+this.beginPath();
+this.moveTo(x, y);
+this.arc(x, y, radius, 0, Math.PI * 2, false);
+this.fill();
+};
+
+context.clearTo = function (fillColor) {
+context.fillStyle = fillColor;
+context.fillRect(0, 0, canvas.width, canvas.height);
+};
+
+context.clearTo(“#ddd”);
+canvas.onmousemove = function (e) {
+if (!canvas.isDrawing) return;
+var x = e.pageX – this.offsetLeft;
+var y = e.pageY – this.offsetTop;
+
+var div = document.getElementById(“coords”);
+div.innerHTML = “x: ” + x + ” y: ” + y;
+var radius = 10;
+var fillColor = ‘#ff0000′;
+context.fillCircle(x, y, radius, fillColor);
+};
+
+canvas.onmousedown = function (e) {
+canvas.isDrawing = true;
+};
+canvas.onmouseup = function (e) {
+canvas.isDrawing = false;
+};
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+      <p>Graças ao JavaScript, posso estender facilmente o elemento canvas e acrescentar alguns manipuladores de evento personalizados para lidar com o movimento do mouse. </p><h1 class="heading">Parceiro de conteúdo SitePoint</h1><p>Este tutorial foi possibilitado pelo suporte da Microsoft. Em cooperação com a Microsoft e escrito de forma independente pelo SitePoint, nos esforçamos para trabalhar juntos para desenvolver o conteúdo que é mais útil e relevante para você.</p><p>E essa é a beleza do elemento canvas: há tanto que você pode <em>experimentar</em>.</p><p>Este foi um tour-relâmpago, e espero que o tenha entusiasmado para trabalhar com o elemento canvas, sabendo agora que esses efeitos extraordinários são totalmente viáveis em navegadores modernos.</p><p>Quer saber mais? Experimente estes links:</p><ul><li><a href="http://msdn.microsoft.com/en-us/library/gg589510(v=VS.85).aspx">Guia do desenvolvedor do HTML5 Canvas no MSDN</a></li><li><a href="http://blogs.msdn.com/b/ie/archive/2011/04/22/thoughts-on-when-to-use-canvas-and-svg.aspx">Como escolher entre o Canvas e o SVG para criar elementos gráficos de Web</a></li></ul></div>
+      <div id="topicLinks" class="navigationLinks"></div>
+      <div id="homeCommunityLinks" class="navigationLinks">
+        <span> | </span>
+        <a href="http://msdn.microsoft.com/pt-br/">Home</a>
+        <a href="http://msdn.microsoft.com/pt-br/library/cc514048.aspx">| Artigos Técnicos</a>
+        <span> | </span>
+        <a href="http://msdn.microsoft.com/pt-br/aa497440.aspx">Comunidade</a>
+      </div>
+      
+    </div>
+</div>
+
+    
+
+
+
+
+<div class="libraryMemberFilter">
+    <div class="filterContainer">
+        <span>Mostrar:</span>
+        <label>
+            <input type="checkbox" class="libraryFilterInherited" checked="checked" value="Inherit">Herdado
+        </label>
+        <label>
+            <input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected">Protegido
+        </label>
+    </div>
+</div>
+    
+<input type="hidden" id="libraryMemberFilterEmptyWarning" value="Não há membros disponíveis com suas configurações de filtro atuais.">
+
+
+ 
+</div>
+
+
+            </div>
+            <div class="clear"></div>
+        
+            
+    
+<input name="__RequestVerificationToken" type="hidden" value="ZmUyevGy3Uf4EshU-r3ClAMv-r3AAmceXP8PkimrAMFg7FHZf6IUMaTLbRCGR8Axf8DKoplPAvTBMkYiZD0bxfWdz_s1">
+<input id="ratingSubmitUrl" type="hidden" value="http://msdn.microsoft.com/pt-br/library/feedback/add/dn151487.aspx">
+<input id="isTopicRated" type="hidden" value="false">
+
+
+
+
+        
+    <link type="text/css" rel="stylesheet">
+    
+    <div id="ux-footer" class="" style="" dir="ltr">
+        <footer class="top">
+            <div data-fragmentname="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Centros de Desenvolvimento</div>
+    <ul class="links">
+      <li>
+        <a href="http://msdn.microsoft.com/windows" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+      </li>
+      <li>
+        <a href="http://dev.windowsphone.com/" id="LeftLinks_2148_2" class="windowsPurple" xmlns="http://www.w3.org/1999/xhtml">Windows Phone</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/office" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/vstudio" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+      </li>
+      <li>
+        <a href="http://developer.nokia.com/" title="Nokia" target="_blank" id="LeftLinks_2148_14" class="nokia" xmlns="http://www.w3.org/1999/xhtml">Nokia</a>
+      </li>
+      <li>
+        <a href="http://www.windowsazure.com/en-us/documentation/" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure<br xmlns=""></a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/aa937802" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Mais...</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>    
+            <div id="rightLinks">
+                <div data-fragmentname="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Recursos de Aprendizado</div>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoftvirtualacademy.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+      </li>
+      <li>
+        <a href="http://channel9.msdn.com/" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Channel 9</a>
+      </li>
+      <li>
+        <a href="http://www.interoperabilitybridges.com/" id="CenterLinks1_2151_6" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Interoperability Bridges</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/magazine/" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">MSDN Magazine</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Comunidade</div>
+    <ul class="links">
+      <li>
+        <a href="http://social.msdn.microsoft.com/forums/pt-br/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Fóruns</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://blogs.msdn.com/b/developer-tools/" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Blogs</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Suporte</div>
+    <ul class="links">
+      <li>
+        <a href="http://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Autoatendimento</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://support.microsoft.com/" id="CenterLinks3_2151_12" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Outras opções de suporte</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml" class="nth-child-4n">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Programas</div>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoft.com/bizspark/" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">BizSpark (para startups)</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.dreamspark.com/" id="CenterLinks4_2151_14" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">DreamSpark</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/faculty" id="CenterLinks4_2151_15" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Faculty Connection</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://www.microsoft.com/student/pt/br/default.aspx" id="CenterLinks4_2151_16" xmlns="http://www.w3.org/1999/xhtml">Microsoft Student</a>
+      </li>
+    </ul>
+  </div>
+</div>
+    
+    <div class="feedbackContainer">
+        <div id="feedbackSection1" class="clear">
+            <div class="left">Isso foi útil para você?</div>
+            <div class="left">
+                <div class="left">
+                    <input type="radio" name="feedback" id="feedbackYes" value="1" class="feedbackYesClick" data-enhance="false"><label class="feedbackYesClick" for="feedbackYes"> Sim</label>
+                </div>
+                <div class="left">
+                    <input type="radio" name="feedback" id="feedbackNo" value="0" class="feedbackNoClick" data-enhance="false"><label class="feedbackNoClick" for="feedbackNo"> Não</label>
+                </div>
+            </div>
+            <a class="rateThisAnchor" name="feedback"></a>
+        </div>
+        <div id="feedbackSection2" class="clear">
+        </div>
+        <div id="feedbackSection3" class="clear">
+                    <div>
+                        <input id="checkboxNo201" name="chkbxNo" type="checkbox" value="201" data-enhance="false">
+                        <label for="checkboxNo201">Impreciso</label>
+                    </div>
+                    <div>
+                        <input id="checkboxNo202" name="chkbxNo" type="checkbox" value="202" data-enhance="false">
+                        <label for="checkboxNo202">Sem profundidade suficiente</label>
+                    </div>
+                    <div>
+                        <input id="checkboxNo203" name="chkbxNo" type="checkbox" value="203" data-enhance="false">
+                        <label for="checkboxNo203">Mais exemplos de código são necessários</label>
+                    </div>
+                    <div>
+                        <input id="checkboxNo204" name="chkbxNo" type="checkbox" value="204" data-enhance="false">
+                        <label for="checkboxNo204">A tradução precisa ser aprimorada</label>
+                    </div>
+        </div>
+        <div id="feedbackSection4" class="clear">
+            <div>
+                <textarea id="feedbackTextArea" name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" data-enhance="false">Fale mais...</textarea>
+            </div>
+            <div class="left"><span class="counter">(<span id="feedbackTextCounter">1500</span> caracteres restantes)</span></div>
+            <div class="right">
+                <button type="button" id="feedbackSubmit" title="Clique para enviar comentários" data-enhance="false">Enviar</button>
+            </div>
+        </div>
+        <div id="feedbackSection5">Agradecemos os seus comentários</div>
+        <input id="feedbackValue" type="hidden" value="">
+        <input id="tellUsMoreText" type="hidden" value="Fale mais...">
+        <input id="maxTextBoxCharacters" type="hidden" value="1500">
+        <input type="hidden" id="submitUrl" value="/pt-br/msdn/ux/uxservices/feedback/add/footer">
+        <input type="hidden" id="feedbackSiteName" name="feedbackSiteName" value="">
+        <input type="hidden" id="feedbackPriority" name="feedbackPriority" value="">
+        <input type="hidden" id="feedbackSourceUrl" name="feedbackSourceUrl" value="">
+        <input type="hidden" id="ClientIP" name="ClientIP" value="">
+        <input type="hidden" id="ClientOS" name="ClientOS" value="">
+        <input type="hidden" id="ClientBrowser" name="ClientBrowser" value="">
+        <input type="hidden" id="ClientTime" name="ClientTime" value="">
+        <input type="hidden" id="ClientDate" name="ClientDate" value="">
+    </div>
+    
+            </div>
+        </footer>
+    
+        <footer class="bottom">
+            <span class="localeContainer">
+                    <form class="selectLocale" id="selectLocaleForm" action="http://msdn.microsoft.com/pt-br/selectlocale-dmc">
+        <input type="hidden" name="fromPage" value="http%3a%2f%2fmsdn.microsoft.com%2fpt-br%2flibrary%2fdn151487.aspx">
+        <a href="http://msdn.microsoft.com/pt-br/library/dn151487.aspx#" onclick="$(&#39;#selectLocaleForm&#39;).submit();return false;" title="Altere seu idioma">Brasil (Português)</a>
+    </form>    
+
+
+            </span>
+        
+            <div data-fragmentname="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="http://msdn.microsoft.com/newsletter.aspx" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Boletim Informativo</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/dn529288" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Privacidade e Cookies</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/cc300389.aspx" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Termos de Uso</span>
+        </a>
+      </li>
+      <li>
+        <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">
+          <span style="line-height:18px;" xmlns="">Marcas</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>    
+            <span class="logoLegal">
+                <span class="logo"></span>
+                <span class="copyright">© 2014 Microsoft</span>
+            </span>
+        </footer>
+    </div>
+    
+
+
+            <div class="footerPrintView">
+                <div class="footerCopyrightPrintView">© 2014 Microsoft. Todos os direitos reservados.</div>
+            </div>
+
+            
+            
+    
+    
+    <input id="tocPaddingPerLevel" type="hidden" value="17">
+
+
+        
+            <input id="MtpsDevice" type="hidden" value="Default">
+
+
+<!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]-->
+        
+            
+            
+            
+            
+            
+        
+
+
+
+
+
+<noscript>&lt;div&gt;&lt;img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No" /&gt;&lt;/div&gt;</noscript>
+
+
+
+
+
+
+
+
+
+<noscript>
+  &lt;a href="http://www.omniture.com" title="Web Analytics"&gt;
+    &lt;img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" /&gt;
+  &lt;/a&gt;
+</noscript>
+
+
+
+
+<div id="globalRequestVerification">
+    <input name="__RequestVerificationToken" type="hidden" value="UqCTYAz1X8-wI3LmHErJlVQZVwrMLH-KObkYh_BKIxw-Toh7TMX-W4dqU4VCG4qqyWqcciFUdBni0a3DModD9yX8hnQ1">
+</div>
+
+
+        </div>
+        
+        
+        
+    <script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index];elem=document.createElement("script");elem.className="mtps-injected";elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext;script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }");parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\"\r\n});\r\n/**/" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/pt-br/library/dn151487(d=default,l=pt-br,v=msdn.10).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n\n\n\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n\n\n\n  var detectedLocale = \u0027pt-br\u0027;\n  var wtsp = \u0027msdnlib_techart\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"11bb1ef2-dabe-4d4e-b2b1-bbe10158767d\";\n/**/" },
+	{ txt: "//\n\n            window.appInsightsId = \u002760854590-027a-4ae4-98be-2741a40f355f\u0027;\n            //" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Utilities,1:Layout,2:Header,2:Footer,3:Feedback,0:Topic,4:webtrendsscript,5:omni_rsid_MSDN,0:AppInsightsPerf,6:SearchBox;/Areas/Epx/Content/Scripts:0,/Areas/Centers/Themes/Base/Content:1,/Areas/Centers/Themes/StandardDevCenter/Content:2,/Areas/Epx/Shared/Content:3,/Areas/Global/Content/Webtrends/resources:4,/Areas/Global/Content/Omniture/resources/MSDN:5,/Areas/Epx/Themes/Base/Content:6\u0026amp;hashKey=EED176C19311527742EAE9817FAEB030" },
+	{ url: "http://i4.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox\u0026btnid=HeaderSearchButton\u0026brand=Msdn\u0026loc=pt-br\u0026focusOnInit=false\u0026emptyWatermark=true\u0026searchButtonTooltip=Pesquisar no MSDN" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:PrintExportButton,1:Toc,1:NavigationResize,2:FeedbackCounter,1:LibraryMemberFilter,3:Toc_Fixed,3:CodeSnippet,3:TopicNotInScope,3:CollapsibleArea,3:VersionSelector,3:SurveyBroker;/Areas/Library/Themes/Base/Content:0,/Areas/Library/Content:1,/Areas/Epx/Shared/Content:2,/Areas/Epx/Content/Scripts:3\u0026amp;hashKey=C673AF191AE0552DE5A84141FD71B3CB" },
+	{ txt: "$(document).ready(function() {\n        try {\n            var token = $(\"#globalRequestVerification input[name=\u0027__RequestVerificationToken\u0027]\").clone();\n            $(\"#siteFeedbackForm\").append(token);\n        } catch(err) {\n            \n        }\n    });" }
+]);
+
+/*]]>*/
+</script>
+<script src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/broker-config.js"></script><div id="_WEDCSInsertedData" style="display: none;"><iframe id="_msnFrame" src="./HTML5 - Guia do desenvolvedor para o HTML5 Canvas_files/c.gif" style="z-index:-1;height:1px;width:1px;display:none;visibility:hidden;" onload="javascript:MscomBeacon();"></iframe></div></body></html>
