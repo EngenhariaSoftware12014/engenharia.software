@@ -1,0 +1,158 @@
+body, #container, #left, #center, #right {
+	margin: 0;
+	padding: 0;
+}
+#left {
+	width: 350px;
+	height: 100%;
+	position: absolute;
+	background: #999966;
+	float: left;
+}
+#container {
+	width: calc(100% - 350px);
+	height: 100%;
+	float: right;
+	left: 350px;
+	background: #FF5050;
+	position: absolute;
+}
+#center {
+	width: calc(100% - 356px);
+	height: 100px;
+	background: #CCFFFF;
+}
+#right {
+	width: 350px;
+	height: 100%;
+	float: right;
+	background: #006600;
+}
+#note {
+	width: 300px;
+	height: 700px;
+	margin: 30px auto;
+	background: #CC3300;
+}
+#wrap {
+	margin: 30px auto;
+	width: 656px;
+}
+#board {
+	position: relative;
+	width: 556px;
+	margin-right: 50px;
+	margin-left: 50px;
+	border: 1px solid #000;			
+}
+#cards {
+	width: 656px;
+	height: 200px;
+	margin-top: 30px;
+	background: #CCCCFF;
+}
+.row {
+	display: table;
+}		
+.col {
+	display: inline;
+	float: left;
+	width: 20px;
+	height: 20px;
+	border: 1px solid transparent;
+	background: #fff;
+}
+.field {
+	border-color: #000;
+}
+.graveyard {
+	background: #999966;			
+}
+.floriculture {
+	background: #006600;
+}
+.hospital {
+	background: #CCFFFF;
+}
+.restaurant {
+	background: #CC3300;
+}
+.station {
+	background: #33CCCC;
+}
+.square {
+	background: #CCFF66;
+}
+.prefecture {
+	background: #990000;
+}
+.bank {
+	background: #CCCCFF;
+}
+.office {
+	background: #FF6600;
+}
+.mansion {
+	background: #CC0000;
+}
+.nightclub {
+	background: #FF5050;
+}		
+.caret {
+	position: relative;
+}
+.caret:after {
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+.active {
+	background-color: #FFFF00; 
+}
+.active:hover {
+	background-color: #FF9900;
+}
+.selected {
+	background-color: #FF6600; 
+}
+.caret-up:after {
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #000;
+	bottom: 7px;
+	left: 5px;
+}
+.prefecture.caret-up:after {
+	left: 16px;
+}
+.caret-down:after {
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #000;
+	bottom: 7px;
+	left: 5px;
+}
+.caret-left:after {
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent; 	
+	border-right: 5px solid #000;
+	bottom: 5px;
+	left: 7px;
+}
+.caret-right:after {
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent; 	
+	border-left: 5px solid #000;
+	bottom: 5px;
+	left: 7px;	
+}
+.character {
+	width: 22px;
+	height: 22px;			
+	position: absolute;
+	z-index: 100;
+}
+#chaves {			
+	
+}

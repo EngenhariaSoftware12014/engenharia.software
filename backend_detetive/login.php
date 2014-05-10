@@ -156,13 +156,15 @@ url = '..'+eval(cForm+'.action').substring(eval(cForm+'.action').indexOf("/php/"
 $(function(){
     $('#'+cForm).form('submit',
     {
-        url:url ,
+        url: 'backend_detetive/' + url ,
         onSubmit: function(){
             return $(this).form('validate');
         },
         success: function(result)
         {
+        	console.log(result);
             var result = eval('('+result+')');
+            
             if (result.errorMsg != undefined && result.errorMsg != "")
             {
                 $.messager.alert('Alerta:',result.errorMsg,'warning');

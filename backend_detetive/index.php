@@ -8,8 +8,6 @@
 // Mise  �our par Herve Leclerc herve.leclerc@alterway.fr
 // Ic󭤳 par Mark James <http://www.famfamfam.com/lab/icons/silk/>
 
-
-
 //chemin jusqu'au fichier de conf de WampServer
 $wampConfFile = '../wampmanager.conf';
 
@@ -36,7 +34,6 @@ preg_match('|mysqlVersion = (.*)\n|',$wampConfFileContents,$result);
 $mysqlVersion = str_replace('"','',$result[1]);
 preg_match('|wampserverVersion = (.*)\n|',$wampConfFileContents,$result);
 $wampserverVersion = str_replace('"','',$result[1]);
-
 
 
 // repertoires  gnorer dans les projets

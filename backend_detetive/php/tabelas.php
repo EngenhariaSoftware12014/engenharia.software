@@ -3,20 +3,20 @@
 include('command.php');
 
 function gerartabelas($Id){
-$tabelas = array();
-	$query = "CREATE TABLE IF NOT EXISTS ".$Id."_"."partida (
-	  `idpartida` int(10) unsigned NOT NULL AUTO_INCREMENT,
-	  `cenarios_idcenarios` int(10) unsigned NOT NULL,
-	  `qtdminjogadores` int(10) unsigned DEFAULT NULL,
-	  `qtdmaxjogadores` int(10) unsigned DEFAULT NULL,
-	  `status_2` char(1) DEFAULT NULL,
-	  `delete_2` char(1) DEFAULT NULL,
-	  `vencedor` int(10) unsigned DEFAULT NULL,
-	  PRIMARY KEY (`idpartida`),
-	  KEY `partida_fkindex1` (`cenarios_idcenarios`)
-	) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;  ";
+	// $tabelas = array();
+	// 	$query = "CREATE TABLE IF NOT EXISTS ".$Id."_"."partida (
+	// 	  `idpartida` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	// 	  `cenarios_idcenarios` int(10) unsigned NOT NULL,
+	// 	  `qtdminjogadores` int(10) unsigned DEFAULT NULL,
+	// 	  `qtdmaxjogadores` int(10) unsigned DEFAULT NULL,
+	// 	  `status_2` char(1) DEFAULT NULL,
+	// 	  `delete_2` char(1) DEFAULT NULL,
+	// 	  `vencedor` int(10) unsigned DEFAULT NULL,
+	// 	  PRIMARY KEY (`idpartida`),
+	// 	  KEY `partida_fkindex1` (`cenarios_idcenarios`)
+	// 	) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;  ";
 
-	array_push($tabelas,array(cmd_input($query)));
+	// 	array_push($tabelas,array(cmd_input($query)));
 
 
 	$query = " 

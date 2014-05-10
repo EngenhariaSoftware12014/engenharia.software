@@ -31,10 +31,10 @@ if($rows > 0 ){
 	$_SESSION['dados']     = json_encode($rs);
     if($rs['perfil']==1){
     
-        $url ='window.location="..*menu.php"' ;
+        $url ='window.location="..backend_detetive*menu.php"' ;
     }else
     {
-        $url ='window.location="..*painel.php"' ;
+        $url ='window.location="..backend_detetive*painel.php"' ;
     }    
     echo json_encode(array(
         'success'   =>true         ,
