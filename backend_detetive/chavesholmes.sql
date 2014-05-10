@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 22-Abr-2014 às 02:44
+-- Data de Criação: 10-Maio-2014 às 17:21
 -- Versão do servidor: 5.6.12-log
 -- versão do PHP: 5.4.12
 
@@ -64,23 +64,6 @@ CREATE TABLE IF NOT EXISTS `cenarios` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comentarios`
---
-/*
-CREATE TABLE IF NOT EXISTS `comentarios` (
-  `idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  `partida_idpartida` int(10) unsigned NOT NULL,
-  `comentario` multilinestring DEFAULT NULL,
-  `delete_2` char(1) DEFAULT NULL,
-  PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
-  KEY `comentarios_fkindex1` (`usuario_idusuario`),
-  KEY `comentarios_fkindex2` (`partida_idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-*/
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `comodos`
 --
 
@@ -102,52 +85,16 @@ INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `delete_2`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadas`
+-- Estrutura da tabela `partidas`
 --
-/*
-CREATE TABLE IF NOT EXISTS `jogadas` (
-  `idjogadas` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  `partida_idpartida` int(10) unsigned NOT NULL,
-  `descricaojogada` multilinestring DEFAULT NULL,
-  `acusacao` char(1) DEFAULT NULL,
-  PRIMARY KEY (`idjogadas`,`usuario_idusuario`,`partida_idpartida`),
-  KEY `jogadas_fkindex1` (`usuario_idusuario`),
-  KEY `jogadas_fkindex2` (`partida_idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-*/
--- --------------------------------------------------------
 
---
--- Estrutura da tabela `partida`
---
-/*
-CREATE TABLE IF NOT EXISTS `partida` (
+CREATE TABLE IF NOT EXISTS `partidas` (
   `idpartida` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cenarios_idcenarios` int(10) unsigned NOT NULL,
-  `qtdminjogadores` int(10) unsigned DEFAULT NULL,
-  `qtdmaxjogadores` int(10) unsigned DEFAULT NULL,
-  `status_2` char(1) DEFAULT NULL,
-  `delete_2` char(1) DEFAULT NULL,
-  `vencedor` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`idpartida`),
-  KEY `partida_fkindex1` (`cenarios_idcenarios`)
+  `status` char(1) DEFAULT NULL COMMENT 'status: 0 - partida aberta; 1 - partida em execução; 2 - partida encerrada;',
+  `vencedor` int(10) DEFAULT NULL,
+  PRIMARY KEY (`idpartida`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-*/
--- --------------------------------------------------------
 
---
--- Estrutura da tabela `partidaxusuario`
---
-/*
-CREATE TABLE IF NOT EXISTS `partidaxusuario` (
-  `idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  `partida_idpartida` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`,`partida_idpartida`),
-  KEY `patidaxusuario_fkindex1` (`partida_idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-*/
 -- --------------------------------------------------------
 
 --
