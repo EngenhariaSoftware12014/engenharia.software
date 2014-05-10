@@ -17,6 +17,7 @@
 			$query = "CREATE TABLE IF NOT EXISTS ".$idPartida."_partidaxusuario (
 			`idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
 			`usuario_idusuario` int(10) unsigned NOT NULL,
+			`suspeito_idsuspeito` int(10),
 			PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`)
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
 
@@ -57,8 +58,6 @@
 	$rs = mysql_query("SELECT * FROM ".$idPartida."_partidaxusuario;");
 	$qtdeUsuario =  mysql_num_rows($rs);
 
-	echo $qtdeUsuario. "  ";
-
 	if($qtdeUsuario < 6){
 		$sql = "INSERT INTO  ".$idPartida."_partidaxusuario (usuario_idusuario) VALUES ('$idUsuario' )";
 		mysql_query($sql);
@@ -69,7 +68,6 @@
 		mysql_query($sql);
 	}	
 
+	echo json_encode(array('idPartida' => $idPartida));
 
-
-	echo "Id Partida: ". $idPartida;
 ?>
