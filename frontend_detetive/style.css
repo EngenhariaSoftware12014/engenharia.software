@@ -1,121 +1,190 @@
-body, #container, #left, #center, #right {
+body {
 	margin: 0;
 	padding: 0;
+	font-family: 'Coming Soon', cursive;
 }
-#left {
-	width: 350px;
-	height: 100%;
-	position: absolute;
-	background: #999966;
-	float: left;
+
+.title {
+	text-align: center;
 }
-#container {
-	width: calc(100% - 350px);
-	height: 100%;
-	float: right;
-	left: 350px;
-	background: #FF5050;
-	position: absolute;
-}
-#center {
-	width: calc(100% - 356px);
-	height: 100px;
-	background: #CCFFFF;
-}
-#right {
-	width: 350px;
-	height: 100%;
-	float: right;
-	background: #006600;
-}
-#note {
-	width: 300px;
-	height: 700px;
-	margin: 30px auto;
-	background: #CC3300;
-}
-#wrap {
-	margin: 30px auto;
-	width: 656px;
-}
-#board {
-	position: relative;
-	width: 556px;
-	margin-right: 50px;
-	margin-left: 50px;
-	border: 1px solid #000;			
-}
-#cards {
-	width: 656px;
-	height: 200px;
-	margin-top: 30px;
-	background: #CCCCFF;
-}
+
 .row {
-	display: table;
-}		
+	display: table;		
+}
+
 .col {
 	display: inline;
 	float: left;
+}
+
+#container {
+	height: 100vh;
+}
+
+#right {
+	background: #FF003C;
+	width: 300px;
+	height: 100%;	
+}
+
+#center {
+	background: #FF8A00;
+	width: calc(100% - 600px);
+	height: 100%;
+	position: relative;
+}
+
+#left {
+	background: #FABE28;
+	width: 300px;
+	height: 100%;
+}
+
+/* Right */
+
+.suspect {
+	width: 100%;
+	padding: 15px 30px 15px 30px;
+}
+
+.suspect-img img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+}
+
+.suspect-description {
+	display: table;
+	padding-left: 25px;
+	height: 100px;
+}
+
+.suspect-description p {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 25px;
+}
+
+.suspect-description p small{
+	font-size: 20px;
+}
+
+/* Center */
+
+#bottom {
+	/*background: #88C100;*/
+	width: 100%;
+	height: 200px;
+	position: absolute;
+	bottom: 0;
+}
+
+#cards {
+	margin: 0 auto;
+}
+
+.card {
+	background: #fff;
+	border: 1px solid #E6E6E6;
+	padding: 5px;
+	width: 110px;
+	height: 177px;	
+	margin: 0px 5px 0px 5px;
+}
+
+.card img {
+	display: block;
+	width: 110px;
+	height: 130px;
+}
+
+.card-description {
+	width: 100%;
+	height: 59px;
+	text-align: center;
+	display: table;
+}
+
+.card-description span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#board {
+	margin: 25px auto;
+	border: 1px solid #000;	
+	width: 550px;		
+	position: relative;
+}
+
+#board .col {
 	width: 20px;
 	height: 20px;
-	border: 1px solid transparent;
+	/*border: 1px solid transparent;*/
+	border: 1px solid #000;
 	background: #fff;
 }
-.field {
+
+#board .field {
 	border-color: #000;
 }
-.graveyard {
+
+#board .graveyard {
 	background: #999966;			
 }
-.floriculture {
+
+#board .floriculture {
 	background: #006600;
 }
-.hospital {
+
+#board .hospital {
 	background: #CCFFFF;
 }
-.restaurant {
+
+#board .restaurant {
 	background: #CC3300;
 }
-.station {
+
+#board .station {
 	background: #33CCCC;
 }
-.square {
+
+#board .square {
 	background: #CCFF66;
 }
-.prefecture {
+
+#board .prefecture {
 	background: #990000;
 }
-.bank {
+
+#board .bank {
 	background: #CCCCFF;
 }
-.office {
+
+#board .office {
 	background: #FF6600;
 }
-.mansion {
+
+#board .mansion {
 	background: #CC0000;
 }
-.nightclub {
+
+#board .nightclub {
 	background: #FF5050;
 }		
+
 .caret {
 	position: relative;
 }
+
 .caret:after {
 	content: '';
 	width: 0;
 	height: 0;
 	position: absolute;
 }
-.active {
-	background-color: #FFFF00; 
-}
-.active:hover {
-	background-color: #FF9900;
-}
-.selected {
-	background-color: #FF6600; 
-}
+
 .caret-up:after {
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
@@ -123,9 +192,11 @@ body, #container, #left, #center, #right {
 	bottom: 7px;
 	left: 5px;
 }
+
 .prefecture.caret-up:after {
 	left: 16px;
 }
+
 .caret-down:after {
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
@@ -133,6 +204,7 @@ body, #container, #left, #center, #right {
 	bottom: 7px;
 	left: 5px;
 }
+
 .caret-left:after {
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent; 	
@@ -140,6 +212,7 @@ body, #container, #left, #center, #right {
 	bottom: 5px;
 	left: 7px;
 }
+
 .caret-right:after {
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent; 	
@@ -147,12 +220,30 @@ body, #container, #left, #center, #right {
 	bottom: 5px;
 	left: 7px;	
 }
+
 .character {
-	width: 22px;
-	height: 22px;			
+	width: 44px;
+	height: 44px;			
 	position: absolute;
 	z-index: 100;
 }
+
 #chaves {			
-	
+	top: 0;
+	left: 50px;
+}
+
+/* Left */
+
+#notes {
+	padding: 0 30px 0 30px;
+	overflow: scroll;
+	width: 100%;
+	height: 80%;
+}
+
+.notes-list {
+	list-style: none;
+	padding: 0;
+	font-size: 20px;
 }
