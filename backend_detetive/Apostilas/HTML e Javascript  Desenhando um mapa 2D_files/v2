@@ -1,1 +1,0 @@
-(function () {var a=["http://bcp.crwdcntrl.net/5/c=508/pv=y"];for(var i=a.length-1; i >= 0; i--) new Image(1, 1).src=a[i];})();
