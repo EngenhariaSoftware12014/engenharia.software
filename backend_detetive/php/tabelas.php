@@ -3,7 +3,7 @@
 include('command.php');
 
 function gerartabelas($Id){
-	// $tabelas = array();
+		$tabelas = array();
 	// 	$query = "CREATE TABLE IF NOT EXISTS ".$Id."_"."partida (
 	// 	  `idpartida` int(10) unsigned NOT NULL AUTO_INCREMENT,
 	// 	  `cenarios_idcenarios` int(10) unsigned NOT NULL,
@@ -41,6 +41,7 @@ function gerartabelas($Id){
 	  `partida_idpartida` int(10) unsigned NOT NULL,
 	  `usuarioalvo_idusuario` int(10) DEFAULT NULL,
 	  `descricaojogada` varchar(255) DEFAULT NULL,
+	  `descricaojogadaaux` varchar(255) DEFAULT NULL,
 	  `acusacao` char(1) DEFAULT NULL,
 	  PRIMARY KEY (`idjogadas`,`usuario_idusuario`,`partida_idpartida`),
 	  KEY `jogadas_fkindex1` (`usuario_idusuario`),
