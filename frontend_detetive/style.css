@@ -1,0 +1,249 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Coming Soon', cursive;
+}
+
+.title {
+	text-align: center;
+}
+
+.row {
+	display: table;		
+}
+
+.col {
+	display: inline;
+	float: left;
+}
+
+#container {
+	height: 100vh;
+}
+
+#right {
+	background: #FF003C;
+	width: 300px;
+	height: 100%;	
+}
+
+#center {
+	background: #FF8A00;
+	width: calc(100% - 600px);
+	height: 100%;
+	position: relative;
+}
+
+#left {
+	background: #FABE28;
+	width: 300px;
+	height: 100%;
+}
+
+/* Right */
+
+.suspect {
+	width: 100%;
+	padding: 15px 30px 15px 30px;
+}
+
+.suspect-img img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+}
+
+.suspect-description {
+	display: table;
+	padding-left: 25px;
+	height: 100px;
+}
+
+.suspect-description p {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 25px;
+}
+
+.suspect-description p small{
+	font-size: 20px;
+}
+
+/* Center */
+
+#bottom {
+	/*background: #88C100;*/
+	width: 100%;
+	height: 200px;
+	position: absolute;
+	bottom: 0;
+}
+
+#cards {
+	margin: 0 auto;
+}
+
+.card {
+	background: #fff;
+	border: 1px solid #E6E6E6;
+	padding: 5px;
+	width: 110px;
+	height: 177px;	
+	margin: 0px 5px 0px 5px;
+}
+
+.card img {
+	display: block;
+	width: 110px;
+	height: 130px;
+}
+
+.card-description {
+	width: 100%;
+	height: 59px;
+	text-align: center;
+	display: table;
+}
+
+.card-description span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#board {
+	margin: 25px auto;
+	border: 1px solid #000;	
+	width: 550px;		
+	position: relative;
+}
+
+#board .col {
+	width: 20px;
+	height: 20px;
+	/*border: 1px solid transparent;*/
+	border: 1px solid #000;
+	background: #fff;
+}
+
+#board .field {
+	border-color: #000;
+}
+
+#board .graveyard {
+	background: #999966;			
+}
+
+#board .floriculture {
+	background: #006600;
+}
+
+#board .hospital {
+	background: #CCFFFF;
+}
+
+#board .restaurant {
+	background: #CC3300;
+}
+
+#board .station {
+	background: #33CCCC;
+}
+
+#board .square {
+	background: #CCFF66;
+}
+
+#board .prefecture {
+	background: #990000;
+}
+
+#board .bank {
+	background: #CCCCFF;
+}
+
+#board .office {
+	background: #FF6600;
+}
+
+#board .mansion {
+	background: #CC0000;
+}
+
+#board .nightclub {
+	background: #FF5050;
+}		
+
+.caret {
+	position: relative;
+}
+
+.caret:after {
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+
+.caret-up:after {
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #000;
+	bottom: 7px;
+	left: 5px;
+}
+
+.prefecture.caret-up:after {
+	left: 16px;
+}
+
+.caret-down:after {
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #000;
+	bottom: 7px;
+	left: 5px;
+}
+
+.caret-left:after {
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent; 	
+	border-right: 5px solid #000;
+	bottom: 5px;
+	left: 7px;
+}
+
+.caret-right:after {
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent; 	
+	border-left: 5px solid #000;
+	bottom: 5px;
+	left: 7px;	
+}
+
+.character {
+	width: 44px;
+	height: 44px;			
+	position: absolute;
+	z-index: 100;
+}
+
+#chaves {			
+	top: 0;
+	left: 50px;
+}
+
+/* Left */
+
+#notes {
+	padding: 0 30px 0 30px;
+	overflow: scroll;
+	width: 100%;
+	height: 80%;
+}
+
+.notes-list {
+	list-style: none;
+	padding: 0;
+	font-size: 20px;
+}
