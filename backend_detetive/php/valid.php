@@ -1,20 +1,21 @@
-<?php include 'conn.php'; ?>
-<html>
-<head>
-<title>Autenticando Usuario</title>
-<link rel='stylesheet' type='text/css' href='css/Login.css'	 />
-<script typ="text/javascript">
-function loginSuccess(){
-	setTimeout("window.location='../menu.php'",500);
-}
-function loginFail(){
-	setTimeout("window.location='../login.php'",1000);
-}
-</script>
-</head>
-<body>
+<?php include 'conn.php'; 
+// 
+// <html>
+// <head>
+// <title>Autenticando Usuario</title>
+// <link rel='stylesheet' type='text/css' href='css/Login.css'	 />
+// <script typ="text/javascript">
+// function loginSuccess(){
+// 	setTimeout("window.location='../menu.php'",500);
+// }
+// function loginFail(){
+// 	setTimeout("window.location='../login.php'",1000);
+// }
+// </script>
+// </head>
+// <body>
+// <?php
 
-<?php
 $usuario	= $_POST['log'];
 $senha 		= $_POST['pwd'];
 $url        = "";
@@ -31,10 +32,10 @@ if($rows > 0 ){
 	$_SESSION['dados']     = json_encode($rs);
     if($rs['perfil']==1){
     
-        $url ='window.location="..backend_detetive*menu.php"' ;
+        $url ='window.location="menu.php"' ;
     }else
     {
-        $url ='window.location="..backend_detetive*painel.php"' ;
+        $url ='window.location="painel.php"' ;
     }    
     echo json_encode(array(
         'success'   =>true         ,
@@ -64,8 +65,6 @@ if($rows > 0 ){
         'perfil'	=>$rs['perfil']     ));
 	
 } 
- 
-?>
 
-</body>
-</html>
+// </body>
+// </html>

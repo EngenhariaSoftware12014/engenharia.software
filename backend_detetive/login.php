@@ -136,6 +136,7 @@
 
 	  	function submitForm(cForm) {
 			url = '..'+eval(cForm+'.action').substring(eval(cForm+'.action').indexOf("/php/"),eval(cForm+'.action').length);
+			console.log(url);
 			
 			$(function(){
     
