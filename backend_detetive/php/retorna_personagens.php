@@ -2,8 +2,8 @@
 
 	include 'conn.php';
 
-	$idUsuario = intval($_REQUEST['idUsuario']);
-	$idPartida = intval($_REQUEST['idPartida']);
+	$idUsuario = 1;
+	$idPartida = 1;
 
 	$rs = mysql_query("SELECT suspeito_idsuspeito  FROM ".$idPartida."_partidaxusuario WHERE suspeito_idsuspeito IS NOT NULL ;") or die (mysql_error());
 
