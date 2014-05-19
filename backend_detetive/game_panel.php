@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	$idUsuario = $_SESSION['id_usuario'];
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +16,7 @@
 
 		<img id="logo" src="images/logo_chaves.png">
 
-		<a href="game_board.php" class="btn" id="btn_play">Jogar</a>
+		<a href="#" class="btn" id="btn_play">Jogar</a>
 		<a href="php/logout.php" class="btn" id="btn_logout">Sair</a>	
 	</div>
 	
@@ -39,6 +43,24 @@
 	</div>
 
 	<script src="jquery/jquery.min.js"></script>
-	<script src="JS/game_main.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('#btn_play').click(function(e) {
+			e.preventDefault();
+
+			$('.modal').show();
+			$('#loading-message').show();
+			
+			$.getJSON('php/enter_matche.php', {'idUsuario': <?= $idUsuario ?>})
+				.done(function(data) {
+					console.log(data);
+					$('#loading-message').hide();
+					$('#suspect-menu').show();
+				});
+			return false;
+		})
+	});
+	</script>
 </body>
 </html>

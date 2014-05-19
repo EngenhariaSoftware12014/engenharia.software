@@ -56,7 +56,7 @@ if($rows > 0 ){
      echo json_encode(array(
         'success'   =>false         ,
         'error'     =>true          ,
-        'errorMsg'  =>"<center>Verifique se o seus dados estão corretos! </center>" ,
+        'errorMsg'  =>"Verifique se o seus dados estão corretos!" ,
         'nome'		=>$rs['nome']    	,   	
         'sobrenome'	=>$rs['sobrenome'] 	, 
         'email'		=>$rs['email'] 		, 
@@ -65,6 +65,5 @@ if($rows > 0 ){
         'perfil'	=>$rs['perfil']     ));
 	
 } 
-
 // </body>
 // </html>
