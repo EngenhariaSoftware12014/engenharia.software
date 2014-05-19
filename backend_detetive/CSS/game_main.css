@@ -51,6 +51,56 @@ body {
 	color: #fff;
 }
 
+.modal {
+	background: #fff;
+	border: 1px solid #BFBFBF;
+	width: 600px;
+	height: 600px;
+	position: absolute;
+	display: none;
+	top: 50px;
+	left: 0px;
+	right: 0px;
+	margin: 0 auto;
+	border-radius: 5px;
+	padding: 20px;
+}
+
+.modal h3 {
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+#loading-message {
+	text-align: center;
+	margin-top: 200px;
+	display: none;
+}
+
+#suspect-menu {
+	margin-top: 70px;
+	display: none;	
+}
+
+#suspect-menu .suspect {
+	width: 127px;
+	height: 190px;
+	margin: 0px 11px 0 11px;
+	padding: 0;
+	position: relative;
+}
+
+#suspect-menu .indisponible.suspect:after {
+	content: 'NÃO DISPONÍVEL';
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 95px;
+	background: #ED300F;
+	padding: 2px 0 2px 0;
+	border: 1px solid #AD230B;
+}
+
 .title {
 	text-align: center;
 }
