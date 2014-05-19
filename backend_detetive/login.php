@@ -136,7 +136,7 @@
 
 	  	function submitForm(cForm) {
 			url = '..'+eval(cForm+'.action').substring(eval(cForm+'.action').indexOf("/php/"),eval(cForm+'.action').length);
-			console.log(url);
+			//console.log(url);
 			
 			$(function(){
     
@@ -147,7 +147,7 @@
 			        		return $(this).form('validate');
 	        			},
 	        		success: function(result) {
-	        			console.log(result);
+	        			//console.log(result);
 	            		var result = eval('('+result+')');           
 			            if (result.errorMsg != undefined && result.errorMsg != "") {
 			                $.messager.alert('Alerta:',result.errorMsg,'warning');          

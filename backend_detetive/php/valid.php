@@ -35,7 +35,7 @@ if($rows > 0 ){
         $url ='window.location="menu.php"' ;
     }else
     {
-        $url ='window.location="painel.php"' ;
+        $url ='window.location="game_panel.php"' ;
     }    
     echo json_encode(array(
         'success'   =>true         ,
