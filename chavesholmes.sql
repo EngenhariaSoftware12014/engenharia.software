@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: May 19, 2014 at 02:18 PM
--- Server version: 5.5.34
--- PHP Version: 5.5.10
+-- Máquina: localhost
+-- Data de Criação: 10-Maio-2014 às 17:21
+-- Versão do servidor: 5.6.12-log
+-- versão do PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,71 +17,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `chavesholmes`
+-- Base de Dados: `chavesholmes`
 --
+CREATE DATABASE IF NOT EXISTS `chavesholmes` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `chavesholmes`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `1_comentarios`
+-- Estrutura da tabela `armas`
 --
 
-CREATE TABLE `1_comentarios` (
-  `idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  `partida_idpartida` int(10) unsigned NOT NULL,
-  `comentario` multilinestring DEFAULT NULL,
-  `delete_2` char(1) DEFAULT NULL,
-  PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
-  KEY `comentarios_fkindex1` (`usuario_idusuario`),
-  KEY `comentarios_fkindex2` (`partida_idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `1_jogadas`
---
-
-CREATE TABLE `1_jogadas` (
-  `idjogadas` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  `partida_idpartida` int(10) unsigned NOT NULL,
-  `usuarioalvo_idusuario` int(10) DEFAULT NULL,
-  `descricaojogada` varchar(255) DEFAULT NULL,
-  `acusacao` char(1) DEFAULT NULL,
-  PRIMARY KEY (`idjogadas`,`usuario_idusuario`,`partida_idpartida`),
-  KEY `jogadas_fkindex1` (`usuario_idusuario`),
-  KEY `jogadas_fkindex2` (`partida_idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `1_partidaxusuario`
---
-
-CREATE TABLE `1_partidaxusuario` (
-  `idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  `suspeito_idsuspeito` int(10) DEFAULT NULL,
-  PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `1_partidaxusuario`
---
-
-INSERT INTO `1_partidaxusuario` (`idpartidaxusuario`, `usuario_idusuario`, `suspeito_idsuspeito`) VALUES
-(1, 1, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `armas`
---
-
-CREATE TABLE `armas` (
+CREATE TABLE IF NOT EXISTS `armas` (
   `idarmas` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
   `imagem` varchar(100) DEFAULT NULL,
@@ -90,7 +37,7 @@ CREATE TABLE `armas` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `armas`
+-- Extraindo dados da tabela `armas`
 --
 
 INSERT INTO `armas` (`idarmas`, `nome`, `imagem`, `delete_2`) VALUES
@@ -103,13 +50,14 @@ INSERT INTO `armas` (`idarmas`, `nome`, `imagem`, `delete_2`) VALUES
 (9, 'Sanduiche de Presunto', 'sanduiche.png', NULL),
 (10, 'Satanás', 'satanas.png', NULL);
 
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cenarios`
+-- Estrutura da tabela `cenarios`
 --
 
-CREATE TABLE `cenarios` (
+CREATE TABLE IF NOT EXISTS `cenarios` (
   `idcenarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `armas_idarmas` int(10) unsigned NOT NULL,
   `comodos_idcomodos` int(10) unsigned NOT NULL,
@@ -123,10 +71,10 @@ CREATE TABLE `cenarios` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comodos`
+-- Estrutura da tabela `comodos`
 --
 
-CREATE TABLE `comodos` (
+CREATE TABLE IF NOT EXISTS `comodos` (
   `idcomodos` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
   `imagem` varchar(100) DEFAULT NULL,
@@ -135,7 +83,7 @@ CREATE TABLE `comodos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `comodos`
+-- Extraindo dados da tabela `comodos`
 --
 
 INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `delete_2`) VALUES
@@ -155,35 +103,23 @@ INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `delete_2`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partidas`
+-- Estrutura da tabela `partidas`
 --
 
-CREATE TABLE `partidas` (
+CREATE TABLE IF NOT EXISTS `partidas` (
   `idpartida` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cenarios_idcenarios` int(10) unsigned NOT NULL,
-  `qtdminjogadores` int(10) unsigned DEFAULT NULL,
-  `qtdmaxjogadores` int(10) unsigned DEFAULT NULL,
-  `status` char(1) DEFAULT NULL,
-  `delete_2` char(1) DEFAULT NULL,
-  `vencedor` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`idpartida`),
-  KEY `partida_fkindex1` (`cenarios_idcenarios`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `partidas`
---
-
-INSERT INTO `partidas` (`idpartida`, `cenarios_idcenarios`, `qtdminjogadores`, `qtdmaxjogadores`, `status`, `delete_2`, `vencedor`) VALUES
-(1, 0, NULL, NULL, '0', NULL, NULL);
+  `status` char(1) DEFAULT NULL COMMENT 'status: 0 - partida aberta; 1 - partida em execução; 2 - partida encerrada;',
+  `vencedor` int(10) DEFAULT NULL,
+  PRIMARY KEY (`idpartida`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patente`
+-- Estrutura da tabela `patente`
 --
 
-CREATE TABLE `patente` (
+CREATE TABLE IF NOT EXISTS `patente` (
   `idpatente` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `scorepatentemin` decimal(11,2) DEFAULT NULL,
   `scorepatentemax` decimal(11,2) NOT NULL,
@@ -194,10 +130,10 @@ CREATE TABLE `patente` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patentexusuario`
+-- Estrutura da tabela `patentexusuario`
 --
 
-CREATE TABLE `patentexusuario` (
+CREATE TABLE IF NOT EXISTS `patentexusuario` (
   `idpatentexusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `patente_idpatente` int(10) unsigned NOT NULL,
   `usuario_idusuario` int(10) unsigned NOT NULL,
@@ -209,10 +145,10 @@ CREATE TABLE `patentexusuario` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `suspeitos`
+-- Estrutura da tabela `suspeitos`
 --
 
-CREATE TABLE `suspeitos` (
+CREATE TABLE IF NOT EXISTS `suspeitos` (
   `idsuspeitos` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
   `imagem` varchar(100) DEFAULT NULL,
@@ -221,8 +157,9 @@ CREATE TABLE `suspeitos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `suspeitos`
+-- Extraindo dados da tabela `suspeitos`
 --
+
 
 INSERT INTO `suspeitos` (`idsuspeitos`, `nome`, `imagem`, `delete_2`) VALUES
 (2, 'Bruxa do 71', 'bruxa.png', NULL),
@@ -237,10 +174,10 @@ INSERT INTO `suspeitos` (`idsuspeitos`, `nome`, `imagem`, `delete_2`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estrutura da tabela `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `idusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(20) DEFAULT NULL,
   `sobrenome` varchar(45) DEFAULT NULL,
@@ -252,15 +189,18 @@ CREATE TABLE `usuario` (
   `patente` varchar(100) NOT NULL,
   `pontuacao` int(11) NOT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`idusuario`, `nome`, `sobrenome`, `email`, `senha`, `status_2`, `perfil`, `imagem`, `patente`, `pontuacao`) VALUES
 (1, 'Chapolin', 'Colorado', 'chapolin@sigameosbons.com', '123', '1', '0', '', '', 0),
-(8, 'Eduardo', 'Vicente', 'teste@yahoo.com', 'teste', '1', '2', '', '', 0);
+(8, 'Hanna', 'Mariano', 'hanna@yahoo.com', 'teste', '1', '2', '', '', 0),
+(9, 'Erica', 'Mitsuishi', 'erica@yahoo.com', 'teste', '1', '2', '', '', 0),
+(10, 'Eduardo', 'Vicente', 'eduardo@yahoo.com', 'teste', '1', '2', '', '', 0),
+(11, 'Pedro', 'Silva', 'pedro@yahoo.com', 'teste','1','2','','',0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
