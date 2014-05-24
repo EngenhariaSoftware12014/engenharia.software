@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Detetive</title>
-	<link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet" href="CSS/game_main.css">
 </head>
 <body>
