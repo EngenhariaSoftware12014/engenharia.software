@@ -54,19 +54,24 @@
 			console.log('teste');
 			$.getJSON('php/choose_suspects.php', {'idUsuario': <?= $idUsuario ?>, 'idPartida': idPartida, 'idSuspeito': idSuspeito})
 				.done(function(data) {
-					console.log(data);
+					// console.log(data);
 					if (data.error === 'true') {
 						alert('O personagem já está sendo utilizado, por favor escolha outro!');
 						buildSuspectsMenuSearch();
 					} else {
-						$('#loading-message h3').html('Aguardando novos jogadores');
-						$('#loading-message').show();
-						$('#suspect-menu').hide();
+						if (data.begin === 'true') {
+							location.href = 'game_board.php'
+						} else {
+							$('#loading-message h3').html('Aguardando novos jogadores');
+							$('#loading-message').show();
+							$('#suspect-menu').hide();
+							checkStatus(idPartida);
+						}
 					}
 						
 				});
 			return false;
-		}
+		} 
 
 		function buildSuspectsMenuSearch(data) {
 			var row = $('<div class="row"></div>'), menu = $('#s-menu');
@@ -84,6 +89,19 @@
 						row = $('<div class="row"></div>');
 				}	
 			}
+		}
+
+		function checkStatus(idPartida) {
+			console.log('Passou o primeiro teste');
+			var check = window.setInterval(function() {
+				$.getJSON('php/check_status.php', {'idPartida': idPartida}).done(function(data) {
+					console.log(data);
+					if (data.begin === 'true') {
+						//window.clearInterval(check);
+						location.href = 'game_board.php'
+					}
+				});
+			}, 3000);
 		}
 	</script>
 </body>
