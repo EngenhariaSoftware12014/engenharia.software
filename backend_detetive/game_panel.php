@@ -3,7 +3,7 @@
 	$idUsuario = $_SESSION['id_usuario'];
 ?>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>Detetive</title>
@@ -27,40 +27,64 @@
 		</div>
 		<div id="suspect-menu">
 			<h3>Escolha o seu personagem...</h3>
-			<div class="row">
-				<div class="col"><a class="suspect indisponible"><img src="images/cards/bruxa.png" alt="" id-suspect="t"></a></div>
-				<div class="col"><a class="suspect"><img src="images/cards/chaves.png" alt="" id-suspect="t"></a></div>
-				<div class="col"><a class="suspect"><img src="images/cards/chiquinha.png" alt="" id-suspect="t"></a></div>
-				<div class="col"><a class="suspect"><img src="images/cards/florinda.png" alt="" id-suspect="t"></a></div>
-			</div>
-			<div class="row">
-				<div class="col"><a class="suspect"><img src="images/cards/girafales.png" alt="" id-suspect="t"></a></div>
-				<div class="col"><a class="suspect"><img src="images/cards/madruga.png" alt="" id-suspect="t"></a></div>
-				<div class="col"><a class="suspect"><img src="images/cards/nhonho.png" alt="" id-suspect="t"></a></div>
-				<div class="col"><a class="suspect"><img src="images/cards/quico.png" alt="" id-suspect="t"></a></div>
-			</div>
+			<div id="s-menu"></div>
 		</div>
 	</div>
 
 	<script src="jquery/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-
 		$('#btn_play').click(function(e) {
 			e.preventDefault();
-
 			$('.modal').show();
 			$('#loading-message').show();
 			
 			$.getJSON('php/enter_matche.php', {'idUsuario': <?= $idUsuario ?>})
 				.done(function(data) {
-					console.log(data);
+					console.log(data); 
+					buildSuspectsMenuSearch(data);
 					$('#loading-message').hide();
 					$('#suspect-menu').show();
 				});
 			return false;
-		})
+		});
 	});
+
+	function selectSuspect(idSuspeito, idPartida) {
+			console.log('teste');
+			$.getJSON('php/choose_suspects.php', {'idUsuario': <?= $idUsuario ?>, 'idPartida': idPartida, 'idSuspeito': idSuspeito})
+				.done(function(data) {
+					console.log(data);
+					if (data.error === 'true') {
+						alert('O personagem já está sendo utilizado, por favor escolha outro!');
+						buildSuspectsMenuSearch();
+					} else {
+						$('#loading-message h3').html('Aguardando novos jogadores');
+						$('#loading-message').show();
+						$('#suspect-menu').hide();
+					}
+						
+				});
+			return false;
+		}
+
+		function buildSuspectsMenuSearch(data) {
+			var row = $('<div class="row"></div>'), menu = $('#s-menu');
+			for (var i = 0, len = data.suspects.length; i < len; i++) {
+					
+				var suspect = data.suspects[i];
+				if (suspect.unavailable === 'true')
+					row.append('<div class="col"><a href="#" class="suspect indisponible"><img src="images/cards/' + suspect.imagem + '" alt=""></a></div>');
+				else
+					row.append('<div class="col"><a href="#" class="suspect" onclick="selectSuspect(' + suspect.idsuspeitos + ', ' + data.idPartida + ');"><img src="images/cards/' + suspect.imagem + '" alt=""></a></div>');
+
+				if (i === 3 || i === 7) {
+					menu.append(row);
+					if (i === 3)
+						row = $('<div class="row"></div>');
+				}	
+			}
+		}
 	</script>
 </body>
 </html>
