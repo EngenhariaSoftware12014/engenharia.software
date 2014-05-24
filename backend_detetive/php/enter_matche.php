@@ -44,12 +44,48 @@
 			KEY `comentarios_fkindex1` (`usuario_idusuario`),
 			KEY `comentarios_fkindex2` (`partida_idpartida`)
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
-			mysql_query($query, $conn);
+			mysql_query($query, $conn);	
+		
+			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_cartas (
+			`id_carta` int(10) unsigned NOT NULL AUTO_INCREMENT,
+			`id_original` int(10) unsigned NOT NULL,
+			`nome_carta` varchar(45)  NOT NULL,
+			`caminho_carta` varchar(100)  NOT NULL,
+			`tipo_carta` varchar(10) NOT NULL,
+			PRIMARY KEY (`id_carta`)
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+			mysql_query($query, $conn);		 
+		
+			$rs = mysql_query("SELECT idarmas as id_original, nome as nome_carta, imagem as caminho_carta, \"arma\" as tipo_carta FROM armas;") or die(mysql_error());
+			while ($row = mysql_fetch_object($rs)) {
+					$cartas[] = $row;
+			}
 
+			$rs = mysql_query("SELECT idcomodos as id_original, nome as nome_carta, imagem as caminho_carta, \"comodo\" as tipo_carta FROM comodos;") or die(mysql_error());
+			while ($row = mysql_fetch_object($rs)) {
+					$cartas[] = $row;
+			}
+			
+			$rs = mysql_query("SELECT idsuspeitos as id_original, nome as nome_carta, imagem as caminho_carta, \"suspeito\" as tipo_carta FROM suspeitos;") or die(mysql_error());
+			while ($row = mysql_fetch_object($rs)) {
+					$cartas[] = $row;
+			}
+			
+			foreach($cartas as $carta){
+				$sql = "INSERT INTO " . $idPartida . "_cartas (id_original, nome_carta, caminho_carta, tipo_carta) VALUES ($carta->id_original,'$carta->nome_carta','$carta->caminho_carta','$carta->tipo_carta');";
+				 mysql_query($sql, $conn);
+			}
+		
+			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_usuario_cartas (
+			`id_usuario` int(10) unsigned NOT NULL,
+			`id_carta` int(10) unsigned NOT NULL,
+			PRIMARY KEY (`id_usuario`,`id_carta`)
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+			mysql_query($query, $conn);		 
 		}		
 	}
 
-	$rs = mysql_query("SELECT idpartidaxusuario FROM " . $idPartida . "_partidaxusuario;");
+	$rs = mysql_query("SELECT idpartidaxusuario FROM " . $idPartida . "_partidaxusuario;") or die(mysql_error());
 	$qtdeUsuario =  mysql_num_rows($rs);
 
 	if($qtdeUsuario < 4){
@@ -61,6 +97,40 @@
 	if($qtdeUsuario == 4){
 		$sql = "UPDATE partidas SET status = 1 ";
 		mysql_query($sql, $conn);
+		
+		$rs = mysql_query('SELECT id_carta FROM ' . $idPartida . '_cartas') or die(mysql_error());
+
+		while ($row = mysql_fetch_array($rs)) {
+			$cartas[] = $row['id_carta'];
+		}
+
+		shuffle($cartas);
+
+		$rs = mysql_query('SELECT usuario_idusuario FROM ' . $idPartida . '_partidaxusuario') or die(mysql_error());
+		while ($row = mysql_fetch_array($rs)) {		
+			$usuarios[] = $row['usuario_idusuario'];
+		}
+
+		$count = 0;
+		foreach ($cartas as $carta) {
+			if($count < 3){
+				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES (0,  $carta)";
+				mysql_query($sql, $conn);
+			} else if($count < 9){
+				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[0],  $carta)";
+				mysql_query($sql, $conn);
+			} else if($count < 15){
+				$sql = "INSERT INTO " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[1],  $carta)";
+				mysql_query($sql, $conn);
+			} else if($count < 21){
+				$sql = "INSERT INTO " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[2],  $carta)";
+				mysql_query($sql, $conn);
+			} else if($count < 27){
+				$sql = "INSERT INTO " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[3],  $carta)";
+				mysql_query($sql, $conn);
+			}
+			$count++;
+		}
 	}	
 
 	session_start();
