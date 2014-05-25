@@ -1,7 +1,12 @@
 <?php
-	session_start();
-	echo $idUsuario = $_SESSION['id_usuario'];
-	echo 'Isto é apenas um teste';
+	// session_start();
+	// $idUsuario = $_SESSION['id_usuario'];
+	// $idPartida = $_SESSION['id_partida'];
+	// echo 'Isto é apenas um teste';
+
+	//Gambiarra para funcionar no mesmo computador :D
+	$idUsuario = $_REQUEST['id_usuario'];
+	$idPartida = $_REQUEST['id_partida'];
 ?>
 <!doctype html>
 <html lang="en">

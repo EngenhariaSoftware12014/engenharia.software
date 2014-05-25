@@ -60,7 +60,7 @@
 						buildSuspectsMenuSearch();
 					} else {
 						if (data.begin === 'true') {
-							location.href = 'game_board.php'
+							location.href = 'game_board.php?id_partida=' + idPartida + '&id_usuario=' + idUsuario;
 						} else {
 							$('#loading-message h3').html('Aguardando novos jogadores');
 							$('#loading-message').show();
@@ -98,7 +98,7 @@
 					console.log(data);
 					if (data.begin === 'true') {
 						//window.clearInterval(check);
-						location.href = 'game_board.php'
+						location.href = 'game_board.php?id_partida=' + idPartida + '&id_usuario=' + idUsuario;
 					}
 				});
 			}, 3000);
