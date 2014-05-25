@@ -87,16 +87,16 @@ CREATE TABLE IF NOT EXISTS `comodos` (
 --
 
 INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `delete_2`) VALUES
-(3, 'Casa Dona Florinda', 'csflorinda.png', NULL),
-(4, 'Casa Bruxa do 71', 'csbruxa.png', NULL),
-(5, 'Casa Seu Madruga', 'csmadruga.png', NULL),
+(3, 'Casa Dona Florinda', 'florinda_casa.png', NULL),
+(4, 'Casa Bruxa do 71', 'bruxa_casa.png', NULL),
+(5, 'Casa Seu Madruga', 'madruga_casa.png', NULL),
 (6, 'Pátio', 'patio.png', NULL),
 (7, 'Fonte', 'fonte.png', NULL),
-(8, 'Restaurante', 'restaurante.png', NULL),
-(9, 'Barraca de Churros', 'churros.png', NULL),
+(8, 'Lanchonete', 'lanchonete.png', NULL),
+(9, 'Barraca de Churros', 'barraca_churros.png', NULL),
 (10, 'Escola', 'escola.png', NULL),
-(11, 'Terreno Baldio', 'terreno.png', NULL),
-(12, 'Entrada', 'entrada.png', NULL),
+(11, 'Terreno Baldio', 'terreno_badio.png', NULL),
+(12, 'Entrada', 'entrada_vila.png', NULL),
 (14, 'Mercado', 'mercado.png', NULL);
 
 -- --------------------------------------------------------
