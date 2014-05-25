@@ -9,7 +9,7 @@
 	$query .= "INNER JOIN ".$idTabelas."_partidaxusuario ";
 	$query .= "ON usuario.idusuario = ".$idTabelas."_partidaxusuario.usuario_idusuario ";
 	$query .= "SET pontuacao = CASE ";
-	$query .= "WHEN idusuario = (SELECT vencedor FROM partidas WHERE idpartida = $idPartida and STATUS = 'F') THEN pontuacao + 3 ";
+	$query .= "WHEN idusuario = (SELECT vencedor FROM partidas WHERE idpartida = $idPartida and STATUS = '2') THEN pontuacao + 3 ";
 	$query .= "ELSE pontuacao + 1 ";
 	$query .= "END;";
 
