@@ -97,7 +97,6 @@ INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `delete_2`) VALUES
 (10, 'Escola', 'escola.png', NULL),
 (11, 'Terreno Baldio', 'terreno.png', NULL),
 (12, 'Entrada', 'entrada.png', NULL),
-(13, 'Casa Pati', 'cspati', NULL),
 (14, 'Mercado', 'mercado.png', NULL);
 
 -- --------------------------------------------------------
