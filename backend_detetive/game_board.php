@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	echo $idUsuario = $_SESSION['id_usuario'];
+	echo 'Isto é apenas um teste';
+?>
 <!doctype html>
 <html lang="en">
 <head>
