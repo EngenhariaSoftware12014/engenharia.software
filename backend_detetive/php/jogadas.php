@@ -3,6 +3,7 @@
 		/* Essa function deve ser usuada para inserir uma jogada do tipo exibir carta */
 		$query_nomeatual = "SELECT nome FROM usuario WHERE idusuario = '$usuarioAtual';";
 		$query_nomealvo = "SELECT nome FROM usuario WHERE idusuario = '$usuarioAlvo';";
+		
 		$rs = mysql_query($query_nomeatual);
 		If($rs){
 			$nomeAtual = mysql_fetch_row($rs);	
