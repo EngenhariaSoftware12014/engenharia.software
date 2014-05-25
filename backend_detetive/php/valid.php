@@ -49,7 +49,6 @@ if($rows > 0 ){
         'status_2' 	=>$rs['status_2'] 	, 
         'perfil'	=>$rs['perfil']     ,
         'url'       =>$url));
-
   
 	
 } else{
