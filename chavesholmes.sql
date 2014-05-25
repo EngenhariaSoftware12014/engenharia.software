@@ -142,21 +142,6 @@ insert into patente(descrpatente, scorepatentemin, scorepatentemax) values
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `patentexusuario`
---
-
-CREATE TABLE IF NOT EXISTS `patentexusuario` (
-  `idpatentexusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `patente_idpatente` int(10) unsigned NOT NULL,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`idpatentexusuario`,`patente_idpatente`,`usuario_idusuario`),
-  KEY `patentexusuario_fkindex1` (`patente_idpatente`),
-  KEY `patentexusuario_fkindex2` (`usuario_idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `suspeitos`
 --
 
