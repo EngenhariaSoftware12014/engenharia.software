@@ -127,6 +127,19 @@ CREATE TABLE IF NOT EXISTS `patente` (
   PRIMARY KEY (`idpatente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+
+
+--
+-- Extraindo dados da tabela `patente`
+--
+
+insert into patente(descrpatente, scorepatentemin, scorepatentemax) values 
+('NOOB', 0 , 9),
+('RECRUTA', 10, 19),
+('VETERANO', 20, 49),
+('EXPERT', 50, 99),
+('SHERLOCK', 100, 10000);
+
 -- --------------------------------------------------------
 
 --
