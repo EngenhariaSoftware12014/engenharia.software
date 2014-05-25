@@ -52,11 +52,13 @@ function gerartabelas($Id){
 
 	$query = "
 		CREATE TABLE IF NOT EXISTS ".$Id."_"."comentarios (
-	  `idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	   `idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
 	  `usuario_idusuario` int(10) unsigned NOT NULL,
 	  `partida_idpartida` int(10) unsigned NOT NULL,
 	  `comentario` multilinestring DEFAULT NULL,
 	  `delete_2` char(1) DEFAULT NULL,
+	  `id_carta` int(10) NOT NULL,
+	  `tipocarta` varchar(15) NOT NULL,
 	  PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
 	  KEY `comentarios_fkindex1` (`usuario_idusuario`),
 	  KEY `comentarios_fkindex2` (`partida_idpartida`)
