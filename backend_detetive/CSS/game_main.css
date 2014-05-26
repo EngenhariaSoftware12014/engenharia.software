@@ -127,7 +127,7 @@ body {
 }
 
 #center {
-	background: #FF8A00;
+	/*background: #FF8A00;*/
 	width: calc(100% - 600px);
 	height: 100%;
 	position: relative;

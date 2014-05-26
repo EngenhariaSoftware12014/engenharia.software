@@ -7,6 +7,31 @@
 	//Gambiarra para funcionar no mesmo computador :D
 	$idUsuario = $_REQUEST['id_usuario'];
 	$idPartida = $_REQUEST['id_partida'];
+
+	include 'php/conn.php';
+
+	// Recuperar cartas para anotações
+	$rsSusp = mysql_query("SELECT idsuspeitos, nome FROM suspeitos") or die (mysql_error());
+	$anotacoes = '<h2>Suspeitos</h2><ul class="notes-list">';
+	while($row = mysql_fetch_assoc($rsSusp)){
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" value="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+	}
+	$anotacoes .= '</ul>';
+
+	$rsArmas = mysql_query("SELECT idarmas, nome FROM armas") or die (mysql_error());
+	$anotacoes .= '<h2>Armas</h2><ul class="notes-list">';
+	while($row = mysql_fetch_array($rsArmas, MYSQL_ASSOC)){
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" value="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
+	}
+	$anotacoes .= '</ul>';
+
+	$rsCmds = mysql_query("SELECT idcomodos, nome FROM comodos") or die (mysql_error());
+	$anotacoes .= '<h2>Comodos</h2><ul class="notes-list">';
+	while($row = mysql_fetch_assoc($rsCmds)){
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" value="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+	}
+	$anotacoes .= '</ul>';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -768,51 +793,10 @@
 			<!-- Anotações -->
 			<h1 class="title">Anotações</h1>
 
-			<div id="notes">
-				
-				<h2>Suspeitos</h2>
-				<ul class="notes-list">
-					<li><span><input type="checkbox" name="notes-suspects"> Pedro</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Hanna</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Seu Madruga</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Dona Florinda</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Bruxa do 71</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Nhonho</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Vitor</span></li>
-					<li><span><input type="checkbox" name="notes-suspects"> Érica</span></li>
-				</ul>
-
-				<h2>Armas</h2>
-				<ul class="notes-list">
-					<li><span><input type="checkbox" name="notes-weapons"> Bola Quadrada</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Tijolo</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Satanás</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Vassoura</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Chicará</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Sanduíche de presunto</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Ferro de passar</span></li>
-					<li><span><input type="checkbox" name="notes-weapons"> Peão</span></li>
-				</ul>
-
-				<h2>Cena do crime</h2>
-				<ul class="notes-list">
-					<li><span><input type="checkbox" name="notes-scenes"> Cs. Bruxa do 71</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Cs. Dona Florinda</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Cs. Seu Madruga</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Pátio</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Escola</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Terreno Baldio</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Restaurante</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Barril</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Fonte</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Barraca de Churros</span></li>
-					<li><span><input type="checkbox" name="notes-scenes"> Cs. Pathy</span></li>
-				</ul>
-				
-			</div>	
+			<div id="notes"><?= $anotacoes ?></div>	
 		</div>
 	</div>
 	<script src="jquery/jquery.min.js"></script>
-	<script src="JS/game_main.js"></script>
+	<script src="JS/game_main2.js"></script>
 </body>
 </html>

@@ -2,36 +2,27 @@
 
 include 'conn.php';
 
-$sqlArmas 	= "SELECT  * FROM armas";
-$sqlCmds 	= "SELECT  * FROM comodos";
-$sqlSusp 	= "SELECT  * FROM suspeitos";
+$idPartida = $_REQUEST['id_partida'];
 
-$rsArmas = mysql_query($sqlArmas);
-$rsCmds = mysql_query($sqlCmds);
-$rsSusp = mysql_query($sqlSusp);
+$result = array();
 
-$resultArmas = array();
-$cont=0;
-while($row = mysql_fetch_object($rsArmas)){
-    $cont++;
-    array_push($resultArmas,$row);
+$rsArmas = mysql_query("SELECT idarmas, nome, 'A' AS tipo FROM armas") or die (mysql_error());
+while($row = mysql_fetch_array($rsArmas, MYSQL_ASSOC)){
+	$row['nome'] = utf8_encode($row['nome']);
+	$result['armas'][] = $row; 
 }
 
-$resultCmds = array();
-$cont=0;
-while($row1 = mysql_fetch_object($rsCmds)){
-    $cont++;
-    array_push($resultCmds,$row1);
+$rsCmds = mysql_query("SELECT idcomodos, nome, 'C' AS tipo FROM comodos") or die (mysql_error());
+while($row = mysql_fetch_assoc($rsCmds)){
+	$row['nome'] = utf8_encode($row['nome']);
+    $result['comodos'][] =  $row;
 }
 
-
-$resultSusp = array();
-$cont=0;
-while($row2 = mysql_fetch_object($rsSusp)){
-    $cont++;
-    array_push($resultSusp,$row2);
+$rsSusp = mysql_query("SELECT idsuspeitos, nome, 'S' AS tipo FROM suspeitos") or die (mysql_error());
+while($row = mysql_fetch_assoc($rsSusp)){
+	$row['nome'] = utf8_encode($row['nome']);
+    $result['suspeitos'][] =  $row;
 }
 
-echo json_encode(['armas'=>$resultArmas,'comodos'=>$resultCmds,'suspeitos'=>$resultSusp]);
-
+echo json_encode($result);
 ?>

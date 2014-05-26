@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: May 25, 2014 at 09:20 PM
+-- Generation Time: May 26, 2014 at 06:00 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `chavesholmes`
@@ -75,6 +69,8 @@ CREATE TABLE `comodos` (
   `idcomodos` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
   `imagem` varchar(100) DEFAULT NULL,
+  `position_x` int(12) NOT NULL,
+  `postion_y` int(12) NOT NULL,
   `delete_2` char(1) DEFAULT NULL,
   PRIMARY KEY (`idcomodos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
@@ -83,18 +79,18 @@ CREATE TABLE `comodos` (
 -- Dumping data for table `comodos`
 --
 
-INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `delete_2`) VALUES
-(3, 'Casa Dona Florinda', 'florinda_casa.png', NULL),
-(4, 'Casa Bruxa do 71', 'bruxa_casa.png', NULL),
-(5, 'Casa Seu Madruga', 'madruga_casa.png', NULL),
-(6, 'Pátio', 'patio.png', NULL),
-(7, 'Fonte', 'fonte.png', NULL),
-(8, 'Lanchonete', 'lanchonete.png', NULL),
-(9, 'Barraca de Churros', 'barraca_churros.png', NULL),
-(10, 'Escola', 'escola.png', NULL),
-(11, 'Terreno Baldio', 'terreno_badio.png', NULL),
-(12, 'Entrada', 'entrada_vila.png', NULL),
-(14, 'Mercado', 'mercado.png', NULL);
+INSERT INTO `comodos` (`idcomodos`, `nome`, `imagem`, `position_x`, `postion_y`, `delete_2`) VALUES
+(3, 'Casa Dona Florinda', 'florinda_casa.png', 0, 0, NULL),
+(4, 'Casa Bruxa do 71', 'bruxa_casa.png', 0, 0, NULL),
+(5, 'Casa Seu Madruga', 'madruga_casa.png', 0, 0, NULL),
+(6, 'Pátio', 'patio.png', 0, 0, NULL),
+(7, 'Fonte', 'fonte.png', 0, 0, NULL),
+(8, 'Lanchonete', 'lanchonete.png', 0, 0, NULL),
+(9, 'Barraca de Churros', 'barraca_churros.png', 0, 0, NULL),
+(10, 'Escola', 'escola.png', 0, 0, NULL),
+(11, 'Terreno Baldio', 'terreno_badio.png', 0, 0, NULL),
+(12, 'Entrada', 'entrada_vila.png', 0, 0, NULL),
+(14, 'Mercado', 'mercado.png', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,6 +140,7 @@ CREATE TABLE `suspeitos` (
   `idsuspeitos` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
   `imagem` varchar(100) DEFAULT NULL,
+  `comodo_idcomodo` int(12) NOT NULL,
   `delete_2` char(1) DEFAULT NULL,
   PRIMARY KEY (`idsuspeitos`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
@@ -152,15 +149,15 @@ CREATE TABLE `suspeitos` (
 -- Dumping data for table `suspeitos`
 --
 
-INSERT INTO `suspeitos` (`idsuspeitos`, `nome`, `imagem`, `delete_2`) VALUES
-(2, 'Bruxa do 71', 'bruxa.png', NULL),
-(3, 'Chaves', 'chaves.png', NULL),
-(4, 'Chiquinha', 'chiquinha.png', NULL),
-(5, 'Dona Florinda', 'florinda.png', NULL),
-(6, 'Prof. Girafales', 'girafales.png', NULL),
-(7, 'Seu Madruga', 'madruga.png', NULL),
-(8, 'Nhonho', 'nhonho.png', NULL),
-(9, 'Quico', 'quico.png', NULL);
+INSERT INTO `suspeitos` (`idsuspeitos`, `nome`, `imagem`, `comodo_idcomodo`, `delete_2`) VALUES
+(2, 'Bruxa do 71', 'bruxa.png', 4, NULL),
+(3, 'Chaves', 'chaves.png', 6, NULL),
+(4, 'Chiquinha', 'chiquinha.png', 7, NULL),
+(5, 'Dona Florinda', 'florinda.png', 3, NULL),
+(6, 'Prof. Girafales', 'girafales.png', 10, NULL),
+(7, 'Seu Madruga', 'madruga.png', 5, NULL),
+(8, 'Nhonho', 'nhonho.png', 8, NULL),
+(9, 'Quico', 'quico.png', 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -192,7 +189,3 @@ INSERT INTO `usuario` (`idusuario`, `nome`, `sobrenome`, `email`, `senha`, `stat
 (9, 'Erica', 'Mitsuishi', 'erica@yahoo.com', 'teste', '1', '2', '', '', 0),
 (10, 'Eduardo', 'Vicente', 'eduardo@yahoo.com', 'teste', '1', '2', '', '', 0),
 (11, 'Pedro', 'Silva', 'pedro@yahoo.com', 'teste', '1', '2', '', '', 0);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

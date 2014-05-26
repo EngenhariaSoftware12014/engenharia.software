@@ -52,11 +52,11 @@ $(document).ready(function() {
 		
 	// });
 
-	$('.card').hover(function() {
-		$(this).animate({'margin-top': '-25px'}, 200);
-	});
+	// $('.card').hover(function() {
+	// 	$(this).animate({'margin-top': '-25px'}, 200);
+	// });
 
-	$('.card').mouseleave(function() {
-		$(this).animate({'margin-top': '0px'}, 200);
-	});
+	// $('.card').mouseleave(function() {
+	// 	$(this).animate({'margin-top': '0px'}, 200);
+	// });
 });
