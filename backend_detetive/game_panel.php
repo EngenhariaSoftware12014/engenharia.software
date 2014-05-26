@@ -14,7 +14,7 @@
 	
 	<div id="container-panel">
 
-		<img id="logo" src="images/logo_chaves.png">
+		<img id="logo" src="images/Logo_chaves.png">
 
 		<a href="#" class="btn" id="btn_play">Jogar</a>
 		<a href="php/logout.php" class="btn" id="btn_logout">Sair</a>	
@@ -23,7 +23,7 @@
 	<div class="modal">
 		<div id="loading-message">
 			<h3>Procurando partidas...</h3>
-			<img src="images/spinner.gif">
+			<img src="images/spinner.GIF">
 		</div>
 		<div id="suspect-menu">
 			<h3>Escolha o seu personagem...</h3>
@@ -33,6 +33,8 @@
 
 	<script src="jquery/jquery.min.js"></script>
 	<script type="text/javascript">
+	var idUsuario = <?= $idUsuario ?>;
+
 	$(document).ready(function() {
 		$('#btn_play').click(function(e) {
 			e.preventDefault();
@@ -41,7 +43,7 @@
 			
 			$.getJSON('php/enter_matche.php', {'idUsuario': <?= $idUsuario ?>})
 				.done(function(data) {
-					console.log(data); 
+					// console.log(data); 
 					buildSuspectsMenuSearch(data);
 					$('#loading-message').hide();
 					$('#suspect-menu').show();
@@ -51,14 +53,15 @@
 	});
 
 	function selectSuspect(idSuspeito, idPartida) {
-			console.log('teste');
-			$.getJSON('php/choose_suspects.php', {'idUsuario': <?= $idUsuario ?>, 'idPartida': idPartida, 'idSuspeito': idSuspeito})
+			// console.log('teste');
+			$.getJSON('php/choose_suspects.php', {'idUsuario': idUsuario, 'idPartida': idPartida, 'idSuspeito': idSuspeito})
 				.done(function(data) {
 					// console.log(data);
 					if (data.error === 'true') {
 						alert('O personagem já está sendo utilizado, por favor escolha outro!');
 						buildSuspectsMenuSearch();
 					} else {
+						console.log(data.begin);
 						if (data.begin === 'true') {
 							location.href = 'game_board.php?id_partida=' + idPartida + '&id_usuario=' + idUsuario;
 						} else {
@@ -92,10 +95,10 @@
 		}
 
 		function checkStatus(idPartida) {
-			console.log('Passou o primeiro teste');
+			// console.log('Passou o primeiro teste');
 			var check = window.setInterval(function() {
 				$.getJSON('php/check_status.php', {'idPartida': idPartida}).done(function(data) {
-					console.log(data);
+					//console.log(data);
 					if (data.begin === 'true') {
 						//window.clearInterval(check);
 						location.href = 'game_board.php?id_partida=' + idPartida + '&id_usuario=' + idUsuario;

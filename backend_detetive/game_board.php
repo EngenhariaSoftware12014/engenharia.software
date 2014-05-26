@@ -10,25 +10,46 @@
 
 	include 'php/conn.php';
 
+	// Recuperar jogadores
+	$rsJogador = mysql_query("select usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
+		left join usuario as usu on usu.idusuario = pxu.usuario_idusuario
+		left join patente as pat on pat.idpatente = usu.patente
+		left join suspeitos as sus on sus.idsuspeitos = pxu.suspeito_idsuspeito") or die(mysql_error());
+	$jogadores = '';
+	while($row = mysql_fetch_assoc($rsJogador)){
+		$jogadores .= '<div class="suspect row">' 
+			. '<div class="suspect-img col"><img src="images/cards/' . $row['imagem'] . '"></div>'
+			. '<div class="suspect-description col"><span><strong>' . $row['nome'] . '</strong><br><small>' . $row['patente'] . '</small></span></div>'
+			. '</div>';
+	}
+
+	// Recuperar cartas do jogador
+	$rsCartas = mysql_query("select caminho_carta from " . $idPartida . "_usuario_cartas as uxc
+		left join " . $idPartida . "_cartas as car on uxc.id_carta = car.id_carta where uxc.id_usuario = $idUsuario");
+	$cartas = '';
+	while($row = mysql_fetch_assoc($rsCartas)){
+		$cartas .= '<img src="images/cards/' . $row['caminho_carta'] . '" alt="" class="card col">';
+	}
+
 	// Recuperar cartas para anotações
 	$rsSusp = mysql_query("SELECT idsuspeitos, nome FROM suspeitos") or die (mysql_error());
 	$anotacoes = '<h2>Suspeitos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsSusp)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" value="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="S" data-id="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
 	$rsArmas = mysql_query("SELECT idarmas, nome FROM armas") or die (mysql_error());
 	$anotacoes .= '<h2>Armas</h2><ul class="notes-list">';
-	while($row = mysql_fetch_array($rsArmas, MYSQL_ASSOC)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" value="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
+	while($row = mysql_fetch_assoc($rsArmas)){
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="A" data-id="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
 	}
 	$anotacoes .= '</ul>';
 
 	$rsCmds = mysql_query("SELECT idcomodos, nome FROM comodos") or die (mysql_error());
 	$anotacoes .= '<h2>Comodos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsCmds)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" value="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="C" data-id="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
@@ -50,45 +71,7 @@
 			<!-- Suspeitos -->
 			<h1 class="title">Suspeitos</h1>
 
-			<div id="suspects">
-
-				<div class="suspect row">
-					<div class="suspect-img col">
-						<img src="100.jpeg">
-					</div>
-					<div class="suspect-description col">
-						<p><strong>Pedro</strong><br><small>6 cartas</small></p>
-					</div>
-				</div>
-
-				<div class="suspect row">
-					<div class="suspect-img col">
-						<img src="100.jpeg">
-					</div>
-					<div class="suspect-description col">
-						<p><strong>Hanna</strong><br><small>6 cartas</small></p>
-					</div>
-				</div>
-
-				<div class="suspect row">
-					<div class="suspect-img col">
-						<img src="100.jpeg">
-					</div>
-					<div class="suspect-description col">
-						<p><strong>Érica</strong><br><small>6 cartas</small></p>
-					</div>
-				</div>
-				
-				<div class="suspect row">
-					<div class="suspect-img col">
-						<img src="100.jpeg">
-					</div>
-					<div class="suspect-description col">
-						<p><strong>Vitor</strong><br><small>6 cartas</small></p>
-					</div>
-				</div>
-
-			</div>
+			<div id="suspects"><?= $jogadores ?></div>
 
 		</div>
 		
@@ -776,14 +759,7 @@
 
 			</div>
 			<div id="bottom">
-				<div id="cards" class="row">
-					<div class="card col"><img src="100.jpeg" alt=""><div class="card-description"><span>Hanna</span></div></div>
-					<div class="card col"><img src="100.jpeg" alt=""><div class="card-description"><span>Seu Madruga</span></div></div>
-					<div class="card col"><img src="100.jpeg" alt=""><div class="card-description"><span>Satanás</span></div></div>
-					<div class="card col"><img src="100.jpeg" alt=""><div class="card-description"><span>Sanduíche de presunto</span></div></div>
-					<div class="card col"><img src="100.jpeg" alt=""><div class="card-description"><span>Ferro de Passar</span></div></div>
-					<div class="card col"><img src="100.jpeg" alt=""><div class="card-description"><span>Pátio</span></div></div>
-				</div>
+				<div id="cards" class="row"><?= $cartas ?></div>
 			</div>
 		</div>
 
@@ -797,6 +773,22 @@
 		</div>
 	</div>
 	<script src="jquery/jquery.min.js"></script>
-	<script src="JS/game_main2.js"></script>
+	<script>
+	$(document).ready(function() {
+
+
+	    $('.card').hover(function() {
+	        $(this).animate({
+	            'margin-top': '-25px'
+	        }, 200);
+	    });
+
+	    $('.card').mouseleave(function() {
+	        $(this).animate({
+	            'margin-top': '0px'
+	        }, 200);
+	    });
+	});
+	</script>
 </body>
 </html>

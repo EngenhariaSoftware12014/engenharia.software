@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="jquery/themes/black/easyui.css">
 		<link rel="stylesheet" type="text/css" href="jquery/themes/icon.css">
 		<link rel="stylesheet" type="text/css" href="jquery/demo/demo.css">
-		<link rel="stylesheet" href="css/style.css" type="text/css">
+		<link rel="stylesheet" href="CSS/style.css" type="text/css">
 		<style type="text/css">
 			#tabs {
 		
@@ -147,7 +147,7 @@
 			        		return $(this).form('validate');
 	        			},
 	        		success: function(result) {
-	        			//console.log(result);
+	        			console.log(result);
 	            		var result = eval('('+result+')');           
 			            if (result.errorMsg != undefined && result.errorMsg != "") {
 			                $.messager.alert('Alerta:',result.errorMsg,'warning');          
