@@ -209,8 +209,8 @@ body {
 #board .col {
 	width: 20px;
 	height: 20px;
-	border: 1px solid transparent;
-	/*border: 1px solid #000;*/
+	/*border: 1px solid transparent;*/
+	border: 1px solid #000;
 	background: #fff;
 }
 
@@ -363,11 +363,6 @@ body {
 	height: 44px;			
 	position: absolute;
 	z-index: 100;
-}
-
-#chaves {			
-	top: 0;
-	left: 50px;
 }
 
 /* Left */
