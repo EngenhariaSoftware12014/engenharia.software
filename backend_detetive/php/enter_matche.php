@@ -14,47 +14,68 @@
 			$idPartida = mysql_insert_id($conn);
 
 			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_partidaxusuario (
-			`idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			`usuario_idusuario` int(10) unsigned NOT NULL,
-			`suspeito_idsuspeito` int(10),
-			PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`)
-			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+				`idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				`usuario_idusuario` int(10) unsigned NOT NULL,
+				`suspeito_idsuspeito` int(10),
+				PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`)
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
 			mysql_query($query, $conn);
 
-			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_jogadas (
-			`idjogadas` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			`usuario_idusuario` int(10) unsigned NOT NULL,
-			`partida_idpartida` int(10) unsigned NOT NULL,
-			`usuarioalvo_idusuario` int(10) DEFAULT NULL,
-			`descricaojogada` varchar(255) DEFAULT NULL,
-			`acusacao` char(1) DEFAULT NULL,
-			PRIMARY KEY (`idjogadas`,`usuario_idusuario`,`partida_idpartida`),
-			KEY `jogadas_fkindex1` (`usuario_idusuario`),
-			KEY `jogadas_fkindex2` (`partida_idpartida`)
-			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+			$query = "CREATE TABLE `" . $idPartida . "_jogadas` (
+				`idjogadas` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				`usuario_idusuario` int(10) unsigned NOT NULL,
+				`numero_dado` int(10) NOT NULL DEFAULT '0',
+				` casa_andada` varchar(10) NOT NULL,
+				`tipo_suspeita` varchar(1) NOT NULL,
+				`alvo_suspeita` int(11) NOT NULL,
+				`resposta_carta` int(10) NOT NULL,
+				`resposta_usuario` int(10) NOT NULL,
+				PRIMARY KEY (`idjogadas`,`usuario_idusuario`),
+				KEY `jogadas_fkindex1` (`usuario_idusuario`)
+				) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;";
 			mysql_query($query, $conn);
 
-			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_comentarios (
-			`idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			`usuario_idusuario` int(10) unsigned NOT NULL,
-			`partida_idpartida` int(10) unsigned NOT NULL,
-			`comentario` multilinestring DEFAULT NULL,
-			`delete_2` char(1) DEFAULT NULL,
-			PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
-			KEY `comentarios_fkindex1` (`usuario_idusuario`),
-			KEY `comentarios_fkindex2` (`partida_idpartida`)
-			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+			$query = "CREATE TABLE `" . $idPartida . "_comentarios` (
+  				`idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				`usuario_idusuario` int(10) unsigned NOT NULL,
+				`partida_idpartida` int(10) unsigned NOT NULL,
+				`comentario` multilinestring DEFAULT NULL,
+				`carta_idcarta` int(10) NOT NULL,
+				`carta_tipocarta` varchar(1) NOT NULL,
+				`delete_2` char(1) DEFAULT NULL,
+				PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
+				KEY `comentarios_fkindex1` (`usuario_idusuario`),
+				KEY `comentarios_fkindex2` (`partida_idpartida`)
+				) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;";
 			mysql_query($query, $conn);	
 
 			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_cartas (
-			`id_carta` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			`id_original` int(10) unsigned NOT NULL,
-			`nome_carta` varchar(45)  NOT NULL,
-			`caminho_carta` varchar(100)  NOT NULL,
-			`tipo_carta` varchar(10) NOT NULL,
-			PRIMARY KEY (`id_carta`)
-			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+				`id_carta` int(10) unsigned NOT NULL AUTO_INCREMENT,
+				`id_original` int(10) unsigned NOT NULL,
+				`nome_carta` varchar(45)  NOT NULL,
+				`caminho_carta` varchar(100)  NOT NULL,
+				`tipo_carta` varchar(10) NOT NULL,
+				PRIMARY KEY (`id_carta`)
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
 			mysql_query($query, $conn);		 
+
+			$query = "CREATE TABLE `" . $idPartida . "_suspeitosxposicao` (
+				`idsuspeito` int(10) NOT NULL,
+				`position_x` int(10) NOT NULL,
+				`position_y` int(10) NOT NULL
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+			mysql_query($query);
+
+			$query = "INSERT INTO `" . $idPartida . "_suspeitosxposicao` (`idsuspeito`, `position_x`, `position_y`) VALUES
+				(2, 4, 13),
+				(3, 13, 13),
+				(4, 10, 22),
+				(5, 3, 4),
+				(6, 16, 23),
+				(7, 4, 22),
+				(8, 9, 3),
+				(9, 23, 3);";
+			mysql_query($query);
 
 			$rs = mysql_query("SELECT idarmas as id_original, nome as nome_carta, imagem as caminho_carta, \"arma\" as tipo_carta FROM armas;") or die(mysql_error());
 			while ($row = mysql_fetch_object($rs)) {

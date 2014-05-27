@@ -805,8 +805,11 @@
 		var idPartida = <?= $idPartida ?>;
 		var idUsuario = <?= $idUsuario ?>;
 		var currentPlayer = <?= $currentPlayer ?>;
+		var dado = 6;
 
 		// rodaDado(idPartida, idUsuario, currentPlayer);
+
+		selectWay(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({
@@ -826,6 +829,11 @@
 	    		.done(function(data) {
 	    			console.log(data);
 	    		});
+	    });
+
+	    $(document).on('click', '.available', function() {
+	    	$('.available').removeClass('available'); 
+	    	$(this).addClass('selected');
 	    });
 
 	});
@@ -860,6 +868,21 @@
 					}
 				});
 			}, 3000);
+		}
+	}
+
+	function selectWay(idPartida, idUsuario, currentPlayer) {
+		if (idUsuario === currentPlayer) {
+			$.getJSON('php/get_way.php', {idPartida: idPartida, currentPlayer: currentPlayer}).done(function(data) {
+				if (data.comodo_class) {
+					$('.' + data.comodo_class + '-exit').addClass('available');
+				} else {
+					// no caso de não cair em um comodo
+					// ...
+				}
+			});
+		} else {
+
 		}
 	}
 	</script>

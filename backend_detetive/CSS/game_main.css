@@ -220,8 +220,8 @@ body {
 #board .col {
 	width: 20px;
 	height: 20px;
-	/*border: 1px solid transparent;*/
-	border: 1px solid #000;
+	border: 1px solid transparent;
+	/*border: 1px solid #000;*/
 	background: #fff;
 }
 
@@ -319,6 +319,18 @@ body {
 	border-left: 5px solid #000;
 	bottom: 5px;
 	left: 7px;	
+}
+
+#board .field.available {
+	background: pink;
+}
+
+#board .field.available:hover {
+	background: purple;
+}
+
+#board .field.selected {
+	background: purple;
 }
 
 .col:before {
