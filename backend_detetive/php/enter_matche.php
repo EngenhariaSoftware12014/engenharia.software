@@ -95,7 +95,7 @@
 	}
 
 	if($qtdeUsuario == 4){
-		$sql = "UPDATE partidas SET status = 1 WHERE idpartida = $idpartidas";
+		$sql = "UPDATE partidas SET status = 1 WHERE idpartida = $idPartida";
 		mysql_query($sql, $conn);
 
 		$rs = mysql_query('SELECT id_carta, tipo_carta FROM ' . $idPartida . '_cartas') or die(mysql_error());
