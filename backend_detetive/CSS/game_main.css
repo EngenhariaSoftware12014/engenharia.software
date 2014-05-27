@@ -146,6 +146,10 @@ body {
 	width: calc(100% - 60px);
 }
 
+.suspect.current {
+	background: #FF9933;
+}
+
 .suspect-img img {
 	height: 100px;
 }
@@ -174,7 +178,7 @@ body {
 	height: 200px;
 	position: absolute;
 	bottom: 0;
-	display: none;
+	/*display: none;*/
 }
 
 #cards {

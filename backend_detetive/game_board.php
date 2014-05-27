@@ -10,14 +10,19 @@
 
 	include 'php/conn.php';
 
+	// Pegar o jogador corrente
+	$rsJogadorCorrente = mysql_query("select current_player from partidas where idpartida = $idPartida");
+	$r = mysql_fetch_assoc($rsJogadorCorrente);
+	$currentPlayer = $r['current_player'];
+
 	// Recuperar jogadores
-	$rsJogador = mysql_query("select usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
+	$rsJogador = mysql_query("select pxu.idpartidaxusuario as idpartidaxusuario, usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
 		left join usuario as usu on usu.idusuario = pxu.usuario_idusuario
 		left join patente as pat on pat.idpatente = usu.patente
 		left join suspeitos as sus on sus.idsuspeitos = pxu.suspeito_idsuspeito") or die(mysql_error());
 	$jogadores = '';
 	while($row = mysql_fetch_assoc($rsJogador)){
-		$jogadores .= '<div class="suspect row">' 
+		$jogadores .= '<div class="suspect row' . ($row['idpartidaxusuario'] == $currentPlayer ? ' current' : '') . '">' 
 			. '<div class="suspect-img col"><img src="images/cards/' . $row['imagem'] . '"></div>'
 			. '<div class="suspect-description col"><span><strong>' . $row['nome'] . '</strong><br><small>' . $row['patente'] . '</small></span></div>'
 			. '</div>';

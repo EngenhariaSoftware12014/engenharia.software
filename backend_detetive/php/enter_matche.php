@@ -10,7 +10,7 @@
 
 	} else {
 
-		if (mysql_query('INSERT INTO  partidas (status) VALUES (0)', $conn)){
+		if (mysql_query('INSERT INTO  partidas (status, current_player) VALUES (0, 1)', $conn)){
 			$idPartida = mysql_insert_id($conn);
 
 			$query = "CREATE TABLE IF NOT EXISTS " . $idPartida . "_partidaxusuario (
