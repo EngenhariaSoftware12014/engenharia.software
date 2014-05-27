@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: May 26, 2014 at 06:00 AM
+-- Generation Time: May 27, 2014 at 02:52 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -13,6 +13,157 @@ SET time_zone = "+00:00";
 --
 -- Database: `chavesholmes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_cartas`
+--
+
+CREATE TABLE `1_cartas` (
+  `id_carta` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_original` int(10) unsigned NOT NULL,
+  `nome_carta` varchar(45) NOT NULL,
+  `caminho_carta` varchar(100) NOT NULL,
+  `tipo_carta` varchar(10) NOT NULL,
+  PRIMARY KEY (`id_carta`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Dumping data for table `1_cartas`
+--
+
+INSERT INTO `1_cartas` (`id_carta`, `id_original`, `nome_carta`, `caminho_carta`, `tipo_carta`) VALUES
+(1, 3, 'Casca de banana', 'banana.png', 'arma'),
+(2, 4, 'Barril do Chaves', 'barril.png', 'arma'),
+(3, 5, 'Bola Quadrada', 'bola.png', 'arma'),
+(4, 6, 'Ioio da Chiquinha', 'ioio.png', 'arma'),
+(5, 7, 'Peteca', 'peteca.png', 'arma'),
+(6, 8, 'Piao', 'piao.png', 'arma'),
+(7, 9, 'Sanduiche de Presunto', 'sanduiche.png', 'arma'),
+(8, 10, 'Satanás', 'satanas.png', 'arma'),
+(9, 3, 'Casa Dona Florinda', 'florinda_casa.png', 'comodo'),
+(10, 4, 'Casa Bruxa do 71', 'bruxa_casa.png', 'comodo'),
+(11, 5, 'Casa Seu Madruga', 'madruga_casa.png', 'comodo'),
+(12, 6, 'Pátio', 'patio.png', 'comodo'),
+(13, 7, 'Fonte', 'fonte.png', 'comodo'),
+(14, 8, 'Lanchonete', 'lanchonete.png', 'comodo'),
+(15, 9, 'Barraca de Churros', 'barraca_churros.png', 'comodo'),
+(16, 10, 'Escola', 'escola.png', 'comodo'),
+(17, 11, 'Terreno Baldio', 'terreno_badio.png', 'comodo'),
+(18, 12, 'Entrada', 'entrada_vila.png', 'comodo'),
+(19, 14, 'Mercado', 'mercado.png', 'comodo'),
+(20, 2, 'Bruxa do 71', 'bruxa.png', 'suspeito'),
+(21, 3, 'Chaves', 'chaves.png', 'suspeito'),
+(22, 4, 'Chiquinha', 'chiquinha.png', 'suspeito'),
+(23, 5, 'Dona Florinda', 'florinda.png', 'suspeito'),
+(24, 6, 'Prof. Girafales', 'girafales.png', 'suspeito'),
+(25, 7, 'Seu Madruga', 'madruga.png', 'suspeito'),
+(26, 8, 'Nhonho', 'nhonho.png', 'suspeito'),
+(27, 9, 'Quico', 'quico.png', 'suspeito');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_comentarios`
+--
+
+CREATE TABLE `1_comentarios` (
+  `idcomentarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `usuario_idusuario` int(10) unsigned NOT NULL,
+  `partida_idpartida` int(10) unsigned NOT NULL,
+  `comentario` multilinestring DEFAULT NULL,
+  `delete_2` char(1) DEFAULT NULL,
+  PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
+  KEY `comentarios_fkindex1` (`usuario_idusuario`),
+  KEY `comentarios_fkindex2` (`partida_idpartida`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_jogadas`
+--
+
+CREATE TABLE `1_jogadas` (
+  `idjogadas` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `usuario_idusuario` int(10) unsigned NOT NULL,
+  `partida_idpartida` int(10) unsigned NOT NULL,
+  `usuarioalvo_idusuario` int(10) DEFAULT NULL,
+  `descricaojogada` varchar(255) DEFAULT NULL,
+  `acusacao` char(1) DEFAULT NULL,
+  PRIMARY KEY (`idjogadas`,`usuario_idusuario`,`partida_idpartida`),
+  KEY `jogadas_fkindex1` (`usuario_idusuario`),
+  KEY `jogadas_fkindex2` (`partida_idpartida`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_partidaxusuario`
+--
+
+CREATE TABLE `1_partidaxusuario` (
+  `idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `usuario_idusuario` int(10) unsigned NOT NULL,
+  `suspeito_idsuspeito` int(10) DEFAULT NULL,
+  PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `1_partidaxusuario`
+--
+
+INSERT INTO `1_partidaxusuario` (`idpartidaxusuario`, `usuario_idusuario`, `suspeito_idsuspeito`) VALUES
+(1, 9, 3),
+(2, 8, 4),
+(3, 10, 5),
+(4, 11, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1_usuario_cartas`
+--
+
+CREATE TABLE `1_usuario_cartas` (
+  `id_usuario` int(10) unsigned NOT NULL,
+  `id_carta` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_usuario`,`id_carta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `1_usuario_cartas`
+--
+
+INSERT INTO `1_usuario_cartas` (`id_usuario`, `id_carta`) VALUES
+(0, 1),
+(0, 14),
+(0, 27),
+(8, 2),
+(8, 5),
+(8, 9),
+(8, 19),
+(8, 23),
+(8, 26),
+(9, 3),
+(9, 6),
+(9, 7),
+(9, 10),
+(9, 13),
+(9, 16),
+(10, 4),
+(10, 8),
+(10, 11),
+(10, 12),
+(10, 24),
+(10, 25),
+(11, 15),
+(11, 17),
+(11, 18),
+(11, 20),
+(11, 21),
+(11, 22);
 
 -- --------------------------------------------------------
 
@@ -103,7 +254,14 @@ CREATE TABLE `partidas` (
   `status` char(1) DEFAULT NULL COMMENT 'status: 0 - partida aberta; 1 - partida iniciada; 2 - partida execução; 3 - partida encerrada;',
   `vencedor` int(10) DEFAULT NULL,
   PRIMARY KEY (`idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `partidas`
+--
+
+INSERT INTO `partidas` (`idpartida`, `status`, `vencedor`) VALUES
+(1, '2', NULL);
 
 -- --------------------------------------------------------
 
@@ -174,7 +332,7 @@ CREATE TABLE `usuario` (
   `status_2` char(1) DEFAULT NULL,
   `perfil` char(1) DEFAULT NULL,
   `imagem` varchar(100) NOT NULL,
-  `patente` varchar(100) NOT NULL,
+  `patente` int(10) NOT NULL DEFAULT '1',
   `pontuacao` int(11) NOT NULL,
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
@@ -184,8 +342,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nome`, `sobrenome`, `email`, `senha`, `status_2`, `perfil`, `imagem`, `patente`, `pontuacao`) VALUES
-(1, 'Chapolin', 'Colorado', 'chapolin@sigameosbons.com', '123', '1', '0', '', '', 0),
-(8, 'Hanna', 'Mariano', 'hanna@yahoo.com', 'teste', '1', '2', '', '', 0),
-(9, 'Erica', 'Mitsuishi', 'erica@yahoo.com', 'teste', '1', '2', '', '', 0),
-(10, 'Eduardo', 'Vicente', 'eduardo@yahoo.com', 'teste', '1', '2', '', '', 0),
-(11, 'Pedro', 'Silva', 'pedro@yahoo.com', 'teste', '1', '2', '', '', 0);
+(1, 'Chapolin', 'Colorado', 'chapolin@sigameosbons.com', '123', '1', '0', '', 1, 0),
+(8, 'Hanna', 'Mariano', 'hanna@yahoo.com', 'teste', '1', '2', '', 1, 0),
+(9, 'Erica', 'Mitsuishi', 'erica@yahoo.com', 'teste', '1', '2', '', 1, 0),
+(10, 'Eduardo', 'Vicente', 'eduardo@yahoo.com', 'teste', '1', '2', '', 1, 0),
+(11, 'Pedro', 'Silva', 'pedro@yahoo.com', 'teste', '1', '2', '', 1, 0);

@@ -98,13 +98,36 @@
 		$sql = "UPDATE partidas SET status = 1 WHERE idpartida = $idpartidas";
 		mysql_query($sql, $conn);
 
-		$rs = mysql_query('SELECT id_carta FROM ' . $idPartida . '_cartas') or die(mysql_error());
+		$rs = mysql_query('SELECT id_carta, tipo_carta FROM ' . $idPartida . '_cartas') or die(mysql_error());
 
 		while ($row = mysql_fetch_array($rs)) {
-			$cartas[] = $row['id_carta'];
+			$rowCartas[] = $row;
 		}
 
-		shuffle($cartas);
+		shuffle($rowCartas);
+
+		// echo json_encode($rowCartas);
+
+		$arma = false;
+		$comodo = false;
+		$suspeito = false;
+		foreach ($rowCartas as $rowCarta) {
+			if(!$arma && $rowCarta['tipo_carta'] == 'arma'){
+				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES (0,  ".$rowCarta['id_carta'].")";
+				mysql_query($sql, $conn);
+				$arma = true;
+			} else if(!$comodo && $rowCarta['tipo_carta'] == 'comodo'){
+				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES (0,  ".$rowCarta['id_carta'].")";
+				mysql_query($sql, $conn);
+				$comodo = true;
+			} else if(!$suspeito && $rowCarta['tipo_carta'] == 'suspeito'){
+				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES (0,  ".$rowCarta['id_carta'].")";
+				mysql_query($sql, $conn);
+				$suspeito = true;
+			} else {
+				$cartas[] = $rowCarta['id_carta'];
+			}
+		}
 
 		$rs = mysql_query('SELECT usuario_idusuario FROM ' . $idPartida . '_partidaxusuario') or die(mysql_error());
 		while ($row = mysql_fetch_array($rs)) {		
@@ -113,19 +136,16 @@
 
 		$count = 0;
 		foreach ($cartas as $carta) {
-			if($count < 3){
-				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES (0,  $carta)";
-				mysql_query($sql, $conn);
-			} else if($count < 9){
+			if($count < 6){
 				$sql = "INSERT INTO  " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[0],  $carta)";
 				mysql_query($sql, $conn);
-			} else if($count < 15){
+			} else if($count < 12){
 				$sql = "INSERT INTO " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[1],  $carta)";
 				mysql_query($sql, $conn);
-			} else if($count < 21){
+			} else if($count < 18){
 				$sql = "INSERT INTO " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[2],  $carta)";
 				mysql_query($sql, $conn);
-			} else if($count < 27){
+			} else if($count < 24){
 				$sql = "INSERT INTO " . $idPartida . "_usuario_cartas (id_usuario, id_carta) VALUES ($usuarios[3],  $carta)";
 				mysql_query($sql, $conn);
 			}
