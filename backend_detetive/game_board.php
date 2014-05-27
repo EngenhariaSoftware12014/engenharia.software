@@ -12,7 +12,7 @@
 
 	// Pegar o jogador corrente
 	$rsJogadorCorrente = mysql_query("select par.current_player as current_place, pxu.usuario_idusuario as current_player from partidas as par
-		left join 1_partidaxusuario as pxu on par.current_player = pxu.idpartidaxusuario 
+		left join " . $idPartida . "_partidaxusuario as pxu on par.current_player = pxu.idpartidaxusuario 
 		where par.idpartida = $idPartida");
 	$r = mysql_fetch_assoc($rsJogadorCorrente);
 	$currentPlace = $r['current_place'];
