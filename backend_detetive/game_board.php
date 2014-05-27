@@ -11,8 +11,11 @@
 	include 'php/conn.php';
 
 	// Pegar o jogador corrente
-	$rsJogadorCorrente = mysql_query("select current_player from partidas where idpartida = $idPartida");
+	$rsJogadorCorrente = mysql_query("select par.current_player as current_place, pxu.usuario_idusuario as current_player from partidas as par
+		left join 1_partidaxusuario as pxu on par.current_player = pxu.idpartidaxusuario 
+		where par.idpartida = $idPartida");
 	$r = mysql_fetch_assoc($rsJogadorCorrente);
+	$currentPlace = $r['current_place'];
 	$currentPlayer = $r['current_player'];
 
 	// Recuperar jogadores
@@ -22,7 +25,7 @@
 		left join suspeitos as sus on sus.idsuspeitos = pxu.suspeito_idsuspeito") or die(mysql_error());
 	$jogadores = '';
 	while($row = mysql_fetch_assoc($rsJogador)){
-		$jogadores .= '<div class="suspect row' . ($row['idpartidaxusuario'] == $currentPlayer ? ' current' : '') . '">' 
+		$jogadores .= '<div class="suspect row' . ($row['idpartidaxusuario'] == $currentPlace ? ' current' : '') . '">' 
 			. '<div class="suspect-img col"><img src="images/cards/' . $row['imagem'] . '"></div>'
 			. '<div class="suspect-description col"><span><strong>' . $row['nome'] . '</strong><br><small>' . $row['patente'] . '</small></span></div>'
 			. '</div>';
@@ -787,11 +790,23 @@
 			<div id="notes"><?= $anotacoes ?></div>	
 		</div>
 	</div>
+
+	<div class="modal">
+		<div id="roda_dado"></div>
+		<div id="loading-message">
+			<h3>Aguardando jogada...</h3>
+			<img src="images/spinner.GIF">
+		</div>
+	</div>
+
 	<script src="jquery/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {
 		var idPartida = <?= $idPartida ?>;
 		var idUsuario = <?= $idUsuario ?>;
+		var currentPlayer = <?= $currentPlayer ?>;
+
+		// rodaDado(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({
@@ -812,7 +827,41 @@
 	    			console.log(data);
 	    		});
 	    });
+
 	});
+
+	function rodaDado(idPartida, idUsuario, currentPlayer) {
+		if (idUsuario === currentPlayer) {
+			$.getJSON('php/roda_dado.php', {idPartida: idPartida, currentPlayer: currentPlayer}).done(function(data) {
+				$('#roda_dado').html('<img src="images/dados/dado_' + data.numero_dado + '.gif">');
+				$('.modal').show();
+				$('#roda_dado').show();
+				setTimeout(function() {
+					$('.modal').hide();
+					$('#roda_dado').hide();
+				}, 4000);
+			});
+		} else {
+			$('.modal').show();
+			$('#loading-message').show();
+			
+			var check = window.setInterval(function() {
+				$.getJSON('php/check_dado_rodado.php', {idPartida: idPartida, currentPlayer: currentPlayer}).done(function(data) {
+					if (data.check_dado === 'true') {
+						$('#loading-message').hide();
+						$('#roda_dado').html('<img src="images/dados/dado_' + data.numero_dado + '.gif">');
+						// $('.modal').show();
+						$('#roda_dado').show();
+						setTimeout(function() {
+							$('.modal').hide();
+							$('#roda_dado').hide();
+							clearInterval(check);
+						}, 4000);
+					}
+				});
+			}, 3000);
+		}
+	}
 	</script>
 </body>
 </html>

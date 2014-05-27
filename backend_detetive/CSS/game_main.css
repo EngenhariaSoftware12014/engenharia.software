@@ -65,6 +65,7 @@ body {
 	margin: 0 auto;
 	border-radius: 5px;
 	padding: 20px;
+	z-index: 200;
 }
 
 .modal h3 {
@@ -101,6 +102,12 @@ body {
 	padding: 2px 0 2px 0;
 	border: 1px solid #AD230B;
 	color: #000;
+}
+
+#roda_dado {
+	display: none;
+	text-align: center;
+	margin-top: 200px;
 }
 
 .title {
