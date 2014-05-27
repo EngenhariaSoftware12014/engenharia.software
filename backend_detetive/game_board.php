@@ -807,9 +807,10 @@
 		var currentPlayer = <?= $currentPlayer ?>;
 		var dado = 6;
 
-		// rodaDado(idPartida, idUsuario, currentPlayer);
+		rodaDado(idPartida, idUsuario, currentPlayer);
 
-		selectWay(idPartida, idUsuario, currentPlayer);
+		// Esta função começa a tratar da mobilidade do personagem, só que não tive tempo para arrumar
+		//selectWay(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({
