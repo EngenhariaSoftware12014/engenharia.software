@@ -53,6 +53,14 @@
 	}
 	$anotacoes .= '</ul>';
 
+	// Recuperar a posição dos inicial dos pins
+	// $rsSuspeitos = mysql_query("select sus.idsuspeitos as idsuspeitos, sus.imagem as imagem, com.position_x as position_x, com.position_y as position_y from suspeitos as sus 
+	// 	left join comodos as com on com.idcomodos = sus.comodo_idcomodo");
+	// $suspeitos = '';
+	// while($row = mysql_fetch_assoc($rsSuspeitos)) {
+
+	// 	$suspeitos .= '<img src="images/pins/' . $row['imagem'] . '" id="char_' . $row['idsuspeitos'] . '" class="character">';
+	// }
 ?>
 <!doctype html>
 <html lang="en">
@@ -79,7 +87,6 @@
 		<div id="center" class="col">
 			<div id="board-container">
 				<div id="board">	
-					<img src="chaves.svg" id="chaves" class="character">				
 					<div class="row">
 						<div id="r01c01" class="col restaurant"></div>
 						<div id="r01c02" class="col restaurant"></div>

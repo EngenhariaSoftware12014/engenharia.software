@@ -174,6 +174,7 @@ body {
 	height: 200px;
 	position: absolute;
 	bottom: 0;
+	display: none;
 }
 
 #cards {
@@ -208,13 +209,14 @@ body {
 #board .col {
 	width: 20px;
 	height: 20px;
-	/*border: 1px solid transparent;*/
-	border: 1px solid #000;
+	border: 1px solid transparent;
+	/*border: 1px solid #000;*/
 	background: #fff;
 }
 
 #board .field {
 	border-color: #000;
+	border: 1px solid #000;
 }
 
 #board .graveyard {
@@ -280,9 +282,9 @@ body {
 	left: 5px;
 }
 
-.prefecture.caret-up:after {
+/*.prefecture.caret-up:after {
 	left: 16px;
-}
+}*/
 
 .caret-down:after {
 	border-left: 5px solid transparent;
@@ -306,6 +308,54 @@ body {
 	border-left: 5px solid #000;
 	bottom: 5px;
 	left: 7px;	
+}
+
+.col:before {
+	position: absolute;
+}
+
+#r04c01:before {
+	content: 'Casa D. Florinda';
+}
+
+#r05c11:before {
+	content: 'Casa Bruxa do 71';
+}
+
+#r05c20:before {
+	content: 'Casa S. Madruga';
+}
+
+#r10c01:before {
+	content: 'Lanchonete';
+}
+
+#r16c10:before {
+	content: 'Pátio';
+}
+
+#r11c20:before {
+	content: 'Fonte';
+}
+
+#r17c01:before {
+	content: 'Entrada';
+}
+
+#r16c20:before {
+	content: 'Escola';
+}
+
+#r24c01:before {
+	content: 'B. Churros';
+}
+
+#r24c10:before {
+	content: 'Terreno Baldio';
+}
+
+#r24c20:before {
+	content: 'Mercado';
 }
 
 .character {
