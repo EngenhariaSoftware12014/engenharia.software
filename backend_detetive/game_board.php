@@ -775,7 +775,8 @@
 	<script src="jquery/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {
-
+		var idPartida = <?= $idPartida ?>;
+		var idUsuario = <?= $idUsuario ?>;
 
 	    $('.card').hover(function() {
 	        $(this).animate({
@@ -787,6 +788,14 @@
 	        $(this).animate({
 	            'margin-top': '0px'
 	        }, 200);
+	    });
+
+	    $('.notes-check').change(function() {
+	    	var idCarta = $(this).attr('data-id'), tipoCarta = $(this).attr('data-tipo');
+	    	$.getJSON('php/put_coment.php', {idPartida: idPartida, idUsuario: idUsuario, idCarta: idCarta, tipoCarta: tipoCarta})
+	    		.done(function(data) {
+	    			console.log(data);
+	    		});
 	    });
 	});
 	</script>

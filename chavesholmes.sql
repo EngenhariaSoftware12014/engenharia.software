@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: May 27, 2014 at 02:52 AM
+-- Generation Time: May 27, 2014 at 03:30 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -73,11 +73,24 @@ CREATE TABLE `1_comentarios` (
   `usuario_idusuario` int(10) unsigned NOT NULL,
   `partida_idpartida` int(10) unsigned NOT NULL,
   `comentario` multilinestring DEFAULT NULL,
+  `carta_idcarta` int(10) NOT NULL,
+  `carta_tipocarta` varchar(1) NOT NULL,
   `delete_2` char(1) DEFAULT NULL,
   PRIMARY KEY (`idcomentarios`,`usuario_idusuario`,`partida_idpartida`),
   KEY `comentarios_fkindex1` (`usuario_idusuario`),
   KEY `comentarios_fkindex2` (`partida_idpartida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `1_comentarios`
+--
+
+INSERT INTO `1_comentarios` (`idcomentarios`, `usuario_idusuario`, `partida_idpartida`, `comentario`, `carta_idcarta`, `carta_tipocarta`, `delete_2`) VALUES
+(2, 9, 0, NULL, 2, 'S', NULL),
+(4, 9, 0, NULL, 6, 'S', NULL),
+(5, 9, 0, NULL, 4, 'S', NULL),
+(8, 9, 0, NULL, 10, 'C', NULL),
+(9, 9, 0, NULL, 7, 'C', NULL);
 
 -- --------------------------------------------------------
 
