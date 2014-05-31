@@ -12,7 +12,7 @@
 
 	// Pegar o jogador corrente
 	$rsJogadorCorrente = mysql_query("select par.current_player as current_place, pxu.usuario_idusuario as current_player from partidas as par
-		left join 1_partidaxusuario as pxu on par.current_player = pxu.idpartidaxusuario 
+		left join " . $idPartida . "_partidaxusuario as pxu on par.current_player = pxu.idpartidaxusuario 
 		where par.idpartida = $idPartida");
 	$r = mysql_fetch_assoc($rsJogadorCorrente);
 	$currentPlace = $r['current_place'];
@@ -809,9 +809,6 @@
 
 		rodaDado(idPartida, idUsuario, currentPlayer);
 
-		// Esta função começa a tratar da mobilidade do personagem, só que não tive tempo para arrumar
-		//selectWay(idPartida, idUsuario, currentPlayer);
-
 	    $('.card').hover(function() {
 	        $(this).animate({
 	            'margin-top': '-25px'
@@ -849,6 +846,7 @@
 					$('.modal').hide();
 					$('#roda_dado').hide();
 				}, 4000);
+				selectWay(idPartida, idUsuario, currentPlayer);
 			});
 		} else {
 			$('.modal').show();
@@ -864,6 +862,7 @@
 						setTimeout(function() {
 							$('.modal').hide();
 							$('#roda_dado').hide();
+							//$('#loading-message').show();
 							clearInterval(check);
 						}, 4000);
 					}
