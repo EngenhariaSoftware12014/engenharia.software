@@ -382,8 +382,11 @@ body {
 }
 
 .character {
-	width: 44px;
-	height: 44px;			
+	margin-top: 14px;
+	margin-right: 7px;
+	margin-left: 7px;
+	width: 30px;
+	height: 30px;			
 	position: absolute;
 	z-index: 100;
 }

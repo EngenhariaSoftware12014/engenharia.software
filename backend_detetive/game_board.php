@@ -10,6 +10,11 @@
 
 	include 'php/conn.php';
 
+	// Pegar o personagem do jogador
+	$rsPersosnagemUsuario = mysql_query("select suspeito_idsuspeito from " . $idPartida . "_partidaxusuario;");
+	$p = mysql_fetch_assoc($rsPersosnagemUsuario);
+	$idSuspeitoUsuario = $p['suspeito_idsuspeito'];
+
 	// Pegar o jogador corrente
 	$rsJogadorCorrente = mysql_query("select par.current_player as current_place, pxu.usuario_idusuario as current_player from partidas as par
 		left join " . $idPartida . "_partidaxusuario as pxu on par.current_player = pxu.idpartidaxusuario 
@@ -43,21 +48,21 @@
 	$rsSusp = mysql_query("SELECT idsuspeitos, nome FROM suspeitos") or die (mysql_error());
 	$anotacoes = '<h2>Suspeitos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsSusp)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="S" data-id="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="suspeito" data-id="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
 	$rsArmas = mysql_query("SELECT idarmas, nome FROM armas") or die (mysql_error());
 	$anotacoes .= '<h2>Armas</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsArmas)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="A" data-id="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="arma" data-id="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
 	}
 	$anotacoes .= '</ul>';
 
 	$rsCmds = mysql_query("SELECT idcomodos, nome FROM comodos") or die (mysql_error());
 	$anotacoes .= '<h2>Comodos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsCmds)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="C" data-id="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="comodo" data-id="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
@@ -71,6 +76,17 @@
 		$suspeitos .= '<img src="images/pins/' . $row['imagem'] . '" id="char_' . $row['idsuspeitos'] . '" class="character" style="position: absolute; top: ' . $top . 'px;
 	left: ' . $left . 'px;">';
 	}
+
+	// Recuperar posição dos comodos
+	$rsComPosicao = mysql_query('select class, position_x, position_y from comodos');
+	$arrayComPosicao = array();
+	while($row = mysql_fetch_assoc($rsComPosicao)) {
+		$auxArray = array();
+		$auxArray['top'] = ($row['position_x'] * 22) - 44;
+		$auxArray['left'] = ($row['position_y'] * 22) - 33.5;
+		$arrayComPosicao[$row['class']] = $auxArray;
+	}
+	$comPosicao = json_encode($arrayComPosicao);
 ?>
 <!doctype html>
 <html lang="en">
@@ -111,7 +127,7 @@
 						<div id="r01c10" class="col field"></div>
 						<div id="r01c11" class="col prefecture"></div>
 						<div id="r01c12" class="col prefecture"></div>
-						<div id="r01c13" class="col prefecture-exit prefecture caret caret-up"></div>
+						<div id="r01c13" class="col prefecture-exit prefecture caret caret-up" exit-of="prefecture"></div>
 						<div id="r01c14" class="col prefecture"></div>
 						<div id="r01c15" class="col prefecture"></div>
 						<div id="r01c16" class="col prefecture"></div>
@@ -160,7 +176,7 @@
 						<div id="r03c05" class="col restaurant"></div>
 						<div id="r03c06" class="col restaurant"></div>
 						<div id="r03c07" class="col restaurant"></div>
-						<div id="r03c08" class="col restaurant-exit field caret caret-left"></div>
+						<div id="r03c08" class="col restaurant-exit field caret caret-left" exit-of="restaurant"></div>
 						<div id="r03c09" class="col field"></div>
 						<div id="r03c10" class="col field"></div>
 						<div id="r03c11" class="col prefecture"></div>
@@ -272,7 +288,7 @@
 						<div id="r07c09" class="col field"></div>
 						<div id="r07c10" class="col field"></div>
 						<div id="r07c11" class="col field"></div>
-						<div id="r07c12" class="col prefecture-exit field caret caret-up"></div>
+						<div id="r07c12" class="col prefecture-exit field caret caret-up" exit-of="prefecture"></div>
 						<div id="r07c13" class="col field"></div>
 						<div id="r07c14" class="col field"></div>
 						<div id="r07c15" class="col field"></div>
@@ -282,7 +298,7 @@
 						<div id="r07c19" class="col field"></div>
 						<div id="r07c20" class="col field"></div>
 						<div id="r07c21" class="col field"></div>
-						<div id="r07c22" class="col bank-exit field caret caret-up"></div>
+						<div id="r07c22" class="col bank-exit field caret caret-up" exit-of="bank"></div>
 						<div id="r07c23" class="col field"></div>
 						<div id="r07c24" class="col field"></div>
 						<div id="r07c25" class="col field"></div>
@@ -311,7 +327,7 @@
 						<div id="r08c21" class="col field"></div>
 						<div id="r08c22" class="col field"></div>
 						<div id="r08c23" class="col field"></div>
-						<div id="r08c24" class="col office-exit field caret caret-down"></div>
+						<div id="r08c24" class="col office-exit field caret caret-down" exit-of="office"></div>
 						<div id="r08c25" class="col field"></div>
 					</div>
 					<div class="row">
@@ -320,7 +336,7 @@
 						<div id="r09c03" class="col hospital"></div>
 						<div id="r09c04" class="col hospital"></div>
 						<div id="r09c05" class="col hospital"></div>
-						<div id="r09c06" class="col hospital-exit field caret caret-left"></div>
+						<div id="r09c06" class="col hospital-exit field caret caret-left" exit-of="hospital"></div>
 						<div id="r09c07" class="col field"></div>
 						<div id="r09c08" class="col field"></div>
 						<div id="r09c09" class="col field"></div>
@@ -360,7 +376,7 @@
 						<div id="r10c16" class="col square"></div>
 						<div id="r10c17" class="col field"></div>
 						<div id="r10c18" class="col field"></div>
-						<div id="r10c19" class="col office-exit field caret caret-right"></div>
+						<div id="r10c19" class="col office-exit field caret caret-right" exit-of="office"></div>
 						<div id="r10c20" class="col office"></div>
 						<div id="r10c21" class="col office"></div>
 						<div id="r10c22" class="col office"></div>
@@ -398,7 +414,7 @@
 					<div class="row">
 						<div id="r12c01" class="col field"></div>
 						<div id="r12c02" class="col field"></div>
-						<div id="r12c03" class="col hospital-exit field caret caret-up"></div>
+						<div id="r12c03" class="col hospital-exit field caret caret-up" exit-of="hospital"></div>
 						<div id="r12c04" class="col field"></div>
 						<div id="r12c05" class="col field"></div>
 						<div id="r12c06" class="col field"></div>
@@ -431,7 +447,7 @@
 						<div id="r13c06" class="col floriculture"></div>
 						<div id="r13c07" class="col field"></div>
 						<div id="r13c08" class="col field"></div>
-						<div id="r13c09" class="col square-exit field caret caret-right"></div>
+						<div id="r13c09" class="col square-exit field caret caret-right" exit-of="square"></div>
 						<div id="r13c10" class="col square"></div>
 						<div id="r13c11" class="col square"></div>
 						<div id="r13c12" class="col square"></div>
@@ -439,7 +455,7 @@
 						<div id="r13c14" class="col square"></div>
 						<div id="r13c15" class="col square"></div>
 						<div id="r13c16" class="col square"></div>
-						<div id="r13c17" class="col square-exit field caret caret-left"></div>
+						<div id="r13c17" class="col square-exit field caret caret-left" exit-of="square"></div>
 						<div id="r13c18" class="col field"></div>
 						<div id="r13c19" class="col field"></div>
 						<div id="r13c20" class="col field"></div>
@@ -447,7 +463,7 @@
 						<div id="r13c22" class="col field"></div>
 						<div id="r13c23" class="col field"></div>
 						<div id="r13c24" class="col field"></div>
-						<div id="r13c25" class="col mansion-exit field caret caret-down"></div>
+						<div id="r13c25" class="col mansion-exit field caret caret-down" exit-of="mansion"></div>
 					</div>
 					<div class="row">
 						<div id="r14c01" class="col floriculture"></div>
@@ -510,7 +526,7 @@
 						<div id="r16c04" class="col floriculture"></div>
 						<div id="r16c05" class="col floriculture"></div>
 						<div id="r16c06" class="col floriculture"></div>
-						<div id="r16c07" class="col floriculture-exit field caret caret-left"></div>
+						<div id="r16c07" class="col floriculture-exit field caret caret-left" exit-of="floriculture"></div>
 						<div id="r16c08" class="col field"></div>
 						<div id="r16c09" class="col field"></div>
 						<div id="r16c10" class="col square"></div>
@@ -522,7 +538,7 @@
 						<div id="r16c16" class="col square"></div>
 						<div id="r16c17" class="col field"></div>
 						<div id="r16c18" class="col field"></div>
-						<div id="r16c19" class="col mansion-exit field caret caret-right"></div>
+						<div id="r16c19" class="col mansion-exit field caret caret-right" exit-of="mansion"></div>
 						<div id="r16c20" class="col mansion"></div>
 						<div id="r16c21" class="col mansion"></div>
 						<div id="r16c22" class="col mansion"></div>
@@ -587,7 +603,7 @@
 					<div class="row">
 						<div id="r19c01" class="col field"></div>
 						<div id="r19c02" class="col field"></div>
-						<div id="r19c03" class="col floriculture-exit field caret caret-up"></div>
+						<div id="r19c03" class="col floriculture-exit field caret caret-up" exit-of="floriculture"></div>
 						<div id="r19c04" class="col field"></div>
 						<div id="r19c05" class="col field"></div>
 						<div id="r19c06" class="col field"></div>
@@ -615,7 +631,7 @@
 						<div id="r20c01" class="col field"></div>
 						<div id="r20c02" class="col field"></div>
 						<div id="r20c03" class="col field"></div>
-						<div id="r20c04" class="col graveyard-exit field caret caret-down"></div>
+						<div id="r20c04" class="col graveyard-exit field caret caret-down" exit-of="graveyard"></div>
 						<div id="r20c05" class="col field"></div>
 						<div id="r20c06" class="col field"></div>
 						<div id="r20c07" class="col field"></div>
@@ -635,7 +651,7 @@
 						<div id="r20c21" class="col field"></div>
 						<div id="r20c22" class="col field"></div>
 						<div id="r20c23" class="col field"></div>
-						<div id="r20c24" class="col nightclub-exit field caret caret-down"></div>
+						<div id="r20c24" class="col nightclub-exit field caret caret-down" exit-of="nightclub"></div>
 						<div id="r20c25" class="col field"></div>
 					</div>
 					<div class="row">
@@ -672,7 +688,7 @@
 						<div id="r22c04" class="col graveyard"></div>
 						<div id="r22c05" class="col graveyard"></div>
 						<div id="r22c06" class="col graveyard"></div>
-						<div id="r22c07" class="col graveyard-exit field caret caret-left"></div>
+						<div id="r22c07" class="col graveyard-exit field caret caret-left" exit-of="graveyard"></div>
 						<div id="r22c08" class="col field"></div>
 						<div id="r22c09" class="col field"></div>
 						<div id="r22c10" class="col station"></div>
@@ -682,7 +698,7 @@
 						<div id="r22c14" class="col station"></div>
 						<div id="r22c15" class="col station"></div>
 						<div id="r22c16" class="col station"></div>
-						<div id="r22c17" class="col station-exit field caret caret-left"></div>
+						<div id="r22c17" class="col station-exit field caret caret-left" exit-of="station"></div>
 						<div id="r22c18" class="col field"></div>
 						<div id="r22c19" class="col field"></div>
 						<div id="r22c20" class="col nightclub"></div>
@@ -711,7 +727,7 @@
 						<div id="r23c16" class="col station"></div>
 						<div id="r23c17" class="col field"></div>
 						<div id="r23c18" class="col field"></div>
-						<div id="r23c19" class="col nightclub-exit field caret caret-right"></div>
+						<div id="r23c19" class="col nightclub-exit field caret caret-right" exit-of="nightclub"></div>
 						<div id="r23c20" class="col nightclub"></div>
 						<div id="r23c21" class="col nightclub"></div>
 						<div id="r23c22" class="col nightclub"></div>
@@ -728,7 +744,7 @@
 						<div id="r24c06" class="col graveyard"></div>
 						<div id="r24c07" class="col field"></div>
 						<div id="r24c08" class="col field"></div>
-						<div id="r24c09" class="col station-exit field caret caret-right"></div>
+						<div id="r24c09" class="col station-exit field caret caret-right" exit-of="station"></div>
 						<div id="r24c10" class="col station"></div>
 						<div id="r24c11" class="col station"></div>
 						<div id="r24c12" class="col station"></div>
@@ -759,7 +775,7 @@
 						<div id="r25c10" class="col station"></div>
 						<div id="r25c11" class="col station"></div>
 						<div id="r25c12" class="col station"></div>
-						<div id="r25c13" class="col station-exit station caret caret-down"></div>
+						<div id="r25c13" class="col station-exit station caret caret-down" exit-of="station"></div>
 						<div id="r25c14" class="col station"></div>
 						<div id="r25c15" class="col station"></div>
 						<div id="r25c16" class="col station"></div>
@@ -776,7 +792,7 @@
 				</div>
 
 			</div>
-			<div id="bottom">
+			<div id="bottom" style="display: none;">
 				<div id="cards" class="row"><?= $cartas ?></div>
 			</div>
 		</div>
@@ -791,23 +807,27 @@
 		</div>
 	</div>
 
-	<div class="modal">
+	<div class="modal" style="display: block;">
 		<div id="roda_dado"></div>
 		<div id="loading-message">
 			<h3>Aguardando jogada...</h3>
 			<img src="images/spinner.GIF">
 		</div>
+		<div id="cria_suspeita">
+
+
+		</div>
 	</div>
 
 	<script src="jquery/jquery.min.js"></script>
 	<script>
-	$(document).ready(function() {
-		var idPartida = <?= $idPartida ?>;
-		var idUsuario = <?= $idUsuario ?>;
-		var currentPlayer = <?= $currentPlayer ?>;
-		var dado = 6;
+	var numeroDado = 0, numeroJogadas = 0, comPosicao = <?= $comPosicao ?>, 
+		idPartida = <?= $idPartida ?>, idUsuario = <?= $idUsuario ?>, 
+		currentPlayer = <?= $currentPlayer ?>, idSuspeitoUsuario = <?= $idSuspeitoUsuario ?>;
 
-		rodaDado(idPartida, idUsuario, currentPlayer);
+	$(document).ready(function() {
+
+		//rodaDado(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({
@@ -829,9 +849,29 @@
 	    		});
 	    });
 
+	    // Movimentação do jogador
 	    $(document).on('click', '.available', function() {
 	    	$('.available').removeClass('available'); 
 	    	$(this).addClass('selected');
+	    	
+	    	numeroJogadas++;
+
+	    	var id = $(this).attr('id');
+	    	var pos = retornarPosicaoPorId(id);
+
+	    	if ($(this).hasClass('caret') && numeroJogadas !== 1) {
+	    		var comodo = $(this).attr('exit-of');
+	    		var top = comPosicao[comodo].top;
+	    		var left = comPosicao[comodo].left;
+	    		$('#char_' + idSuspeitoUsuario).css({'top': top + 'px', 'left': left + 'px'});
+	    	} else {
+	    		$('#char_' + idSuspeitoUsuario).css({'top': ((pos[0] * 22) - 44) + 'px', 'left': ((pos[1] * 22) - 33.5) + 'px'});
+	    	}
+
+	    	if (numeroJogadas < numeroDado) {	
+	    		proximoPasso(pos[0], pos[1]);	
+	    	} 
+	    	
 	    });
 
 	});
@@ -846,6 +886,8 @@
 					$('.modal').hide();
 					$('#roda_dado').hide();
 				}, 4000);
+
+				numeroDado = data.numero_dado;
 				selectWay(idPartida, idUsuario, currentPlayer);
 			});
 		} else {
@@ -878,13 +920,40 @@
 					$('.' + data.comodo_class + '-exit').addClass('available');
 				} else {
 					// no caso de não cair em um comodo
-					// ...
+					// console.log(data);
+					proximoPasso(data.position_x, data.position_y);
 				}
 			});
 		} else {
 
 		}
 	}
+
+	function inserirZero(numero) {
+		if (numero < 10) 
+			return '0' + numero; 
+		else 
+			return numero;
+	}
+
+	function proximoPasso (position_x, position_y) {
+		var p1 = '.field#r' + inserirZero(parseInt(position_x) + 1) + 'c' + inserirZero(parseInt(position_y));
+		var p2 = '.field#r' + inserirZero(parseInt(position_x) - 1) + 'c' + inserirZero(parseInt(position_y));
+		var p3 = '.field#r' + inserirZero(parseInt(position_x)) + 'c' + inserirZero(parseInt(position_y) + 1);
+		var p4 = '.field#r' + inserirZero(parseInt(position_x)) + 'c' + inserirZero(parseInt(position_y) - 1);
+		
+		$(p1).addClass('available');
+		$(p2).addClass('available');
+		$(p3).addClass('available');
+		$(p4).addClass('available');
+	}
+
+	function retornarPosicaoPorId(id) {
+		var position_x = id.substr(1, 2);
+		var position_y = id.substr(4, 5);
+		return [position_x, position_y];
+	}
+
 	</script>
 </body>
 </html>
