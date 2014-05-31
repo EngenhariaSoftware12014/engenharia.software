@@ -48,21 +48,21 @@
 	$rsSusp = mysql_query("SELECT idsuspeitos, nome FROM suspeitos") or die (mysql_error());
 	$anotacoes = '<h2>Suspeitos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsSusp)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="suspeito" data-id="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="radio" class="notes-check" data-tipo="suspeito" data-id="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
 	$rsArmas = mysql_query("SELECT idarmas, nome FROM armas") or die (mysql_error());
 	$anotacoes .= '<h2>Armas</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsArmas)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="arma" data-id="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
+		$anotacoes .= '<li><span><input type="radio" class="notes-check" data-tipo="arma" data-id="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
 	}
 	$anotacoes .= '</ul>';
 
 	$rsCmds = mysql_query("SELECT idcomodos, nome FROM comodos") or die (mysql_error());
 	$anotacoes .= '<h2>Comodos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsCmds)){
-		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="comodo" data-id="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="radio" class="notes-check" data-tipo="comodo" data-id="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
@@ -807,15 +807,71 @@
 		</div>
 	</div>
 
-	<div class="modal" style="display: block;">
+	<div class="modal">
 		<div id="roda_dado"></div>
 		<div id="loading-message">
 			<h3>Aguardando jogada...</h3>
 			<img src="images/spinner.GIF">
 		</div>
 		<div id="cria_suspeita">
-
-
+			<h2>Quem é o suspeito?</h2>
+			<ul>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+			</ul>
+			<h2>Qual arma foi usada?</h2>
+			<ul>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+				<li>
+					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
+				</li>
+			</ul>
+			<div class="buttons">			
+				<button id="suspeitar">Suspeitar</a>
+				<button id="acusar">Acusar</a>
+			</div>
 		</div>
 	</div>
 
@@ -827,7 +883,7 @@
 
 	$(document).ready(function() {
 
-		//rodaDado(idPartida, idUsuario, currentPlayer);
+		rodaDado(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({

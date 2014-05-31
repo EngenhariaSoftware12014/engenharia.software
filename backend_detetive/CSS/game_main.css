@@ -405,3 +405,71 @@ body {
 	padding: 0;
 	font-size: 20px;
 }
+
+button {
+	width: 250px;
+	text-align: center;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 20px;
+	margin: 0 auto 20px auto;
+	text-decoration: none;
+}
+
+button#suspeitar {
+	background: #708C38;
+	border: 1px solid #3D4C1E;
+	color: #fff;
+	margin-right: 20px;
+}
+
+button#suspeitar:hover {
+	background: #7A993D;
+	border: 1px solid #5C722E;
+}
+
+button#acusar {
+	background: #ED300F;
+	border: 1px solid #AD230B;
+	color: #fff;
+}
+
+button#acusar:hover {
+	background: #FA3310;
+	border: 1px solid #D32B0D;
+	color: #fff;
+}
+
+#cria_suspeita {
+	display: none;
+}
+
+#cria_suspeita ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#cria_suspeita ul li {
+	display: inline;
+	position: relative;
+	width: 70px;
+	padding: 0;
+	margin: 0;
+}
+
+#cria_suspeita img {
+	width: 70px;
+}
+
+#cria_suspeita input[type="radio"] {
+	position: absolute;
+	right: 0px;
+}
+
+.buttons {
+	width: 520px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 90px;
+}
