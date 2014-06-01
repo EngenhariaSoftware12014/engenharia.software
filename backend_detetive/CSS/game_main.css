@@ -472,3 +472,7 @@ button#acusar:hover {
 	margin-left: auto;
 	margin-top: 90px;
 }
+
+#loading-result {
+	display: none;
+}

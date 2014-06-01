@@ -8,8 +8,8 @@
 	$posicaoY = intval($_REQUEST['position_y']);
 	$result = array();
 
-	$sql = "UPDATE ".$idPartida."_suspeitosxposicao SET position_x = $posicaoX, position_y = $posicaoY WHERE idsuspeito = $idUsuario";
-	mysql_query($sql, $conn) or die(mysql_error());
+	// $sql = "UPDATE ".$idPartida."_suspeitosxposicao SET position_x = $posicaoX, position_y = $posicaoY WHERE idsuspeito = $idUsuario";
+	// mysql_query($sql, $conn) or die(mysql_error());
 
 	$rs = mysql_query("SELECT ".$idPartida."_cartas.id_carta AS idCarta, ".$idPartida."_cartas.id_original AS idOriginal  
 		FROM comodos LEFT OUTER JOIN ".$idPartida."_cartas ON comodos.idcomodos = ".$idPartida."_cartas.id_original  WHERE position_x = $posicaoX and position_y = $posicaoY and tipo_carta = 'comodo' ") or die(mysql_error());
@@ -37,19 +37,19 @@
 	
 		echo json_encode($result);
 	} else {
-		$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE idpartidaxusuario > (SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
-		if(mysql_num_rows($rs) > 0){
-			$idProxUsuario = mysql_fetch_array($rs);
-			$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
-			mysql_query($sql, $conn);
-		} else {
-			$rs = mysql_query("SELECT usuario_idusuario AS idUsuario FROM ".$idPartida."_partidaxusuario ") or die(mysql_error());
-			if(mysql_num_rows($rs) > 0){
-				$idProxUsuario = mysql_fetch_array($rs);
-				$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
-				mysql_query($sql, $conn);
-			}
-		}
+		// $rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE idpartidaxusuario > (SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
+		// if(mysql_num_rows($rs) > 0){
+		// 	$idProxUsuario = mysql_fetch_array($rs);
+		// 	$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
+		// 	mysql_query($sql, $conn);
+		// } else {
+		// 	$rs = mysql_query("SELECT usuario_idusuario AS idUsuario FROM ".$idPartida."_partidaxusuario ") or die(mysql_error());
+		// 	if(mysql_num_rows($rs) > 0){
+		// 		$idProxUsuario = mysql_fetch_array($rs);
+		// 		$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
+		// 		mysql_query($sql, $conn);
+		// 	}
+		// }
 
 		echo json_encode(array("end" => true));
 	}

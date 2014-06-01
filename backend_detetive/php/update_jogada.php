@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 	include 'conn.php';
 
@@ -18,4 +18,5 @@
 		mysql_query($sql, $conn);
 	}
 
+	echo json_encode('error' => false);
 ?>

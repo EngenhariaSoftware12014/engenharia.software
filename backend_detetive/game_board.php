@@ -813,6 +813,10 @@
 			<h3>Aguardando jogada...</h3>
 			<img src="images/spinner.GIF">
 		</div>
+		<div id="loading-result">
+			<h3>Aguardando resposta dos jogadores...</h3>
+			<img src="images/spinner.GIF">
+		</div>
 		<div id="cria_suspeita">
 			<h2>Quem é o suspeito?</h2>
 			<ul id="suspeitoSuspeita"></ul>
@@ -886,9 +890,12 @@
 	    });
 
 	    $('#suspeitar').click(function() {
-	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val();
-	    	var armaSuspeita = $('input[name=armaSuspeita').val();
-	    	var comodoSuspeita = $('armaSuspeita[name=comodoSuspeita]').val();
+	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
+	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita}).done(function(data) {
+	    		//$('.modal').show();
+	    		$('#cria_suspeita').hide();
+	    		$('#loading-result').show();
+	    	});
 	    });
 
 	});
