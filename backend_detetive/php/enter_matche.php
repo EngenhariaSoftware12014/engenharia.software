@@ -27,6 +27,7 @@
 				`usuario_idusuario` int(10) unsigned NOT NULL,
 				`numero_dado` int(10) NOT NULL DEFAULT '0',
 				`suspeito_suspeita` int(10) NOT NULL,
+				`acusacao` int(1) ,
 				`arma_suspeita` int(10) NOT NULL,
 				`comodo_suspeita` int(10) NOT NULL,
 				`resposta_carta` int(10) NOT NULL,
