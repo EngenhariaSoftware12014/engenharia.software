@@ -37,7 +37,7 @@
 		if($countAcertos > 2){
 			$sql = "UPDATE partidas SET status = 3, vencedor = $idUsuario WHERE idpartida = $idPartida";
 			mysql_query($sql, $conn) or die(mysql_error());
-			echo json_encode(array("winner" => true, "idUsuWinner" => $idUsuario, "cartasEnvelope" => $cartas));
+			echo json_encode(array("winner" => 'true', "idUsuWinner" => $idUsuario, "cartasEnvelope" => $cartas));
 		} else {
 			
 			$idProxUsuario = array();
@@ -64,7 +64,7 @@
 
 			$sql = "UPDATE ".$idPartida."_partidaxusuario SET loser = 1 WHERE usuario_idusuario = $idUsuario";
 			mysql_query($sql, $conn) or die(mysql_error());
-			echo json_encode(array("winner" => false, "idUsuLoser" => $idUsuario));
+			echo json_encode(array("winner" => 'false', "idUsuLoser" => $idUsuario));
 		}
 	}
 ?>

@@ -19,5 +19,10 @@
 			   WHERE idjogadas = ".$idJogada['idJogada'];
 		mysql_query($sql) or die (mysql_error());
 	}
+
+	$rs = mysql_query('select position_x, position_y from comodos where idcomodos = $idComodo');
+	$row = mysql_fetch_assoc($rs);
+	mysql_query('update ' . $idPartida . '_suspeitosxposicao set position_x = ' . $row['position_x'] . ', position_y = ' . $row['position_y'] . ' where idsuspeito = 2');
+
 	echo json_encode(array('error' => false));
 ?>

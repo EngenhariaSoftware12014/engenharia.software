@@ -478,3 +478,19 @@ button#acusar:hover {
 	margin-top: 200px;
 	display: none;
 }
+
+.loser {
+	position: relative;
+}
+
+.loser:after {
+	content: 'Loser!';
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 40px;
+	background: #ED300F;
+	padding: 2px 0 2px 0;
+	border: 1px solid #AD230B;
+	color: #000;
+};
