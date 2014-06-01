@@ -4,15 +4,15 @@
 
 	$idPartida = intval($_REQUEST['idPartida']);
 	$idUsuario = intval($_REQUEST['idUsuario']);
-	$posicaoX = intval($_REQUEST['posicaoX']);
-	$posicaoY = intval($_REQUEST['posicaoY']);
+	$posicaoX = intval($_REQUEST['position_x']);
+	$posicaoY = intval($_REQUEST['position_y']);
 	$result = array();
 
-	$sql = "UPDATE ".$idPartida."_suspeitosxusuario SET position_x = $posicaoX, position_y = $posicaoY WHERE idsuspeito = $idUsuario";
-	mysql_query($sql, $conn);
+	$sql = "UPDATE ".$idPartida."_suspeitosxposicao SET position_x = $posicaoX, position_y = $posicaoY WHERE idsuspeito = $idUsuario";
+	mysql_query($sql, $conn) or die(mysql_error());
 
 	$rs = mysql_query("SELECT ".$idPartida."_cartas.id_carta AS idCarta, ".$idPartida."_cartas.id_original AS idOriginal  
-					   FROM comodos LEFT OUTER JOIN ".$idPartida."_cartas ON comodos.idcomodos = ".$idPartida."_cartas.id_original  WHERE position_x = $posicaoX and position_y = $posicaoY and tipo_carta = 'comodo' ") or die(mysql_error());
+		FROM comodos LEFT OUTER JOIN ".$idPartida."_cartas ON comodos.idcomodos = ".$idPartida."_cartas.id_original  WHERE position_x = $posicaoX and position_y = $posicaoY and tipo_carta = 'comodo' ") or die(mysql_error());
 
 	if (mysql_num_rows($rs) > 0) {
 		$result['comodo'][] = mysql_fetch_object($rs);

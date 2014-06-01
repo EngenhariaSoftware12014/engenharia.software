@@ -82,8 +82,8 @@
 	$arrayComPosicao = array();
 	while($row = mysql_fetch_assoc($rsComPosicao)) {
 		$auxArray = array();
-		$auxArray['top'] = ($row['position_x'] * 22) - 44;
-		$auxArray['left'] = ($row['position_y'] * 22) - 33.5;
+		$auxArray['top'] = $row['position_x'];
+		$auxArray['left'] = $row['position_y'];
 		$arrayComPosicao[$row['class']] = $auxArray;
 	}
 	$comPosicao = json_encode($arrayComPosicao);
@@ -815,59 +815,10 @@
 		</div>
 		<div id="cria_suspeita">
 			<h2>Quem é o suspeito?</h2>
-			<ul>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-			</ul>
+			<ul id="suspeitoSuspeita"></ul>
 			<h2>Qual arma foi usada?</h2>
-			<ul>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-				<li>
-					<img src="images/cards/bola.png" alt=""><input type="radio" name="suspeitoSuspeita">
-				</li>
-			</ul>
+			<ul id="armaSuspeita"></ul>
+			<input type="hidden" name="comodoSuspeita" id="comodoSuspeita"/>
 			<div class="buttons">			
 				<button id="suspeitar">Suspeitar</a>
 				<button id="acusar">Acusar</a>
@@ -919,13 +870,17 @@
 	    		var comodo = $(this).attr('exit-of');
 	    		var top = comPosicao[comodo].top;
 	    		var left = comPosicao[comodo].left;
-	    		$('#char_' + idSuspeitoUsuario).css({'top': top + 'px', 'left': left + 'px'});
-	    	} else {
-	    		$('#char_' + idSuspeitoUsuario).css({'top': ((pos[0] * 22) - 44) + 'px', 'left': ((pos[1] * 22) - 33.5) + 'px'});
-	    	}
+	    		$('#char_' + idSuspeitoUsuario).css({'top': ((top * 22) - 44) + 'px', 'left': ((left * 22) - 33.5) + 'px'});
+	    		moverPosicao(idPartida, idUsuario, top, left);
 
-	    	if (numeroJogadas < numeroDado) {	
-	    		proximoPasso(pos[0], pos[1]);	
+	    	} else {
+
+	    		$('#char_' + idSuspeitoUsuario).css({'top': ((pos[0] * 22) - 44) + 'px', 'left': ((pos[1] * 22) - 33.5) + 'px'});
+	    		if (numeroJogadas < numeroDado) {	
+	    			proximoPasso(pos[0], pos[1]);	
+	    		} else {
+	    			moverPosicao(idPartida, idUsuario, top, left);
+	    		}
 	    	} 
 	    	
 	    });
@@ -1008,6 +963,34 @@
 		var position_x = id.substr(1, 2);
 		var position_y = id.substr(4, 5);
 		return [position_x, position_y];
+	}
+
+	function moverPosicao(idPartida, idUsuario, position_x, position_y) {
+		$.getJSON('php/move_position.php', {idPartida: idPartida, idUsuario: idUsuario, position_x: position_x, position_y: position_y}).done(function(data) {
+			if (data.end) {
+				console.log('Fim');
+			} else {
+				$('#comodoSuspeita').val(data.comodo[0].idCarta);
+				
+				var htmlAux = '';
+				for (var i = 0, len = data.arma.length; i < len; i++) {
+					var carta = data.arma[i];
+					htmlAux += '<li><img src="images/cards/' + carta.caminhoCarta + '" alt=""><input type="radio" name="armaSuspeita" value="' + carta.idCarta + '"></li>';
+				}
+				$('#armaSuspeita').html(htmlAux);
+				
+				htmlAux = '';
+				for (var i = 0, len = data.suspeito.length; i < len; i++) {
+					var carta = data.suspeito[i];
+					htmlAux += '<li><img src="images/cards/' + carta.caminhoCarta + '" alt=""><input type="radio" name="suspeitoSuspeita" value="' + carta.idCarta + '"></li>';
+				}
+				$('#suspeitoSuspeita').html(htmlAux);
+
+				$('.modal').show();
+				$('#cria_suspeita').show();
+			}
+			
+		});
 	}
 
 	</script>

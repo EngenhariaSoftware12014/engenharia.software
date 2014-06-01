@@ -454,8 +454,7 @@ button#acusar:hover {
 	display: inline;
 	position: relative;
 	width: 70px;
-	padding: 0;
-	margin: 0;
+	margin-right: 5px;
 }
 
 #cria_suspeita img {
