@@ -17,6 +17,7 @@
 				`idpartidaxusuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
 				`usuario_idusuario` int(10) unsigned NOT NULL,
 				`suspeito_idsuspeito` int(10),
+				`loser` int(1) unsigned NOT NULL,
 				PRIMARY KEY (`idpartidaxusuario`,`usuario_idusuario`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
 			mysql_query($query, $conn);
