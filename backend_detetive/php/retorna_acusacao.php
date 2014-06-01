@@ -39,19 +39,29 @@
 			mysql_query($sql, $conn) or die(mysql_error());
 			echo json_encode(array("winner" => true, "idUsuWinner" => $idUsuario, "cartasEnvelope" => $cartas));
 		} else {
-			$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE idpartidaxusuario > (SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
-			$idProxUsuario = 0;
-			if(mysql_num_rows($rs) > 0){
-				$idProxUsuario = mysql_fetch_array($rs);
-			} else {
-				$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario ") or die(mysql_error());
-				if(mysql_num_rows($rs) > 0){
-					$idProxUsuario = mysql_fetch_array($rs);
+			
+			$idProxUsuario = array();
+			$menor = array();
+			$maior = array();
+			$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario 
+							   WHERE loser != 1 AND idpartidaxusuario != (SELECT idpartidaxusuario 
+							   FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
+
+			while ($row = mysql_fetch_assoc($rs)) {
+				if($idProxUsuario > $row['idpartidaxusuario'] ){
+					$menor[] = $row['idpartidaxusuario'];
+				} else {
+					$maior[] = $row['idpartidaxusuario'];
 				}
 			}
-			$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." 
-				    WHERE idpartida = $idPartida";
-			mysql_query($sql, $conn) or die(mysql_error());
+
+			$idProxUsuario = array_merge($maior, $menor);
+			
+			if(count($idProxUsuario) > 0 ){
+				$sql = "UPDATE partidas SET current_player = ".$idProxUsuario[0]." WHERE idpartida = $idPartida";
+				mysql_query($sql, $conn);
+			}
+
 			$sql = "UPDATE ".$idPartida."_partidaxusuario SET loser = 1 WHERE usuario_idusuario = $idUsuario";
 			mysql_query($sql, $conn) or die(mysql_error());
 			echo json_encode(array("winner" => false, "idUsuLoser" => $idUsuario));
