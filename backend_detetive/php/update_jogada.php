@@ -11,7 +11,9 @@
 	if (mysql_num_rows($rs) > 0) {
 		$idJogada = mysql_fetch_array($rs);
 		$sql = "UPDATE ".$idPartida."_jogadas 
-			   SET suspeito_suspeita = $idSuspeito,
+			   SET 
+			   acusacao = 0,
+			   suspeito_suspeita = $idSuspeito,
 			   arma_suspeita = $idArma,
 			   comodo_suspeita = $idComodo
 			   WHERE idjogadas = ".$idJogada['idJogada'];
