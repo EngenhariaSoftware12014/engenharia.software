@@ -38,21 +38,30 @@
 	
 		echo json_encode($result);
 	} else {
-		
-		$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE idpartidaxusuario > (SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
-		if(mysql_num_rows($rs) > 0){
-			$idProxUsuario = mysql_fetch_array($rs);
-			$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
-			mysql_query($sql, $conn);
-		} else {
-			$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario ") or die(mysql_error());
-			if(mysql_num_rows($rs) > 0){
-				$idProxUsuario = mysql_fetch_array($rs);
-				$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
-				mysql_query($sql, $conn);
+
+		$idProxUsuario = array();
+		$menor = array();
+		$maior = array();
+		$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario 
+						   WHERE loser != 1 AND idpartidaxusuario != (SELECT idpartidaxusuario 
+						   FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
+
+		while ($row = mysql_fetch_assoc($rs)) {
+			if($idProxUsuario > $row['idpartidaxusuario'] ){
+				$menor[] = $row['idpartidaxusuario'];
+			} else {
+				$maior[] = $row['idpartidaxusuario'];
 			}
 		}
+
+		$idProxUsuario = array_merge($maior, $menor);
+		
+		if(count($idProxUsuario) > 0 ){
+			$sql = "UPDATE partidas SET current_player = ".$idProxUsuario[0]." WHERE idpartida = $idPartida";
+			mysql_query($sql, $conn);
+		}
 		echo json_encode(array("end" => true));
+
 	}
 
 ?>
