@@ -11,7 +11,7 @@
 	include 'php/conn.php';
 
 	// Pegar o personagem do jogador
-	$rsPersosnagemUsuario = mysql_query("select suspeito_idsuspeito from " . $idPartida . "_partidaxusuario;");
+	$rsPersosnagemUsuario = mysql_query("select suspeito_idsuspeito from " . $idPartida . "_partidaxusuario where usuario_idusuario = $idUsuario");
 	$p = mysql_fetch_assoc($rsPersosnagemUsuario);
 	$idSuspeitoUsuario = $p['suspeito_idsuspeito'];
 
@@ -67,8 +67,7 @@
 	$anotacoes .= '</ul>';
 
 	// Recuperar a posição dos inicial dos pins
-	$rsSuspeitos = mysql_query("select sus.idsuspeitos as idsuspeitos, sus.imagem as imagem, com.position_x as position_x, com.position_y as position_y from suspeitos as sus 
-		left join comodos as com on com.idcomodos = sus.comodo_idcomodo");
+	$rsSuspeitos = mysql_query("select sus.idsuspeitos as idsuspeitos, sus.imagem as imagem, sxp.position_x as position_x, sxp.position_y as position_y from " . $idPartida . "_suspeitosxposicao as sxp left join suspeitos as sus on sus.idsuspeitos = sxp.idsuspeito;");
 	$suspeitos = '';
 	while($row = mysql_fetch_assoc($rsSuspeitos)) {
 		$top = ($row['position_x'] * 22) - 44;
@@ -875,7 +874,7 @@
 	    		var top = comPosicao[comodo].top;
 	    		var left = comPosicao[comodo].left;
 	    		$('#char_' + idSuspeitoUsuario).css({'top': ((top * 22) - 44) + 'px', 'left': ((left * 22) - 33.5) + 'px'});
-	    		moverPosicao(idPartida, idUsuario, top, left);
+	    		moverPosicao(idPartida, idUsuario, idSuspeitoUsuario, top, left);
 
 	    	} else {
 
@@ -883,7 +882,7 @@
 	    		if (numeroJogadas < numeroDado) {	
 	    			proximoPasso(pos[0], pos[1]);	
 	    		} else {
-	    			moverPosicao(idPartida, idUsuario, top, left);
+	    			moverPosicao(idPartida, idUsuario, idSuspeitoUsuario, pos[0], pos[1]);
 	    		}
 	    	} 
 	    	
@@ -893,6 +892,9 @@
 	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
 	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita}).done(function(data) {
 	    		//$('.modal').show();
+	    		//console.log(data);
+
+	    		// Enquanto aguarda retorno dos outros usuários (Incompleto)
 	    		$('#cria_suspeita').hide();
 	    		$('#loading-result').show();
 	    	});
@@ -926,9 +928,9 @@
 						// $('.modal').show();
 						$('#roda_dado').show();
 						setTimeout(function() {
-							$('.modal').hide();
+							//$('.modal').hide();
 							$('#roda_dado').hide();
-							//$('#loading-message').show();
+							$('#loading-message').show();
 							clearInterval(check);
 						}, 4000);
 					}
@@ -978,10 +980,11 @@
 		return [position_x, position_y];
 	}
 
-	function moverPosicao(idPartida, idUsuario, position_x, position_y) {
-		$.getJSON('php/move_position.php', {idPartida: idPartida, idUsuario: idUsuario, position_x: position_x, position_y: position_y}).done(function(data) {
+	function moverPosicao(idPartida, idUsuario, idSuspeito, position_x, position_y) {
+		$.getJSON('php/move_position.php', {idPartida: idPartida, idUsuario: idUsuario, idSuspeito: idSuspeito, position_x: position_x, position_y: position_y}).done(function(data) {
 			if (data.end) {
-				console.log('Fim');
+				// Script quando é encerrada a jogada do jogador (Incompleto)
+				location.reload();
 			} else {
 				$('#comodoSuspeita').val(data.comodo[0].idCarta);
 				

@@ -17,8 +17,7 @@
 			   arma_suspeita = $idArma,
 			   comodo_suspeita = $idComodo
 			   WHERE idjogadas = ".$idJogada['idJogada'];
-		mysql_query($sql, $conn);
+		mysql_query($sql) or die (mysql_error());
 	}
-
-	echo json_encode('error' => false);
+	echo json_encode(array('error' => false));
 ?>
