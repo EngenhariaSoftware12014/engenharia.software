@@ -805,7 +805,7 @@
 			<div id="notes"><?= $anotacoes ?></div>	
 		</div>
 	</div>
-
+c 
 	<div class="modal">
 		<div id="roda_dado"></div>
 		<div id="loading-message">
@@ -833,7 +833,7 @@
 	<script>
 	var numeroDado = 0, numeroJogadas = 0, comPosicao = <?= $comPosicao ?>, 
 		idPartida = <?= $idPartida ?>, idUsuario = <?= $idUsuario ?>, 
-		currentPlayer = <?= $currentPlayer ?>, idSuspeitoUsuario = <?= $idSuspeitoUsuario ?>;
+		currentPlayer = <?= $currentPlayer ?>, idSuspeitoUsuario = <?= $idSuspeitoUsuario ?>, currentPlace = <?= $currentPlace ?>;
 
 	$(document).ready(function() {
 
@@ -944,9 +944,11 @@
 							//$('.modal').hide();
 							$('#roda_dado').hide();
 							$('#loading-message').show();
-							clearInterval(check);
 						}, 4000);
-					}
+
+						clearInterval(check);
+						aguardandoJogada(idUsuario, idPartida, currentPlace);
+					} 
 				});
 			}, 3000);
 		}
@@ -963,9 +965,7 @@
 					proximoPasso(data.position_x, data.position_y);
 				}
 			});
-		} else {
-
-		}
+		} 
 	}
 
 	function inserirZero(numero) {
@@ -1020,6 +1020,21 @@
 			}
 			
 		});
+	}
+
+	function aguardandoJogada(idUsuario, idPartida, currentPlace) {
+		console.log('Estou testando aqui');
+		var checkJogada = window.setInterval(function() {
+			console.log(currentPlace); 
+
+			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace}).done(function(data) {
+				console.log('ta chegando?');
+				if (data.nextTurn === 'true') {
+					clearInterval(checkJogada);
+					location.reload();
+				}
+			});
+		}, 3000);
 	}
 
 	</script>
