@@ -4,6 +4,7 @@ include 'conn.php';
 
 $idPartida	= $_REQUEST['idPartida'];
 $idUsuario	= $_REQUEST['idUsuario'];
+
 $idCarta	= $_REQUEST['idCarta'];
 $tipoCarta	= $_REQUEST['tipoCarta'];
 $result = array();

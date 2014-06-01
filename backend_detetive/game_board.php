@@ -885,6 +885,12 @@
 	    	
 	    });
 
+	    $('#suspeitar').click(function() {
+	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val();
+	    	var armaSuspeita = $('input[name=armaSuspeita').val();
+	    	var comodoSuspeita = $('armaSuspeita[name=comodoSuspeita]').val();
+	    });
+
 	});
 
 	function rodaDado(idPartida, idUsuario, currentPlayer) {

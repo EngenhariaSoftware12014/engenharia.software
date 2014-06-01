@@ -37,16 +37,16 @@
 	
 		echo json_encode($result);
 	} else {
-		$rs = mysql_query("SELECT usuario_idusuario AS idUsuario FROM ".$idPartida."_partidaxusuario WHERE idpartidaxusuario > (SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
+		$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE idpartidaxusuario > (SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
 		if(mysql_num_rows($rs) > 0){
 			$idProxUsuario = mysql_fetch_array($rs);
-			$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idUsuario']." WHERE idpartida = $idPartida";
+			$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
 			mysql_query($sql, $conn);
 		} else {
 			$rs = mysql_query("SELECT usuario_idusuario AS idUsuario FROM ".$idPartida."_partidaxusuario ") or die(mysql_error());
 			if(mysql_num_rows($rs) > 0){
 				$idProxUsuario = mysql_fetch_array($rs);
-				$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idUsuario']." WHERE idpartida = $idPartida";
+				$sql = "UPDATE partidas SET current_player = ".$idProxUsuario['idpartidaxusuario']." WHERE idpartida = $idPartida";
 				mysql_query($sql, $conn);
 			}
 		}
