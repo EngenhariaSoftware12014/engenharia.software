@@ -24,14 +24,14 @@
 	$currentPlayer = $r['current_player'];
 
 	// Recuperar jogadores
-	$rsJogador = mysql_query("select pxu.idpartidaxusuario as idpartidaxusuario, usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
+	$rsJogador = mysql_query("select pxu.idpartidaxusuario as idpartidaxusuario, pxu.loser as loser, usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
 		left join usuario as usu on usu.idusuario = pxu.usuario_idusuario
 		left join patente as pat on pat.idpatente = usu.patente
 		left join suspeitos as sus on sus.idsuspeitos = pxu.suspeito_idsuspeito") or die(mysql_error());
 	$jogadores = '';
 	while($row = mysql_fetch_assoc($rsJogador)){
 		$jogadores .= '<div class="suspect row' . ($row['idpartidaxusuario'] == $currentPlace ? ' current' : '') . '">' 
-			. '<div class="suspect-img col"><img src="images/cards/' . $row['imagem'] . '"></div>'
+			. '<div class="suspect-img col ' . ($row['loser'] == 1 ? 'loser' : '') . '"><img src="images/cards/' . $row['imagem'] . '"></div>'
 			. '<div class="suspect-description col"><span><strong>' . $row['nome'] . '</strong><br><small>' . $row['patente'] . '</small></span></div>'
 			. '</div>';
 	}
@@ -899,6 +899,19 @@
 	    		$('#loading-result').show();
 	    	});
 	    });
+
+	    $('#acusar').click(function() {
+	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
+	    	$.getJSON('php/retorna_acusacao.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita, idUsuario: idUsuario}).done(function(data) {
+	    		if (data.winner === 'true') {
+	    			alert('Parabéns você venceu!');
+	    			location.href = "game_fechoupartida.php";
+	    		} else {
+	    			alert('Você Perdeu! Melhor sorte na próxima vez!');
+	    			location.reload();
+	    		}	
+	    	});
+	    }); 
 
 	});
 
