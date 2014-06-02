@@ -892,7 +892,7 @@ c
 	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
 	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita}).done(function(data) {
 	    		//$('.modal').show();
-	    		//console.log(data);
+	    		console.log(data);
 
 	    		// Enquanto aguarda retorno dos outros usuários (Incompleto)
 	    		$('#cria_suspeita').hide();
@@ -1030,6 +1030,7 @@ c
 	function aguardandoJogada(idUsuario, idPartida, currentPlace) {
 		var checkJogada = window.setInterval(function() {
 			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace}).done(function(data) {
+				console.log(data);
 				if (data.nextTurn === 'true') {
 					clearInterval(checkJogada);
 					location.reload();

@@ -6,6 +6,7 @@
 	$idSuspeito = intval($_REQUEST['idSuspeito']);
 	$idArma = intval($_REQUEST['idArma']);
 	$idComodo = intval($_REQUEST['idComodo']);
+	$idUsuario = intval($_REQUEST['idUsuario']);
 
 	$rs = mysql_query("SELECT MAX(idjogadas) as idJogada FROM ".$idPartida."_jogadas") or die(mysql_error());
 	if (mysql_num_rows($rs) > 0) {
