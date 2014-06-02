@@ -59,7 +59,8 @@
 				(car.tipo_carta = 'suspeito' and car.id_carta = $idSuspeito))");
 		if (mysql_num_rows($res) > 0) {
 			$achou = true;
-			mysql_query("UPDATE " . $idPartida . "_jogadas SET resposta_usuario = $outroUsu WHERE idjogadas = $idJogada") or die(mysql_error());
+			$row = mysql_fetch_assoc($res);
+			mysql_query("UPDATE " . $idPartida . "_jogadas SET resposta_usuario = " . $row['id'] . " WHERE idjogadas = $idJogada") or die(mysql_error());
 			break;
 		}
 	}
