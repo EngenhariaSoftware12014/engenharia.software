@@ -903,7 +903,10 @@ c
 	    $('#acusar').click(function() {
 	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
 	    	$.getJSON('php/retorna_acusacao.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita, idUsuario: idUsuario}).done(function(data) {
-	    		if (data.winner === 'true') {
+	    		console.log(data);
+	    		if (data.endAll === 'true') {
+	    			location.href = "game_fechoupartida.php";
+	    		} else if (data.winner === 'true') {
 	    			alert('Parabéns você venceu!');
 	    			location.href = "game_fechoupartida.php";
 	    		} else {
@@ -995,7 +998,9 @@ c
 
 	function moverPosicao(idPartida, idUsuario, idSuspeito, position_x, position_y) {
 		$.getJSON('php/move_position.php', {idPartida: idPartida, idUsuario: idUsuario, idSuspeito: idSuspeito, position_x: position_x, position_y: position_y}).done(function(data) {
-			if (data.end) {
+			if (data.endAll) {
+				location.href = "game_fechoupartida.php";
+			} else if (data.end) {
 				// Script quando é encerrada a jogada do jogador (Incompleto)
 				location.reload();
 			} else {
@@ -1023,12 +1028,8 @@ c
 	}
 
 	function aguardandoJogada(idUsuario, idPartida, currentPlace) {
-		console.log('Estou testando aqui');
 		var checkJogada = window.setInterval(function() {
-			console.log(currentPlace); 
-
 			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace}).done(function(data) {
-				console.log('ta chegando?');
 				if (data.nextTurn === 'true') {
 					clearInterval(checkJogada);
 					location.reload();

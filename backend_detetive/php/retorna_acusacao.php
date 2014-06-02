@@ -39,32 +39,57 @@
 			mysql_query($sql, $conn) or die(mysql_error());
 			echo json_encode(array("winner" => 'true', "idUsuWinner" => $idUsuario, "cartasEnvelope" => $cartas));
 		} else {
-			
-			$idProxUsuario = array();
-			$menor = array();
-			$maior = array();
-			$rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario 
-							   WHERE loser != 1 AND idpartidaxusuario != (SELECT idpartidaxusuario 
-							   FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
 
-			while ($row = mysql_fetch_assoc($rs)) {
-				if($idProxUsuario > $row['idpartidaxusuario'] ){
-					$menor[] = $row['idpartidaxusuario'];
+			$res = mysql_query("select idpartidaxusuario from " . $idPartida . "_partidaxusuario where loser != 1 and idpartidaxusuario > (select idpartidaxusuario from " . $idPartida . "_partidaxusuario where usuario_idusuario = $idUsuario) limit 0,1");
+			if (mysql_num_rows($res) > 0) {
+				$row = mysql_fetch_assoc($res);
+				$proximaPosicao = $row['idpartidaxusuario'];
+			} else {
+
+				$res = mysql_query("select idpartidaxusuario from " . $idPartida . "_partidaxusuario where loser != 1 order by idpartidaxusuario asc limit 0, 1");
+				if (mysql_num_rows($res) > 0) {
+					$row = mysql_fetch_assoc($res);
+					$proximaPosicao = $row['idpartidaxusuario'];
 				} else {
-					$maior[] = $row['idpartidaxusuario'];
+					$proximaPosicao = 0;
 				}
-			}
-
-			$idProxUsuario = array_merge($maior, $menor);
-			
-			if(count($idProxUsuario) > 0 ){
-				$sql = "UPDATE partidas SET current_player = ".$idProxUsuario[0]." WHERE idpartida = $idPartida";
-				mysql_query($sql, $conn);
 			}
 
 			$sql = "UPDATE ".$idPartida."_partidaxusuario SET loser = 1 WHERE usuario_idusuario = $idUsuario";
 			mysql_query($sql, $conn) or die(mysql_error());
-			echo json_encode(array("winner" => 'false', "idUsuLoser" => $idUsuario));
+
+			if ($proximaPosicao == 0) {
+				echo json_encode(array('endAll' => 'true'));
+			} else {
+				mysql_query("update partidas set current_player = $proximaPosicao where idpartida = $idPartida") or die(mysql_error());
+				echo json_encode(array("winner" => 'false', "idUsuLoser" => $idUsuario));
+			}
+			
+			// $idProxUsuario = array();
+			// $menor = array();
+			// $maior = array();
+			// $rs = mysql_query("SELECT idpartidaxusuario FROM ".$idPartida."_partidaxusuario 
+			// 				   WHERE loser != 1 AND idpartidaxusuario != (SELECT idpartidaxusuario 
+			// 				   FROM ".$idPartida."_partidaxusuario WHERE usuario_idusuario = $idUsuario)") or die(mysql_error());
+
+			// while ($row = mysql_fetch_assoc($rs)) {
+			// 	if($idProxUsuario > $row['idpartidaxusuario'] ){
+			// 		$menor[] = $row['idpartidaxusuario'];
+			// 	} else {
+			// 		$maior[] = $row['idpartidaxusuario'];
+			// 	}
+			// }
+
+			// $idProxUsuario = array_merge($maior, $menor);
+			
+			// if(count($idProxUsuario) > 0 ){
+			// 	$sql = "UPDATE partidas SET current_player = ".$idProxUsuario[0]." WHERE idpartida = $idPartida";
+			// 	mysql_query($sql, $conn);
+			// }
+
+			// $sql = "UPDATE ".$idPartida."_partidaxusuario SET loser = 1 WHERE usuario_idusuario = $idUsuario";
+			// mysql_query($sql, $conn) or die(mysql_error());
+			// echo json_encode(array("winner" => 'false', "idUsuLoser" => $idUsuario));
 		}
 	}
 ?>
