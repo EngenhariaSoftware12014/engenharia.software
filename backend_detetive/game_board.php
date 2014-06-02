@@ -890,7 +890,7 @@ c
 
 	    $('#suspeitar').click(function() {
 	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
-	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita}).done(function(data) {
+	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita, idUsuario: idUsuario}).done(function(data) {
 	    		//$('.modal').show();
 	    		console.log(data);
 
