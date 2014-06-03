@@ -130,7 +130,7 @@
 						<div id="r01c10" class="col field"></div>
 						<div id="r01c11" class="col prefecture"></div>
 						<div id="r01c12" class="col prefecture"></div>
-						<div id="r01c13" class="col prefecture-exit prefecture caret caret-up" exit-of="prefecture"></div>
+						<div id="r01c13" class="col prefecture"></div>
 						<div id="r01c14" class="col prefecture"></div>
 						<div id="r01c15" class="col prefecture"></div>
 						<div id="r01c16" class="col prefecture"></div>
@@ -778,7 +778,7 @@
 						<div id="r25c10" class="col station"></div>
 						<div id="r25c11" class="col station"></div>
 						<div id="r25c12" class="col station"></div>
-						<div id="r25c13" class="col station-exit station caret caret-down" exit-of="station"></div>
+						<div id="r25c13" class="col station"></div>
 						<div id="r25c14" class="col station"></div>
 						<div id="r25c15" class="col station"></div>
 						<div id="r25c16" class="col station"></div>
@@ -930,10 +930,10 @@
 	    	$.getJSON('php/retorna_acusacao.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita, idUsuario: idUsuario}).done(function(data) {
 	    		console.log(data);
 	    		if (data.endAll === 'true') {
-	    			location.href = "game_fechoupartida.php";
+	    			location.href = "game_fechoupartida.php?idUsuario=" + idUsuario + "&idPartida=" + idPartida;
 	    		} else if (data.winner === 'true') {
 	    			alert('Parabéns você venceu!');
-	    			location.href = "game_fechoupartida.php";
+	    			location.href = "game_fechoupartida.php?idUsuario=" + idUsuario + "&idPartida=" + idPartida;
 	    		} else {
 	    			alert('Você Perdeu! Melhor sorte na próxima vez!');
 	    			location.reload();
@@ -1033,7 +1033,7 @@
 	function moverPosicao(idPartida, idUsuario, idSuspeito, position_x, position_y) {
 		$.getJSON('php/move_position.php', {idPartida: idPartida, idUsuario: idUsuario, idSuspeito: idSuspeito, position_x: position_x, position_y: position_y}).done(function(data) {
 			if (data.endAll) {
-				location.href = "game_fechoupartida.php";
+				location.href = "game_fechoupartida.php?idUsuario=" + idUsuario + "&idPartida=" + idPartida;
 			} else if (data.end) {
 				// Script quando é encerrada a jogada do jogador (Incompleto)
 				location.reload();
@@ -1066,7 +1066,7 @@
 			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace, keepAsking: keepAsking}).done(function(data) {
 				console.log(data);
 				if (data.endAll === 'true') {
-					location.href = "game_fechoupartida.php";
+					location.href = "game_fechoupartida.php?idUsuario=" + idUsuario + "&idPartida=" + idPartida;
 				} else if (data.nextTurn === 'true') {
 					clearInterval(checkJogada);
 					location.reload();

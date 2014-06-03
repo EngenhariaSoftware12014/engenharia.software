@@ -93,7 +93,7 @@ body {
 }
 
 #suspect-menu .indisponible.suspect:after {
-	content: 'NÃO DISPONÍVEL';
+	content: 'INDISPONÍVEL';
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -523,4 +523,14 @@ button#acusar:hover {
 
 #resultSuspeitaJ img {
 	width: 90px;
+}
+
+#container-final {
+	width: 500px;
+	margin: 250px auto;
+	text-align: center;
+	background: #ED300F;
+	padding: 50px;
+	border: 1px solid #AD230B;
+	color: #000;
 }

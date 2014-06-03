@@ -30,15 +30,20 @@
 		mysql_query($sql, $conn) or die(mysql_error());
 	}
 
-
+	$res = mysql_query("select usu.nome as nome from partidas as par left join usuario as usu on usu.idusuario = par.vencedor where idpartida = $idPartida");
+	$row = mysql_fetch_assoc($res);
+	$vencedor = $row['nome'];
 ?>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Detetive</title>
+	<link rel="stylesheet" href="CSS/game_main.css">
 </head>
 <body>
-	<h1>Partida Encerrada! :D</h1>
+	<div id="container-final">
+		<h1><?= $vencedor ?> venceu!!!</h1>
+	</div>
 </body>
 </html>
