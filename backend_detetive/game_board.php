@@ -77,7 +77,7 @@
 		$top = ($row['position_x'] * 22) - 44;
 		$left = ($row['position_y'] * 22) - 33.5;
 		$suspeitos .= '<img src="images/pins/' . $row['imagem'] . '" id="char_' . $row['idsuspeitos'] . '" class="character" style="position: absolute; top: ' . $top . 'px;
-	left: ' . $left . 'px;">';
+	left: ' . $left . 'px;' . ($row['idsuspeitos'] == $idSuspeitoUsuario ? 'z-index: 101;' : '') . '">';
 	}
 
 	// Recuperar posição dos comodos
@@ -914,13 +914,14 @@
 	    	$('#loading-result').show();
 	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita, idUsuario: idUsuario}).done(function(data) {
 	    		//$('.modal').show();
+	    		console.log(data);
 	    		if (data.message) {
 	    			alert(data.message);
-	    			setTimeout(function() {
-	    				location.reload();
-	    			}, 4000);
+	    			location.reload();
+	    		} else {
+	    			aguardandoRespota(idPartida, idUsuario);
 	    		}
-	    		aguardandoRespota(idPartida, idUsuario);
+	    		
 	    	});
 	    });
 
@@ -1064,7 +1065,9 @@
 		var checkJogada = window.setInterval(function() {
 			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace, keepAsking: keepAsking}).done(function(data) {
 				console.log(data);
-				if (data.nextTurn === 'true') {
+				if (data.endAll === 'true') {
+					location.href = "game_fechoupartida.php";
+				} else if (data.nextTurn === 'true') {
 					clearInterval(checkJogada);
 					location.reload();
 				} else { 
@@ -1108,7 +1111,7 @@
 	function aguardandoRespota(idPartida, idUsuario) {
 		var checkResposta = window.setInterval(function() {
 			$.getJSON('php/check_resposta.php', {idPartida: idPartida, idUsuario: idUsuario}).done(function(data) {
-				// console.log(data);
+				console.log(data);
 				if (data.find === 'true') {
 					$('#img_resposta_suspeita').html("<img src='images/cards/" + data.card + "''>");
 					$('#loading-result').hide();

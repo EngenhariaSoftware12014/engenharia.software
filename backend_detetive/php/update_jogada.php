@@ -37,15 +37,20 @@
 	}
 
 	$sort = array();
+	$sortWithoutL = array();
 
-	$res = mysql_query("select idpartidaxusuario from " . $idPartida . "_partidaxusuario where loser != 1 and idpartidaxusuario > (select idpartidaxusuario from " . $idPartida . "_partidaxusuario where usuario_idusuario = $idUsuario)");
+	$res = mysql_query("select idpartidaxusuario, loser from " . $idPartida . "_partidaxusuario where idpartidaxusuario > (select idpartidaxusuario from " . $idPartida . "_partidaxusuario where usuario_idusuario = $idUsuario)");
 	while ($row = mysql_fetch_assoc($res)) {
 		$sort[] = $row['idpartidaxusuario'];
+		if ($row['loser'] != 1) 
+			$sortWithoutL[] = $row['idpartidaxusuario'];
 	}
 
-	$res = mysql_query("select idpartidaxusuario from " . $idPartida . "_partidaxusuario where usuario_idusuario = $idUsuario and loser != 1" . (count($sort) > 0 ? " and idpartidaxusuario not in (" . join(',', $sort) . ")" : "" ) . " order by idpartidaxusuario asc");
+	$res = mysql_query("select idpartidaxusuario, loser from " . $idPartida . "_partidaxusuario where usuario_idusuario != $idUsuario " . (count($sort) > 0 ? " and idpartidaxusuario not in (" . join(',', $sort) . ")" : "" ) . " order by idpartidaxusuario asc");
 	while ($row = mysql_fetch_assoc($res)) {
 		$sort[] = $row['idpartidaxusuario'];
+		if ($row['loser'] != 1) 
+			$sortWithoutL[] = $row['idpartidaxusuario'];
 	}
 	
 	$achou = false;
@@ -67,6 +72,8 @@
 
 	if ($achou)
 		echo json_encode(array('error' => false));
-	else
+	else {
+		mysql_query("update partidas set current_player = " . $sortWithoutL[0] . " where idpartida = $idPartida");
 		echo json_encode(array('error' => false, 'message' => 'Nenhum dos jogadores possuir qualquer uma dessas cartas!'));
+	}
 ?>
