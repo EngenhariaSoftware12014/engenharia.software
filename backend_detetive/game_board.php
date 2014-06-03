@@ -22,14 +22,18 @@
 	$r = mysql_fetch_assoc($rsJogadorCorrente);
 	$currentPlace = $r['current_place'];
 	$currentPlayer = $r['current_player'];
+	$nome_current_player = '';
 
 	// Recuperar jogadores
-	$rsJogador = mysql_query("select pxu.idpartidaxusuario as idpartidaxusuario, pxu.loser as loser, usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
+	$rsJogador = mysql_query("select pxu.usuario_idusuario as usuario_idusuario, pxu.idpartidaxusuario as idpartidaxusuario, pxu.loser as loser, usu.nome as nome, pat.descrpatente as patente, sus.imagem as imagem from " . $idPartida . "_partidaxusuario as pxu
 		left join usuario as usu on usu.idusuario = pxu.usuario_idusuario
 		left join patente as pat on pat.idpatente = usu.patente
 		left join suspeitos as sus on sus.idsuspeitos = pxu.suspeito_idsuspeito") or die(mysql_error());
 	$jogadores = '';
 	while($row = mysql_fetch_assoc($rsJogador)){
+		if ($currentPlayer == $row['usuario_idusuario'])
+			$nome_current_player = $row['nome'];
+
 		$jogadores .= '<div class="suspect row' . ($row['idpartidaxusuario'] == $currentPlace ? ' current' : '') . '">' 
 			. '<div class="suspect-img col ' . ($row['loser'] == 1 ? 'loser' : '') . '"><img src="images/cards/' . $row['imagem'] . '"></div>'
 			. '<div class="suspect-description col"><span><strong>' . $row['nome'] . '</strong><br><small>' . $row['patente'] . '</small></span></div>'
@@ -791,7 +795,7 @@
 				</div>
 
 			</div>
-			<div id="bottom" style="display: none;">
+			<div id="bottom">
 				<div id="cards" class="row"><?= $cartas ?></div>
 			</div>
 		</div>
@@ -805,11 +809,10 @@
 			<div id="notes"><?= $anotacoes ?></div>	
 		</div>
 	</div>
-c 
-	<div class="modal">
+	<div class="modal" style="display: block;">
 		<div id="roda_dado"></div>
 		<div id="loading-message">
-			<h3>Aguardando jogada...</h3>
+			<h3>Aguardando jogada do jogador <?= $nome_current_player ?>...</h3>
 			<img src="images/spinner.GIF">
 		</div>
 		<div id="loading-result">
@@ -827,6 +830,19 @@ c
 				<button id="acusar">Acusar</a>
 			</div>
 		</div>
+		<div id="responde_suspeita">
+			<h3>Suspeitas do jogador <?= $nome_current_player ?></h3>
+			<div id="showSuspeitas" class="row"></div>
+		</div>
+		<div id="responde_suspeita_j">
+			<h3>Suspeitas do jogador <?= $nome_current_player ?></h3>
+			<div id="showSuspeitasJ" class="row">
+				<img src="images/cards/bola.png" alt="" class="col">
+				<img src="images/cards/bola.png" alt="" class="col">
+				<img src="images/cards/bola.png" alt="" class="col">
+			</div>
+			<p>Clique sobre a(s) imagen(s) abaixo para responder a suspeita do jogador.</p>
+		</div>
 	</div>
 
 	<script src="jquery/jquery.min.js"></script>
@@ -837,7 +853,7 @@ c
 
 	$(document).ready(function() {
 
-		rodaDado(idPartida, idUsuario, currentPlayer);
+		//rodaDado(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({
@@ -889,14 +905,20 @@ c
 	    });
 
 	    $('#suspeitar').click(function() {
-	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]').val(), armaSuspeita = $('input[name=armaSuspeita]').val(), comodoSuspeita = $('input[name=comodoSuspeita]').val();
+	    	var suspeitoSupeita = $('input[name=suspeitoSuspeita]:checked').val(), 
+	    		armaSuspeita = $('input[name=armaSuspeita]:checked').val(), 
+	    		comodoSuspeita = $('input[name=comodoSuspeita]').val();
+	    	// Enquanto aguarda retorno dos outros usuários (Incompleto)
+	    	$('#cria_suspeita').hide();
+	    	$('#loading-result').show();
 	    	$.getJSON('php/update_jogada.php', {idPartida: idPartida, idSuspeito: suspeitoSupeita, idArma: armaSuspeita, idComodo: comodoSuspeita, idUsuario: idUsuario}).done(function(data) {
 	    		//$('.modal').show();
-	    		console.log(data);
-
-	    		// Enquanto aguarda retorno dos outros usuários (Incompleto)
-	    		$('#cria_suspeita').hide();
-	    		$('#loading-result').show();
+	    		if (data.message) {
+	    			alert(data.message);
+	    			setTimeout(function() {
+	    				location.reload();
+	    			}, 4000);
+	    		}
 	    	});
 	    });
 
@@ -1027,13 +1049,34 @@ c
 		});
 	}
 
-	function aguardandoJogada(idUsuario, idPartida, currentPlace) {
+	function aguardandoJogada(idUsuario, idPartida, currentPlace, keepAsking) {
 		var checkJogada = window.setInterval(function() {
-			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace}).done(function(data) {
+			$.getJSON('php/check_partida.php', {idUsuario: idUsuario, idPartida: idPartida, currentPlace: currentPlace, keepAsking: keepAsking}).done(function(data) {
 				console.log(data);
 				if (data.nextTurn === 'true') {
 					clearInterval(checkJogada);
 					location.reload();
+				} else { 
+					if (data.suspeita) {
+
+						clearInterval(checkJogada);
+						if (data.resposta) {
+							
+						} else {
+							setTimeout(function() {
+								$('#loading-message').hide();
+								$('#showSuspeitas').html('<img src="images/cards/' + data.suspeita.arma + '" alt="" class="col"><img src="images/cards/' + data.suspeita.suspeito + '" alt="" class="col"><img src="images/cards/' + data.suspeita.comodo + '" alt="" class="col">');
+								$('#responde_suspeita').show();
+							}, 3000);							
+						}
+
+						setTimeout(function() {
+							$('#responde_suspeita').hide();
+							$('#loading-message').show();
+							aguardandoJogada(idUsuario, idPartida, currentPlace, true);
+						}, 10000);
+
+					} 
 				}
 			});
 		}, 3000);

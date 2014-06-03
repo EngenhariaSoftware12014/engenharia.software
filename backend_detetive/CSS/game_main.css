@@ -493,4 +493,15 @@ button#acusar:hover {
 	padding: 2px 0 2px 0;
 	border: 1px solid #AD230B;
 	color: #000;
-};
+}
+
+#responde_suspeita {
+	margin-top: 100px;
+	display: none;
+}
+
+#responde_suspeita img, #responde_suspeita_j img {
+	width: 180px; 
+	padding: 10px;
+}
+
