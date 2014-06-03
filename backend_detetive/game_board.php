@@ -48,25 +48,31 @@
 		$cartas .= '<img src="images/cards/' . $row['caminho_carta'] . '" alt="" class="card col">';
 	}
 
+	$auxArray = array();
+	$res = mysql_query("select carta_idcarta, carta_tipocarta from " . $idPartida . "_comentarios where usuario_idusuario = $idUsuario") or die(mysql_error());
+	while ($row = mysql_fetch_assoc($res)) {
+		$auxArray[$row['carta_tipocarta']][] = $row['carta_idcarta'];
+	}
+	
 	// Recuperar cartas para anotações
 	$rsSusp = mysql_query("SELECT idsuspeitos, nome FROM suspeitos") or die (mysql_error());
 	$anotacoes = '<h2>Suspeitos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsSusp)){
-		$anotacoes .= '<li><span><input type="radio" class="notes-check" data-tipo="suspeito" data-id="' . $row['idsuspeitos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="suspeito" data-id="' . $row['idsuspeitos'] . '" ' . (in_array($row['idsuspeitos'], $auxArray['suspeito']) ? 'checked' : '') . '> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
 	$rsArmas = mysql_query("SELECT idarmas, nome FROM armas") or die (mysql_error());
 	$anotacoes .= '<h2>Armas</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsArmas)){
-		$anotacoes .= '<li><span><input type="radio" class="notes-check" data-tipo="arma" data-id="' . $row['idarmas'] . '"> ' . utf8_encode($row['nome']) . '</span></li>'; 
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="arma" data-id="' . $row['idarmas'] . '" ' . (in_array($row['idarmas'], $auxArray['arma']) ? 'checked' : '') . '> ' . utf8_encode($row['nome']) . '</span></li>'; 
 	}
 	$anotacoes .= '</ul>';
 
 	$rsCmds = mysql_query("SELECT idcomodos, nome FROM comodos") or die (mysql_error());
 	$anotacoes .= '<h2>Comodos</h2><ul class="notes-list">';
 	while($row = mysql_fetch_assoc($rsCmds)){
-		$anotacoes .= '<li><span><input type="radio" class="notes-check" data-tipo="comodo" data-id="' . $row['idcomodos'] . '"> ' . utf8_encode($row['nome']) . '</span></li>';
+		$anotacoes .= '<li><span><input type="checkbox" class="notes-check" data-tipo="comodo" data-id="' . $row['idcomodos'] . '" ' . (in_array($row['idcomodos'], $auxArray['comodo']) ? 'checked' : '') . '> ' . utf8_encode($row['nome']) . '</span></li>';
 	}
 	$anotacoes .= '</ul>';
 
@@ -1099,7 +1105,7 @@
 								$('#responde_suspeita').hide();
 								$('#loading-message').show();
 								aguardandoJogada(idUsuario, idPartida, currentPlace, true);
-							}, 8000);						
+							}, 7000);						
 						}
 
 					} 
@@ -1120,7 +1126,7 @@
 
 					setTimeout(function() {
 						location.reload();
-					}, 8000);
+					}, 7000);
 				} 
 			});
 		}, 3000);
