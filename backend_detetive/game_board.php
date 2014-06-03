@@ -809,7 +809,7 @@
 			<div id="notes"><?= $anotacoes ?></div>	
 		</div>
 	</div>
-	<div class="modal" style="display: block;">
+	<div class="modal">
 		<div id="roda_dado"></div>
 		<div id="loading-message">
 			<h3>Aguardando jogada do jogador <?= $nome_current_player ?>...</h3>
@@ -836,12 +836,13 @@
 		</div>
 		<div id="responde_suspeita_j">
 			<h3>Suspeitas do jogador <?= $nome_current_player ?></h3>
-			<div id="showSuspeitasJ" class="row">
-				<img src="images/cards/bola.png" alt="" class="col">
-				<img src="images/cards/bola.png" alt="" class="col">
-				<img src="images/cards/bola.png" alt="" class="col">
-			</div>
-			<p>Clique sobre a(s) imagen(s) abaixo para responder a suspeita do jogador.</p>
+			<div id="showSuspeitasJ" class="row"></div>
+			<p>Clique sobre a(s) carta(s) abaixo para responder a suspeita do jogador.</p>
+			<div id="resultSuspeitaJ" class="row"></div>
+		</div>
+		<div id="resposta_suspeita">
+			<h2>Carta pista</h2>
+			<div id="img_resposta_suspeita"></div>
 		</div>
 	</div>
 
@@ -853,7 +854,7 @@
 
 	$(document).ready(function() {
 
-		//rodaDado(idPartida, idUsuario, currentPlayer);
+		rodaDado(idPartida, idUsuario, currentPlayer);
 
 	    $('.card').hover(function() {
 	        $(this).animate({
@@ -919,6 +920,7 @@
 	    				location.reload();
 	    			}, 4000);
 	    		}
+	    		aguardandoRespota(idPartida, idUsuario);
 	    	});
 	    });
 
@@ -937,6 +939,15 @@
 	    		}	
 	    	});
 	    }); 
+
+	    $(document).on('click', '.resultS', function() {
+	    	var idCarta = $(this).attr('data-value');
+	    	$.getJSON('php/responde_suspeita.php', {idPartida: idPartida, idUsuario: idUsuario, idCarta: idCarta}).done(function() {
+	    		$('#responde_suspeita_j').hide();
+				$('#loading-message').show();
+	    		aguardandoJogada(idUsuario, idPartida, currentPlace, true);
+	    	});
+	    });
 
 	});
 
@@ -1061,23 +1072,53 @@
 
 						clearInterval(checkJogada);
 						if (data.resposta) {
-							
+							setTimeout(function() {
+								var htmlAux = '';
+								for (var i = 0, len = data.resposta.length; i < len; i++) 
+									htmlAux += '<img src="images/cards/' + data.resposta[i].caminho_carta + '" alt="" class="col resultS" data-value="' + data.resposta[i].id_carta + '">';
+
+								$('#loading-message').hide();
+								$('#showSuspeitasJ').html('<img src="images/cards/' + data.suspeita.arma + '" alt="" class="col"><img src="images/cards/' + data.suspeita.suspeito + '" alt="" class="col"><img src="images/cards/' + data.suspeita.comodo + '" alt="" class="col">');
+								$('#resultSuspeitaJ').html(htmlAux);
+								$('#responde_suspeita_j').show();
+							}, 3000);
+
 						} else {
+							
 							setTimeout(function() {
 								$('#loading-message').hide();
 								$('#showSuspeitas').html('<img src="images/cards/' + data.suspeita.arma + '" alt="" class="col"><img src="images/cards/' + data.suspeita.suspeito + '" alt="" class="col"><img src="images/cards/' + data.suspeita.comodo + '" alt="" class="col">');
 								$('#responde_suspeita').show();
-							}, 3000);							
-						}
+							}, 3000);	
 
-						setTimeout(function() {
-							$('#responde_suspeita').hide();
-							$('#loading-message').show();
-							aguardandoJogada(idUsuario, idPartida, currentPlace, true);
-						}, 10000);
+
+							setTimeout(function() {
+								$('#responde_suspeita').hide();
+								$('#loading-message').show();
+								aguardandoJogada(idUsuario, idPartida, currentPlace, true);
+							}, 8000);						
+						}
 
 					} 
 				}
+			});
+		}, 3000);
+	}
+
+	function aguardandoRespota(idPartida, idUsuario) {
+		var checkResposta = window.setInterval(function() {
+			$.getJSON('php/check_resposta.php', {idPartida: idPartida, idUsuario: idUsuario}).done(function(data) {
+				// console.log(data);
+				if (data.find === 'true') {
+					$('#img_resposta_suspeita').html("<img src='images/cards/" + data.card + "''>");
+					$('#loading-result').hide();
+					$('#resposta_suspeita').show();
+					clearInterval(checkResposta);
+
+					setTimeout(function() {
+						location.reload();
+					}, 8000);
+				} 
 			});
 		}, 3000);
 	}

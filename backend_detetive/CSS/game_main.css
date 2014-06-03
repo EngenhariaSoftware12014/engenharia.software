@@ -500,8 +500,27 @@ button#acusar:hover {
 	display: none;
 }
 
-#responde_suspeita img, #responde_suspeita_j img {
+#responde_suspeita_j {
+	margin-top: 40px;
+	display: none;
+}
+
+#resposta_suspeita {
+	display: none;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#responde_suspeita img, #responde_suspeita_j img, #resposta_suspeita img {
 	width: 180px; 
 	padding: 10px;
 }
 
+#resultSuspeitaJ {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#resultSuspeitaJ img {
+	width: 90px;
+}
