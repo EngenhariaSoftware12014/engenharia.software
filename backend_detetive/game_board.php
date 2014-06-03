@@ -1000,6 +1000,7 @@
 	function selectWay(idPartida, idUsuario, currentPlayer) {
 		if (idUsuario === currentPlayer) {
 			$.getJSON('php/get_way.php', {idPartida: idPartida, currentPlayer: currentPlayer}).done(function(data) {
+				console.log(data);
 				if (data.comodo_class) {
 					$('.' + data.comodo_class + '-exit').addClass('available');
 				} else {
