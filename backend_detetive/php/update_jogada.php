@@ -43,7 +43,7 @@
 		$sort[] = $row['idpartidaxusuario'];
 	}
 
-	$res = mysql_query("select idpartidaxusuario from " . $idPartida . "_partidaxusuario where loser != 1" . (count($sort) > 0 ? " and idpartidaxusuario not in (" . join(',', $sort) . ")" : "" ) . " order by idpartidaxusuario asc");
+	$res = mysql_query("select idpartidaxusuario from " . $idPartida . "_partidaxusuario where usuario_idusuario = $idUsuario and loser != 1" . (count($sort) > 0 ? " and idpartidaxusuario not in (" . join(',', $sort) . ")" : "" ) . " order by idpartidaxusuario asc");
 	while ($row = mysql_fetch_assoc($res)) {
 		$sort[] = $row['idpartidaxusuario'];
 	}
